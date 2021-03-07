@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/s.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hi" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZeroDesigner" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前沿：在药物发现领域，CADD技术可以加速药物研发，而CADD又下分为SBDD，LBDD，FBDD，以及最近大热的AIDD。在SBDD领域，DOCKING始终是绕不开的话题，也是高通量虚拟筛选的利器，本文通过一篇综述，来尽可能的将DOCKING这一概念阐释清晰。 简介：将小分子“停靠”到大分子靶标结构中并“得分”其与结合位点的潜在互补性的计算方法被广泛用于命中鉴定和前导优化。 确实，现在有许多药物">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一篇综述一个领域｜在药物发现中的对接以及打分：方法以及应用">
+<meta property="og:url" content="http://example.com/2021/02/11/paper/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/index.html">
+<meta property="og:site_name" content="ZeroDesigner">
+<meta property="og:description" content="前沿：在药物发现领域，CADD技术可以加速药物研发，而CADD又下分为SBDD，LBDD，FBDD，以及最近大热的AIDD。在SBDD领域，DOCKING始终是绕不开的话题，也是高通量虚拟筛选的利器，本文通过一篇综述，来尽可能的将DOCKING这一概念阐释清晰。 简介：将小分子“停靠”到大分子靶标结构中并“得分”其与结合位点的潜在互补性的计算方法被广泛用于命中鉴定和前导优化。 确实，现在有许多药物">
+<meta property="og:locale">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008eGmZEly1gnigqsyysbj31by0jkq6n.jpg">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210155915170.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210160310541.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171401797.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171543178.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171654778.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210165635174.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171851378.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210213602916.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210213706564.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/format,f_auto-20210211134030316.jpeg">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210174737050.png">
+<meta property="og:image" content="http://example.com/Users/sujiaqi/Desktop/Personal/MyNote/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8.assets/image-20210211135344147.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211125942231.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211130328408.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211125320953.png">
+<meta property="article:published_time" content="2021-02-11T04:31:40.762Z">
+<meta property="article:modified_time" content="2021-03-07T09:59:11.394Z">
+<meta property="article:author" content="Jiaqi Su">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008eGmZEly1gnigqsyysbj31by0jkq6n.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/02/11/paper/一篇综述一个领域｜在药物发现中的对接以及打分：方法以及应用/"/>
+
+
+
+
+
+  <title>一篇综述一个领域｜在药物发现中的对接以及打分：方法以及应用 | ZeroDesigner</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZeroDesigner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一切的失败源于我们对世界认知的模糊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/02/11/paper/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dinosaur.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZeroDesigner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一篇综述一个领域｜在药物发现中的对接以及打分：方法以及应用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-02-11T12:31:40+08:00">
+                2021-02-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%96%87%E7%8C%AE%E8%A7%A3%E8%AF%BB/" itemprop="url" rel="index">
+                    <span itemprop="name">文献解读</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  11k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  37 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前沿："><a href="#前沿：" class="headerlink" title="前沿："></a>前沿：</h3><p>在药物发现领域，CADD技术可以加速药物研发，而CADD又下分为SBDD，LBDD，FBDD，以及最近大热的AIDD。在SBDD领域，DOCKING始终是绕不开的话题，也是高通量虚拟筛选的利器，本文通过一篇综述，来尽可能的将DOCKING这一概念阐释清晰。</p>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p>将小分子“停靠”到大分子靶标结构中并“得分”其与结合位点的潜在互补性的计算方法被广泛用于命中鉴定和前导优化。 确实，现在有许多药物的开发受到诸如基于结构的设计和筛选策略的影响或基于结构的设计和筛选策略，例如HIV蛋白酶抑制剂。 然而，在应用这些方法时，尤其是在当前评分方案方面，仍然存在重大挑战。 在这里，我们回顾了小分子蛋白质对接方法的关键概念和特定功能，重点介绍了选定的应用，并讨论了旨在解决公认方法的局限性的最新进展。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnigqsyysbj31by0jkq6n.jpg" alt="image-20210210151943996"></p>
+<h3 id="DOCKING简介"><a href="#DOCKING简介" class="headerlink" title="DOCKING简介"></a>DOCKING简介</h3><p>DOCKING过程涉及预测目标结合位点内的配体构象和方向（或姿势posing）（方框1）。 </p>
+<p>通常，其有两个目标：准确的结构建模和正确的活性预测。 </p>
+<p>DOCKING通常设计为一个多步骤过程，其中每个步骤都引入了一个或多个程度的复杂性。</p>
+<p>该过程始于对接算法的应用，该算法将小分子定位在活性位点。这本身就具有挑战性，因为即使<strong>相对简单的有机分子也可以包含许多构象自由度</strong>。必须以足够的精度对这些自由度进行采样，以识别与受体结构最匹配的构象，并且<strong>必须足够快</strong>，以允许在一定的时间内可以评估大量的化合物。</p>
+<p>评分功能对算法进行了补充，评分功能旨在通过评估化合物与潜在靶标之间的相互作用来预测生物活性。早期的评分函数根据<strong>形状和静电互补性</strong>的计算来评估。通常使用更复杂的评分方案，对<strong>静电和范德华</strong>相互作用进行更详细的处理，并至少包含一些<strong>溶剂或熵效应</strong>，对构象异构体进行进一步评估。</p>
+<p>还应注意的是，配体受体之间的结合是由<strong>焓和熵效应</strong>共同驱动的，并且熵或焓都可以主导特定的相互作用。这为打分提出一个概念性问题，因为它们中的大多数更着重于<strong>能量变化而不是熵效应</strong>。</p>
+<p>除了与化合物构象评分相关的问题外，还存在其他复杂因素，这使得准确预测复合物构象和化合物活性变得更加具有挑战性。</p>
+<p>这些因素包括：<strong>结构的分辨率有限，配体灵活性，诱导契合性或结合时发生的其他构象变化，以及水分子是否参与</strong>。</p>
+<p><strong>对接的理论方面</strong></p>
+<p>对于酶和抑制剂，对接的目的是在平衡条件下正确预测复合物[E + I] = [EI]的结构。</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210155915170.png" alt="image-20210210155915170" style="zoom:50%;" />
+
+
+
+<p>该图说明了抑制剂Dmp323与HIV蛋白酶的结合，并已有复合物结构（PDB代码：1BVE）。 酶与抑制剂的多重复合物结构仅显示出有限的结构变化。</p>
+<p>结合的自由能（∆G）与结合亲和力的关系式如下：</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210160310541.png" alt="image-20210210160310541" style="zoom:50%;" />
+
+<p>预测[E + I]配合物的正确结构（posing）不需要有关K<sub>A</sub>的信息。 但是，生物活性的预测（ranking）需要此信息。 因此，打分项可以按以下方式划分。 当考虑[EI]时，以下因素很重要：空间，静电，氢键，配体灵活度和配体灵活度。 当考虑方程式1所示的平衡过程时，以下因素也很重要：去溶剂化，旋转熵和平移熵。</p>
+<blockquote>
+<p>1BVE:Dmp323与HIV蛋白酶的复合物结构，在众多HIV蛋白酶与复合物的晶体结构已被解析出的环境下，这是第一个被解析出的HIV蛋白酶抑制剂溶剂条件下的复合物结构（NMR），得到了计算出28个NMR结构的集合，忽略无序环中的残基，结构集合中主链原子与平均结构的偏差（RMSD）在0.60埃。</p>
+</blockquote>
+<h3 id="对接过程中的分子展示（Molecular-representations-for-docking）"><a href="#对接过程中的分子展示（Molecular-representations-for-docking）" class="headerlink" title="对接过程中的分子展示（Molecular representations for docking）"></a>对接过程中的分子展示（Molecular representations for docking）</h3><p>为了评估各种对接方法，重要的是要考虑蛋白质和配体的展示方式。</p>
+<p>一般来说，有三种基本展示形式：原子（ATOM），表面（SURFACE）和网格（GRID）。</p>
+<p>其中，原子展示法通常仅与势能函数一起使用，并且通常仅在最终的RANKING过程中使用（由于评估成对原子相互作用的计算复杂度）。</p>
+<blockquote>
+<p>在这里，作者主要参考了这篇文章DARWIN: a program for docking flexible molecules ，目前，我尚未从scihub上下载下来，但是从其简介中，我们可以知道，DARWIN与CHARMM进行联用从而进行能量计算，也即为在最终的RANKING阶段继续评估成对原子相互作用计算。</p>
+</blockquote>
+<p>基于表面的对接程序通常）用于蛋白质-蛋白质对接。康诺利（Connolly）在分子surface表征方面的工作十分重要。这些方法试图通过最小化相对分子表面之间的角度来对齐表面上的点。因此，刚体对接仍然是许多蛋白质-蛋白质对接技术的标准。</p>
+<p>Goodford率先使用了grid展示，并且随后各种对接程序都使用这种网格表示进行能量计算。基本思想是将有关受体能量贡献的信息存储在网格点上，以便仅在计分过程中才需要读取它。在最基本的形式中，网格点存储两种类型的电势：静电和范德华力。</p>
+<blockquote>
+<p>静电势能表示为库仑相互作用的成对总和</p>
+<p>在等式1中，N分别是分子A和B中的原子数，q是每个原子上的电荷。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171401797.png" alt="image-20210210171401797"></p>
+<p>对于非键相互作用的一般处理，范德华势能通常由Lennard–Jones 12–6式进行建模，如公式2所示：</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171543178.png" alt="image-20210210171543178"></p>
+<p>在等式2中，ε是电势的阱深度，而σ是原子i和j的碰撞直径。</p>
+<p>下图显示了Lennard–Jones 12–6式。 该方程式的exp（12）项负责小距离斥力，而exp（6）负责吸引力。当两个原子之间的距离增加时，范德华势能趋近于零。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171654778.png" alt="image-20210210171654778"></p>
+</blockquote>
+<blockquote>
+<p>红色：负电；蓝色：正电。</p>
+<p>图a示出了活性位点附近的静电势表面，而图b示出了围绕在抑制剂周围的受体部分静电势表面（存在cut-away）。</p>
+</blockquote>
+<blockquote>
+<p>抑制剂Dmp323与HIV蛋白酶（PDB：1BVE）形成复合物。 </p>
+<p>将抑制剂的静电势映射到分子表面上，HIV蛋白酶中的残基Ile50和Asp25可稳定抑制剂的结合。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210165635174.png" alt="image-20210210165635174"></p>
+</blockquote>
+<h3 id="搜寻手段与配体灵活性（Search-methods-and-molecular-flexibility）"><a href="#搜寻手段与配体灵活性（Search-methods-and-molecular-flexibility）" class="headerlink" title="搜寻手段与配体灵活性（Search methods and molecular flexibility）"></a>搜寻手段与配体灵活性（Search methods and molecular flexibility）</h3><p>本节重点介绍用于处理配体灵活性以及蛋白质灵活度的算法。</p>
+<p> 配体灵活度的处理可分为三个基本类别：</p>
+<ol>
+<li><p>系统方法（增量构建，构象搜索，数据库）； </p>
+</li>
+<li><p>随机或随机方法（蒙特卡洛，遗传算法，禁忌搜索）；</p>
+</li>
+<li><p> 和模拟方法（分子动力学，能量最小化）。 </p>
+</li>
+</ol>
+<p>相关总结如下：</p>
+<p>   <img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210171851378.png" alt="image-20210210171851378"></p>
+<h4 id="系统搜索（Systematic-search）"><a href="#系统搜索（Systematic-search）" class="headerlink" title="系统搜索（Systematic search）"></a>系统搜索（Systematic search）</h4><p>这些算法试图探索配体中的所有自由度，但最终面临组合爆炸的问题。 因此，配体在活性位点通常逐渐生长。 一般采用逐步搜索或增量搜索，例如，将各种分子片段对接到活性位点区域，然后将它们共价连接（这是从头开始的配体设计策略），或者，通过将对接的配体分为刚性（核心片段）和柔性部分（侧链）。在后一种情况下，将刚性片段对接到活动位置。接下来，以递增方式添加柔性片段。例如，DOCK 通过空间互补性构成了核心片段，通过系统地探索每个键的位姿空间，使柔性侧链一次增长一个键。并且应用修剪算法尽早删除不利的构象，从而降低了复杂性。 FlexX与DOCK的不同之处在于，刚性核心片段的放置基于片段与受体之间的相互作用基团。相互作用基团主要是氢键供体和受体，以及疏水基团。 FlexX与DOCK的不同之处还在于，它使用POSE聚类算法对POSE进行分类。 </p>
+<p>与其他增量搜索算法一样，Hammerhead算法仍然将配体划分为多个片段。 但是，Hammerhead会对每个片段进行对接，然后从可接受的片段中开始重建配体。 在碎片生长阶段，每次新添加后都会进行能量最小化。</p>
+<p>系统搜索的另一种方法是使用预先生成的构象库。 库中的构象通常只计算一次，因此搜索问题可简化为刚体对接过程。 例如，FLOG根据距离几何图形生成配体构象库。 一旦产生了可接受的构象，算法便以类似于DOCK的方式对其进行探索。</p>
+<p><strong>组合爆炸问题</strong></p>
+<p>对于系统构象搜索，可能的分子构象数由等式1表示</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210213602916.png" alt="image-20210210213602916"></p>
+<p>在等式1中，N是可旋转键的数量，θ<sub> i </sub>,<sub>j</sub>是对键i的旋转角j。 为了避免详尽的搜索计算，许多构象搜索算法使用增量构建方法在活动位点内生长配体，该过程包括三个基本步骤：</p>
+<ol>
+<li><p>核心片段选择。</p>
+</li>
+<li><p>核心片段放置。</p>
+</li>
+<li><p> 增量配体构建。</p>
+</li>
+</ol>
+<p>   在第一步中，配体分为刚性核片段和柔性侧链。 随后，这些侧链在每个新的可旋转键处进一步分开，如图所示。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210213706564.png" alt="image-20210210213706564"></p>
+<p>在第二步和第三步中，首先放置核心片段和随后侧链增量连接并进行旋转。</p>
+<h4 id="随机探索（Random-search）"><a href="#随机探索（Random-search）" class="headerlink" title="随机探索（Random search）"></a>随机探索（Random search）</h4><p>这些算法（通常称为随机搜索）通过对单个配体构象或配体构象群体进行随机更改来进行操作。 根据预先定义好的概率函数评估新获得的配体构象是否被接受。 两种比较流行的随机方法是蒙特卡洛和遗传算法。 蒙特卡罗搜索的实现方式在AutoDock中已有实现。其他几个程序（包括DOCK和GOLD）也实现了遗传算法。</p>
+<p>禁忌搜索算法（abu search algorithm）的基本思想是考虑已探究的构象空间区域。 为了确定分子构象是否被接受，需要计算当前分子坐标与每个分子先前记录的构象之间的均方根偏差。 例如，PRO_LEADS使用禁忌搜索算法。</p>
+<h4 id="分子模拟（-Simulation-methods-）："><a href="#分子模拟（-Simulation-methods-）：" class="headerlink" title="分子模拟（*Simulation methods.*）："></a>分子模拟（*Simulation methods.*）：</h4><p>分子动力学是目前最流行的模拟方法。 但是，分子动力学模拟通常无法在可行的模拟时间内越过高能壁垒，经常结果为局部最小值。 因此，一种解决思路是尝试在不同温度下模拟蛋白质-配体系统的不同部分。 另一种策略是从不同的配体位置开始分子动力学计算。 与分子动力学相反，能量最小化方法很少用作独立的搜索手段，因为此技术手段只能达到局部能量的最小值，但通常是对其他搜索方法（包括蒙特卡洛）的补充。 每次添加片段后，DOCK都会执行最小化步骤，然后在打分之前进行整体最小化。</p>
+<p><strong>搜索技术</strong></p>
+<ol>
+<li>基本的蒙特卡洛算法<ol>
+<li>在活性位点中间，随机产生配体构象做为初始构型。</li>
+<li> 对初始构型进行打分。</li>
+<li> 生成新构型并为其打分（或许随机，或许基于某些知识经验）。</li>
+<li> 使用大都会标准来确定新构型进行打分。</li>
+<li> 重复前面的步骤，直到获得所需数量的构型。</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>大都会标准(Metropolis criterion)<pre><code>如果构型的得分优于以前的构型，则立即接受。如果构型不是新的最小值，则基于Boltzmann的概率函数。如果构型通过了概率函数，则被接受；如果不是，则新构型被拒绝。
+</code></pre>
+</li>
+</ul>
+<ol start="2">
+<li><p>分子动力学<br>分子动力学是一种模拟技术，可以解决原子系统的牛顿运动方程：Fi = mi ai，其中F是力，m是质量，a是加速度。</p>
+<p>根据当前位置和新位置之间的势能变化（通常基于分子力学术语）来计算作用在每个原子上的力：Fi = –（dE / ri），其中r为距离。然后使用原子力和质量来确定一系列非常小的时间步长上的原子位置：Fi = mi（d2ri / dt2），其中t是时间。</p>
+<p>这提供了原子位置随时间变化的轨迹。</p>
+<p>实际上，通过首先根据力和质量计算加速度ai，然后根据ai = dvi / dt来计算速度vi，最终根据速度vi = dri / dt来计算位置，更容易确定与时间有关的原子位置。</p>
+</li>
+<li><p>遗传算法<br>遗传算法是一类基于生物竞争和种群动态原理的解决策略，其基本原理很容易理解，相关研究也很多。</p>
+<p>下面这幅图只是一种基本展示，来源于百度。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/format,f_auto-20210211134030316.jpeg" alt="img"></p>
+<p>对于对接来说，遗传算法最后的产生结果是可能的配体构象的集合。</p>
+</li>
+<li><p>禁忌搜索算法</p>
+<ol>
+<li><p>对当前构象进行n次小的随机更改。</p>
+</li>
+<li><p>根据所选适应度函数对每个变化之后的构象进行排名。</p>
+</li>
+<li><p>确定哪些更改是“禁忌”（即以前拒绝的构型）。</p>
+</li>
+<li><p>如果最佳修改的价值比目前为止接受的其他修改要低，则即使它在“ tabu”中，也要接受；否则，请接受最佳的“非禁忌”更改。</p>
+</li>
+<li><p>将接受的更改添加到“ tabu”列表中并记录其得分。</p>
+</li>
+<li><p>转到第一步。</p>
+<p>well，这里有些难理解，按照我的思考来说，设置‘tabu’列表，即为禁忌的旋转角度，随机产生n次小的<strong>更改</strong>之后，首先对这些<strong>更改</strong>进行确认，辨别出哪些更改为禁忌的。如果最优的更改策略比其余接受的值低，那么即便此更改在“ tabu”中，也要接受此更改；否则的话，接受最佳的“非禁忌”更改。然后，将接受的更改添加到“ tabu”列表。</p>
+</li>
+</ol>
+</li>
+</ol>
+<h4 id="蛋白灵活性（-Protein-flexibility-）"><a href="#蛋白灵活性（-Protein-flexibility-）" class="headerlink" title="蛋白灵活性（*Protein flexibility.*）"></a>蛋白灵活性（*Protein flexibility.*）</h4><p>相比较而言，蛋白质灵活度的处理没有配体灵活度的先进，但是已经应用了各种方法来灵活地对目标的至少一部分进行建模，包括分子动力学和蒙特卡洛计算，旋转异构体和蛋白质集合网格。使用<strong>氨基酸侧链旋转异构体文库</strong>的想法是基于有限数量的实验观察到的和优选的侧链构象对蛋白质构象空间建模。为了减少由旋转异构体的组合产生的离散蛋白质构象的数量，通常使用无末端消除算法（dead-end elimination algorithm）。该算法递归地删除了对最小能量结构无贡献的侧链构象。处理蛋白质灵活度的另一种方法是<strong>使用蛋白质构象的集合体（而不是单个）</strong>作为对接的目标。DOCK中实现的为生成了集合的平均势能网格；另一种则是单独对组内存在的受体-配体构象进行打分。</p>
+<h3 id="打分（Scoring）"><a href="#打分（Scoring）" class="headerlink" title="打分（Scoring）"></a>打分（Scoring）</h3><p>对预测出的配体构象与受体的评估和排名是十分重要的。即使正确预测了结合构象，如果不能将正确的POSE与不正确的POSE区分开，如果无法识别“真实”的配体，则计算最终仍然是失败的。</p>
+<p>因此，设计可靠的评分功能和方案至关重要。已经开发了自由能模拟技术，用于蛋白质-配体相互作用的定量建模和结合亲和力的预测。但是，这些计算太过耗时，对于评估大量蛋白质-配体复合物仍然不切实际，而且计算并不总是准确的。对接程序中实现的评分功能在评估复合物时做出了各种假设和简化，并且没有完全考虑到许多影响分子识别的物理因素，例如熵效应。</p>
+<p>基本上，目前存在三种类型打分函数：基于力场；基于经验；基于知识。</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210210174737050.png" alt="image-20210210174737050"></p>
+<h4 id="基于力场的打分（Force-field-based-scoring）："><a href="#基于力场的打分（Force-field-based-scoring）：" class="headerlink" title="基于力场的打分（Force-field-based scoring）："></a>基于力场的打分（<em>Force-field-based scoring</em>）：</h4><p>这些打分函数基于物理,分子力学力场通常量化为两个能量的总和，即受体-配体相互作用能和配体内部能量（例如结合引起的空间变化）。图3说明了分子识别中涉及的非键相互作用的力场模型。大多数力场评分功能仅考虑单个蛋白质构象，从而可以省略蛋白质内部能量的计算，大大简化了评分。各种力场评分功能均基于不同的力场参数集。例如，基于Tripos力场的G-Score和基于AMBER力场的AutoDock。但是，函数形式通常是相似的。</p>
+<p>标准力场打分函数具有局限性，因为它们最初是为模拟焓气相对结构和能量的贡献而制定的，并且不包括溶剂化和熵项。 基于力场的评分因以下事实而变得更加复杂：通常需要引入截止距离来处理非键合相互作用，这种距离或多或少是任意选择的，这会使长距离的精确处理变得复杂。</p>
+<blockquote>
+<p><img src="/Users/sujiaqi/Desktop/Personal/MyNote/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8.assets/image-20210211135344147.png" alt="image-20210211135344147">a|抑制剂BIRB796与其复合物结构（PDB：1KV2）。所显示的抑制剂具有其静电势能表面。 b |活性位点的放大视图。 c |残基Glu71与BIRB796之间相互作用的特写视图。氢键和范德华相互作用分别用红色和绿色标记。 d |用于建模有助于绑定的成对交互的功能的示意图。根据两个原子i和j之间的距离（rij）计算相互作用。 d部分的左侧：由12–6 Lennard-Jones势给出的范德华相互作用。 d部分的中部：由12-10 Lennard-Jones势赋予的氢键势，与角度有关（如c所示）。 d部分的右边：使用4r随距离变化的介电常数计算出的两个大小相同的（蓝色）或相反（黑色）电荷的静电势。</p>
+</blockquote>
+<h4 id="基于经验的打分函数（-Empirical-scoring-functions-）"><a href="#基于经验的打分函数（-Empirical-scoring-functions-）" class="headerlink" title="基于经验的打分函数（*Empirical scoring functions.*）"></a>基于经验的打分函数（*Empirical scoring functions.*）</h4><p>这些评分函数适合重现实验数据，例如结合能和/或构象，这是几个参数化函数的总和，这是Böhm首先提出的。经验打分函数的设计基于如下思想，即结合能可以通过各个不相关项的总和来近似。使用实验确定的结合能和结构信息，利用回归分析获得各种项的系数。经验打分函数形式通常比力场打分函数更简单。经验函数的吸引力在于，<strong>它们的各种项通常易于化学家或者实验人员进行评估优化</strong>，但它们基于类似于力场函数的近似值。这些方法的缺点是它们依赖于用于进行拟合的<strong>分子数据集</strong>，这通常会产生不同的加权因子，来自不同拟合得分函数的项不能重新组合为新的打分函数。</p>
+<h4 id="基于知识的打分函数（Knowledge-based-scoring-functions-）"><a href="#基于知识的打分函数（Knowledge-based-scoring-functions-）" class="headerlink" title="基于知识的打分函数（Knowledge-based scoring functions. ）"></a>基于知识的打分函数（<em>Knowledge-based scoring functions.</em> ）</h4><p>基于知识的评分功能旨在重现实验结构，而不是计算能量。在基于知识的打分函数中，使用相对简单的原子之间相互作用对蛋白质-配体复合物进行建模。根据原子所处的环境，定义了许多原子类型的相互作用。因此，与经验方法一样，基于知识的评分函数试图隐式捕获难以显式建模的项。此类打分函数比较流行的有：POTENTIAL OF MEAN FORCE（PMF）和DrugScore。许多基于知识的评分功能的主要吸引力在于它们的计算简单性，可以有效地筛选大型化合物数据库。缺点是它们的推导基本上基于隐式编码的蛋白质-配体复杂结构的有限集合中的信息。</p>
+<h4 id="共识函数（Consensus-scoring）"><a href="#共识函数（Consensus-scoring）" class="headerlink" title="共识函数（Consensus scoring）"></a>共识函数（<em>Consensus scoring</em>）</h4><p>考虑到当前打分函数的不完善，该领域的最新趋势是引入共识评分方案。 共识评分结合了不同打分函数的信息，以减少单个评分中的错误，并提高了识别“真实”配体的可能性。 共识评分的实现是X-CSCORE，它结合了GOLD类似，DOCK类似，ChemScore，PMF和FlexX打分函数。 但是，如果不同打分函数中的某些项显着相关，则可能会放大计算误差，而不是减少错误。</p>
+<h4 id="POSE和打分（Posing-versus-scoring）"><a href="#POSE和打分（Posing-versus-scoring）" class="headerlink" title="POSE和打分（Posing versus scoring）"></a>POSE和打分（<em>Posing versus scoring</em>）</h4><p>计算错误是否与结合构象预测或打分有关？配体的灵活度比配体尺寸或极性对结果的影响更大，这显然与POSING有关。但是，区分“幻想”配体和“真实”配体的能力关键取决于打分函数。通常很难区分是构象搜索不充分还是打分函数有缺陷，并且此类相关的研究相对较少。</p>
+<p>在各种对接程序中，在针对射线构象时， DOCK，FlexX和GOLD显示出明显的优势，即配体比任何不正确的构象都得分更高，即可以很容易的获取真实构象，而CDOCKER通常对正确结构的打分更差。就结构精度而言，在一组69组复合物的训练集上，GOLD和Glide的总体结果令人满意。在对GOLD的重新参数化中，比较了两种打分函数GOLDSCORE和ChemScore，并将其应用于共识评分方案中。两种打分均获得了相似的评分准确性（65–85％）。</p>
+<p>结合亲和力的预测取决于能否找到正确的结合构象。作为共识评分的替代方法，引入了基于遗传算法的评分项，以更好地从“噪声”化合物中获得正确的配体。在这些基础上，得出结论，对复合物构象进行精准的建模是必要的，但仍然不足以进行正确的配体评分和排名。 考虑到各种结构预测工作的成功率，打分函数的缺陷仍然是主要的限制因素。</p>
+<h4 id="提升打分函数（Improving-scoring-functions-）"><a href="#提升打分函数（Improving-scoring-functions-）" class="headerlink" title="提升打分函数（Improving scoring functions. ）"></a>提升打分函数（<em>Improving scoring functions.</em> ）</h4><p>如何进一步提高打分函数的质量？如前所述，该领域的当前趋势是将重点放在各种溶剂化和旋转熵的贡献上。计入此类贡献的打分比标准的力场函数更准确，但计算量也很大，这给高通量对接带来了挑战。更重要的是，经常观察到的更改之后的打分函数在多个目标上的表现差异很大，例如，GOLD验证集。这表明开发出通用打分函数可能很困难。蛋白结合位点和配体识别过程都是独特的，这些特性最终使蛋白质与配体之间的相互作用变得独一无二，而其结论则是可能经常需要根据具体情况对评分方案进行“调整”。</p>
+<h3 id="基于结构的虚拟筛选（Structure-based-virtual-screening）"><a href="#基于结构的虚拟筛选（Structure-based-virtual-screening）" class="headerlink" title="基于结构的虚拟筛选（Structure-based virtual screening）"></a>基于结构的虚拟筛选（Structure-based virtual screening）</h3><p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211125942231.png" alt="image-20210211125942231"></p>
+<blockquote>
+<p>蛋白质-配体相互作用的复杂性。 该图显示了复合物结构中相互作用的示意图，需要考虑这些相互作用才能预测同一活性位点内两种化合物的连接构象和结合能。</p>
+<p> 在这种情况下，将环AMP依赖性激酶（PDB代码：1atp）的天然辅助因子Mg-ATP与抑制剂星形孢菌素进行了比较。 为了在对接研究中可以更正确将星形孢菌素挑出，用于疏水性（吲哚），氢键（内酰胺环）和离子性（脂族胺盐桥，磷酸镁+蛋白质螯合）相互作用的能量函数必须进行适当调整权重以进行优化。</p>
+<p> 为特定目标寻找优选的打分函数是一项艰巨的过程，通常涉及许多试验。</p>
+</blockquote>
+<h4 id="一般警告"><a href="#一般警告" class="headerlink" title="一般警告"></a>一般警告</h4><p>无论使用何种打分函数，分数随着分子质量和化合物中可旋转键的数量而缩放比例都很差。大分子可以在结合位点上形成许多假设的相互作用，因此比小分子化合物倾向于产生更好的分数。另一方面，固定不动旋转键的熵代价（通常不考虑）与此类键的数量成比例。结果，如果包括熵罚，则柔性分子的得分往往低于刚性分子。此外，分子姿势的内部应变能通常以配体的单个未结合构象作为参照而近似，这在估计结合时的熵和焓损失方面具有明显的局限性。这些限制通常会增加评分功能的缺陷，并使得根据计算的结合位点相互作用准确地对测试分子进行排名变得更加困难。<br>活性位点的一般性质和制备也影响配体位置和得分的质量。例如，在HIV蛋白酶中发现的疏水性结合位点可能比亲水性更高的位点或结合事件涉及的静电相互作用（例如在金属酶中发现）更有望成为目标。这主要是由于这样的事实，即可以通过计算配体与受体之间的形状互补性来很好地估计与疏水位点的结合，自对接初期以来，就已经存在强大的方法[8,77]。形状互补性的计算隐含考虑了疏水作用。但是，疏水性作用的很大（有时是最大的）贡献来自疏水性配体的去溶剂化作用（例如在HIV蛋白酶中），这在对接分数中并未得到充分考虑，相对于其他得分项，它可能被大大低估了。在一些活动站点中。此外，静电相互作用的精确建模和评分仍然是当代评分功能的主要挑战。如上所述，在许多情况下，简单的库仑模型仍被用于这些目的，并且倾向于严重高估电荷-电荷相互作用或产生人为的相互作用。<br>此外，在结构上很重要或直接参与结合相互作用的水分子的放置，以及假定结合位点内侧链构象的刚性，都可以极大地影响测试化合物的形成78。显然，每当结合中发生构象变化时，严格定义的结合位点的预测潜能就会受到限制。最后，已经观察到，基于结构的虚拟筛选通常会选择生物混杂的化合物，因此被称为“频繁击球者” 79,80。此类化合物相当非特异性的抑制作用至少可以部分归因于疏水特性和聚集效应的主导作用，这些倾向倾向于在对接模拟和筛选测定中都有利于检测（尽管出于不同的原因）。</p>
+<h4 id="选择策略（-Selection-strategies-）"><a href="#选择策略（-Selection-strategies-）" class="headerlink" title="选择策略（*Selection strategies.*）"></a>选择策略（*Selection strategies.*）</h4><p>考虑到系统设置，POSING和打分中涉及的许多近似和局限性，人们可能会问为什么基于结构的虚拟筛选实际上可以“起作用”的问题。主要原因是计算筛选是一个富集过程。有意义的化合物选择不一定需要精确计算出的能量和得分；好的选择策略可以弥补一些方法上的不足。</p>
+<p>例如，在典型的对接研究中，大型化合物数据库中可以过滤掉一些，最终可能得到100个左右候选化合物。</p>
+<p>为了缩小选择的范围，过滤掉不合适的化合物（大多数数据库化合物都是如此）与寻找最有希望的候选物一样重要。重要的是，考虑到计算因素，比特异性选择更容易实现的是过滤掉不适合的化合物。此外，只要在候选清单中找到活性化合物，它们的<strong>相对排名就不再重要</strong>。简而言之，只要对这些化合物进行测试，就可以在前五名得分最高的化合物中获得与前五十名得分相同的活性，这进一步弥补了得分的局限性。此外，对相当少量的候选对象（例如100-500）进行目视检查也是一种相当普遍的做法，这给选拔过程增加了另一个维度（即化学直觉，知识和经验）。</p>
+<p>因此，尽管虚拟筛选不可避免地会产生假阳性和阴性，但将结果分析合理化为富集过程有助于解释其成功之处。</p>
+<p>甚至非常快速的对接和计分方法，每个化合物通常也需要数秒至数十秒的时间才能完全灵活地进行搜索，因此，在存在数百万种数据库化合物的情况下，这种方法变得难以为继。结果，通常只有在通过应用过滤方法显着减小了源数据库的大小之后，才可以执行复杂的POSE和打分方案。</p>
+<h4 id="靶点结构（Structures-of-target-sites）"><a href="#靶点结构（Structures-of-target-sites）" class="headerlink" title="靶点结构（Structures of target sites）"></a>靶点结构（<em>Structures of target sites</em>）</h4><p>结合位点的结构模型的选择和准备是重要的变量。通常优选由实验确定的（X射线或核磁共振）结构。然而，由于具有药学意义的蛋白质的数量增长快于结构已确定的数量，同源性建模也已逐渐普及。</p>
+<p>最近的一项研究比较了使用HOLO-或APO-ENZYMES的晶体结构或同源模型作为模板时，对接结果的质量。令人惊讶的是，在10个测试案例中，同源模型有更高的富集因子，脱辅酶和同源性建模的结构表现相当好。但是，最佳性能仍然是结合配体的蛋白质构象。该研究表明，即使由配体结合引起的微小蛋白质构象变化也足以显著影响对接结果的质量。然而，在高序列相似性的情况下建立的同源性模型也提供了合理的对接模板。</p>
+<h4 id="预筛选：三维过滤（Pre-screening-three-dimensional-filtering-）"><a href="#预筛选：三维过滤（Pre-screening-three-dimensional-filtering-）" class="headerlink" title="预筛选：三维过滤（Pre-screening: three-dimensional filtering.）"></a>预筛选：三维过滤（Pre-screening: three-dimensional filtering.）</h4><p>除了常规的一维/二维过滤器（例如类药五规则）之外，还实现了三维过滤器功能，以有效地预筛选非常大的数据库并减少对接和打分步骤中化合物的数量。</p>
+<p>例如，形状相似性方法可以应用于过滤。启发式算法基于在特征，三重态，四重态或原子的更高阶组的基础上识别相似的分子形状。但是，这些形状过滤器通常仅限于预筛选包含<strong>单个分子构象</strong>的数据库，这也可能造成假阴性。</p>
+<p>此外，在化合物中预先定义的化学和几何特征相匹配的情况下，可以进行基于药效团的筛选。最近，基于射线追踪的方法（ray-tracing-based approach）已被用于计算分子的形状特征以进行数据库搜索。这些类型的描述符也高度依赖构象，因此，当仅使用单个分子构象时，其预测值并不会很准确。</p>
+<h3 id="基于结构的先导化合物优化（Structure-based-lead-optimization）"><a href="#基于结构的先导化合物优化（Structure-based-lead-optimization）" class="headerlink" title="基于结构的先导化合物优化（Structure-based lead optimization）"></a>基于结构的先导化合物优化（Structure-based lead optimization）</h3><p>除筛选之外，对接技术也越来越多地用于支持先导化合物优化的工作。在这里，通常必须将化合物的效价提高2到3个数量级，并且相对较小的化学修饰会导致结合力的显着变化。</p>
+<p>估计相对较小的化学变化的影响的要求进一步使计算复杂化，因此，将微摩尔化合物与纳摩尔类似物区分开来通常需要比常规对接和计分所能提供的精度更高的精度。</p>
+<p>但是，一旦将击中或先导与其靶共结晶并建立了精确的结合构象，就可以通过应用“锚定搜索” 等算法对类似物进行对接，该算法可按预定模式对化合物修饰进行建模保留核心片段。</p>
+<p>这些“保守”预测的复合物通常仅包含有限数量的类似物，因此可以轻松探索替代和共识评分方案。在图2中示出了典型的基于结构的模拟设计。 至少，自动化的类似物设计和评估可以快速消除不满足结合约束的分子，并将重点转移到更有希望的合成候选物上。例如，从与水杨酸的共晶体结构开始优化了一系列caspase-3抑制剂。模拟类似物产生具有20nM效价的化合物，其化合物的结构已通过实验证实。超越了对类似物的一对一评估，将对接和模拟物库的设计相结合。对cathepsin D的研究已经很好地证明了这一点，该研究通过反复的锚定对接计算和针对性的文库设计产生了低nM抑制剂。 </p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211130328408.png" alt="image-20210211130328408"></p>
+<blockquote>
+<p> 特定抑制剂的设计。 环氧合酶2（COX2）（PDB代码：1cx2）的活性位点与布洛芬，非选择性COX抑制剂（a）和选择性COX2抑制剂（b）形成复合物。 c显示了活性位点的surface。 d | 显示了其他几种有效的COX2抑制剂。 这些COX2先导化合物具有不同的分子骨架和官能团，可以使用对接技术（考虑结构信息）在活性部位的环境中进行计算模拟。</p>
+</blockquote>
+<h4 id="从头设计（De-novo-design-）"><a href="#从头设计（De-novo-design-）" class="headerlink" title="从头设计（De novo *design.*）"></a>从头设计（De novo *design.*）</h4><p>从头开始设计活性部位化合物的早期方法是多片段同时搜索（MCSS。许多小碎片在活动站点内停靠并同时最小化。在评分和分类之后，将优选的片段合并成更大的分子。与LUDI非常相似，MCSS的结果可以提供可能的亚位点的图谱，以结合所选的功能基团。在诸如Groupbuild，GenStar，Grow和Growmol之类的程序中实现了在结合位点内生长和评分化合物的其他算法。这种方法的已知局限性是难以通过计算来估计“设计者”分子的综合可及性。然而，SYNOPSIS程序代表了从头设计和综合设计相结合的最新努力。</p>
+<p>例如，在一项针对HIV逆转录酶（HIV-RT）的研究中，从3.73亿个可能的候选分子中选择了一个仅包含28种化合物的小型文库。这是通过使用遗传算法同时评估适合度函数中嵌入的构象和合成参数来实现的。在28种选定的化合物中，可以合成18种，在这些分子中，有10种在100μM以下具有活性。在另一项研究中，使用蒙特卡罗组合生长算法和基于知识的评分方案构建了碳酸酐酶抑制剂。从约100,000个理论候选物中，仅选择了两种化合物进行合成，但均显示出亚nM效能。</p>
+<h4 id="模拟（Simulations）"><a href="#模拟（Simulations）" class="headerlink" title="模拟（Simulations）"></a>模拟（<em>Simulations</em>）</h4><p>自由能模拟可用于评估有限数量的分子类似物；例如，一系列凝血酶抑制剂。为此，已经提出了各种近似方法来减少扰动计算的复杂性。例如，OwFeg方法对配体的结合态和非结合态进行自由能模拟计算，将能量变化映射到grid，这大大简化了将一个官能团转化为另一个官能团的计算。在模拟设计期间，可以监控与各种化学修饰能量相关的网格点。此外，利用配体相互作用能与蛋白质和溶剂环境的线性响应近似现在更普遍地应用于先导化合物优化中。这些方法至少需要几个可用的实验数据。应用定量构效关系（QSAR）来模拟系统中发生的非键相互作用。在对β-分泌酶，HIV-RT，Xa因子和雌激素受体的模拟设计研究中，线性响应方法已显示出一些有前景结果。<br>分子力学泊松-玻尔兹曼表面积（MM / PBSA）计算是另一种基于分子动力学的模拟技术，涉及力场和溶剂化这两个对结合很重要的项。使用连续泊松-玻尔兹曼模型估计溶剂化作用。 MM / PBSA和线性响应方法之间的主要区别在于未结合状态下配体的处理：MM / PBSA使用NORMAL MODE分析来计算焓和熵对配体自由能的贡献。该方法最近应用于神经氨酸酶和组织蛋白酶D53抑制剂的分析。</p>
+<h4 id="活性位点分析（Active-site-analysis-）"><a href="#活性位点分析（Active-site-analysis-）" class="headerlink" title="活性位点分析（Active-site analysis. ）"></a>活性位点分析（<em>Active-site analysis.</em> ）</h4><p>自早期以来，结合位点的图形计算分析就极大地促进了基于结构的药物设计。</p>
+<p>对接和模拟技术已应用于活性位点的分析中，包括各种疏水性和亲水性分子场，可以识别配体对接和/或从头设计的前景广阔的领域。表面图谱和分子场大多存储在网格中，用于半定量比较同源酶中的活性位点以探索特异性的差异。对活动场所中潜在相互作用的评估可以补充对接分析。</p>
+<p>另一种最新方法是生成结构相互作用指纹（SIFts），允许在对接之前对数据库中的潜在配体进行预筛选。在探索锥虫硫醚还原酶的活性位点时，首先对接了44种不同的抑制剂，并对所得的结果进行了采样，并用于训练评分函数。然后将2,500种新化合物对接至活性位点，并使用该评分方案进行评估；选择了13种化合物进行测试，发现其中9种具有活性。</p>
+<h4 id="吸收，分布，代谢及排泄（Absorption-distribution-metabolism-and-excretion-properties-）"><a href="#吸收，分布，代谢及排泄（Absorption-distribution-metabolism-and-excretion-properties-）" class="headerlink" title="吸收，分布，代谢及排泄（Absorption, distribution, metabolism and excretion properties. ）"></a>吸收，分布，代谢及排泄（<em>Absorption, distribution, metabolism and excretion properties.</em> ）</h4><p>目前，对接技术还用于辅助基于结构的吸收，分布，代谢和排泄（ADME）评估。 细胞色素P450亚型是主要的药物代谢酶，已成为代谢和药物相互作用研究的重点。 因此，几个研究小组已经开发出了基于结构的方法来预测可能被P450代谢或抑制的化合物，为此，已经产生了人类P450亚型的各种同源性模型作为对接以预测药物代谢的模板。 最近，确定了与warfarin结合的人P450亚型的晶体结构。 该抑制剂在酶中与铁-卟啉系统近端结合，但与辅因子没有直接相互作用。 这些结构见解应有助于进一步完善对人类P450的对接研究，并提高其预测价值。</p>
+<blockquote>
+<p>Well,目前来说基于ADMET的研究是一个热点，但是对接不是这个领域的主流。</p>
+</blockquote>
+<p><strong>一些虚拟筛选实验结果</strong></p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210211125320953.png" alt="image-20210211125320953"></p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>对接技术已在药物研究中应用了近二十年。基于蛋白质结构的虚拟筛选不同于基于分子相似性和配体的虚拟筛选方法，为活性化合物从头设计提供了机会，而不会偏向已知的先导化合物。对接策略和打分函数之间的相互关系相当复杂，但是生成可靠的配体模型比区分假阳性配体要容易得多。正如本文中所讨论的，打分和复合排名方案的进一步改进不一定取决于打分函数的发展。此外，复合过滤函数，基于二维或三维相似度的筛选模型经常与对接结合使用，以减少用于候选化合物的数量。尽管对接和打分依赖于许多近似值，但是这些技术在先导化合物优化过程中的应用（通常与其他计算方法结合使用）已经将更多传统方法扩展到SBDD。</p>
+<h3 id="重要概念："><a href="#重要概念：" class="headerlink" title="重要概念："></a>重要概念：</h3><p>POSING（姿势）：确定配体的conformation和orientation是否适合活性位点的过程。 这通常是一个模糊过程，会返回许多结果</p>
+<p>SCORING（打分）：posing和ranking都涉及得分。 pose分数通常是配体与活性位点结合的粗略度量。 rank分数通常更复杂，并且涉及到估算结合能。</p>
+<p>RANKING（排序）：比posing score更高级的过程，通常会重新评估从初始计分阶段获取多个结果。 该过程通常试图尽可能准确地估计结合的自由能。 尽管posing阶段可能使用简单的能量计算（静电和范德华力），但ranking程序通常涉及更复杂的计算（也许包括诸如熵或显式溶剂化之类的属性）。</p>
+<p>POSE SPACE（pose空间）：将一个分子放置到另外一个分子过程中所涉及的所有自由度。 例如，对于两个刚性分子，pose space仅由相对方向组成。 当两个分子之一（例如配体）具有柔性时，pose space既包括配体的构象空间又包括配体和受体的取向空间。</p>
+<p>FORCE-FIELD（力场）：将系统能量表达为各种分子力学相关项（或其他项）总和的函数。</p>
+<p>TORSIONAL ENTROPY（扭转熵）：与分子中可旋转键相关的熵。 将可旋转键固定在结合物上导致其扭转（或旋转）熵的损失。</p>
+<p>REGRESSION ANALYSIS（回归分析）：确定所选（线性或非线性）函数的参数值以使其与观察值拟合。</p>
+<p>POTENTIAL OF MEAN FORCE（PMF）：在对接和评分的背景下，PMF来自对大量蛋白质-配体结构中实验观察到的特定原子对相互作用的分布和频率的统计分析。 两个分子（例如配体和蛋白质）中每个原子对之间的相互作用电势近似于每个成对相互作用的自由能，它是原子间距离的函数。</p>
+<p>LINEAR DISCRIMINANT ANALYSIS(线性判别分析)：基于两类数据和两个自变量（a，b）的数学分析，这些变量试图找到最能分隔数据的线。 这条线与判别函数正交，该判别函数是原始变量的线性组合，在这种情况下：F = caa + cbb（ca，cb;系数）。</p>
+<p>PHARMACOPHORE（药效团）：已知或预测负责特定生物活性的分子中原子或基团的空间排列。</p>
+<p>HOLO-, APO-ENZYME：Holo-：酶的配体结合形式；  apo-：非结合形式。 最初的定义是指酶和辅因子，而不是配体，但是配体和辅因子通常是同义词。</p>
+<p>NORMAL MODE：系统所有粒子以相同的频率和相位运动的振荡。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/2.png" alt=" wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/02/09/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%A7%91%E7%A0%94%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-scholarscope/" rel="next" title="更好的科研辅助工具-scholarscope">
+                <i class="fa fa-chevron-left"></i> 更好的科研辅助工具-scholarscope
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/02/12/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E5%9B%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E4%B8%8E%E5%88%86%E5%AD%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB/" rel="prev" title="图的两种表示方法以及与分子文件的关系">
+                图的两种表示方法以及与分子文件的关系 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/dinosaur.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/luskyqi1995" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:luskyqi@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zerodesigner" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E6%B2%BF%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">前沿：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">简介：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOCKING%E7%AE%80%E4%BB%8B"><span class="nav-number">3.</span> <span class="nav-text">DOCKING简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%8E%A5%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%84%E5%88%86%E5%AD%90%E5%B1%95%E7%A4%BA%EF%BC%88Molecular-representations-for-docking%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">对接过程中的分子展示（Molecular representations for docking）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E5%AF%BB%E6%89%8B%E6%AE%B5%E4%B8%8E%E9%85%8D%E4%BD%93%E7%81%B5%E6%B4%BB%E6%80%A7%EF%BC%88Search-methods-and-molecular-flexibility%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">搜寻手段与配体灵活性（Search methods and molecular flexibility）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%90%9C%E7%B4%A2%EF%BC%88Systematic-search%EF%BC%89"><span class="nav-number">5.1.</span> <span class="nav-text">系统搜索（Systematic search）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%8E%A2%E7%B4%A2%EF%BC%88Random-search%EF%BC%89"><span class="nav-number">5.2.</span> <span class="nav-text">随机探索（Random search）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%AD%90%E6%A8%A1%E6%8B%9F%EF%BC%88-Simulation-methods-%EF%BC%89%EF%BC%9A"><span class="nav-number">5.3.</span> <span class="nav-text">分子模拟（*Simulation methods.*）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%9B%8B%E7%99%BD%E7%81%B5%E6%B4%BB%E6%80%A7%EF%BC%88-Protein-flexibility-%EF%BC%89"><span class="nav-number">5.4.</span> <span class="nav-text">蛋白灵活性（*Protein flexibility.*）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%93%E5%88%86%EF%BC%88Scoring%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">打分（Scoring）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%8A%9B%E5%9C%BA%E7%9A%84%E6%89%93%E5%88%86%EF%BC%88Force-field-based-scoring%EF%BC%89%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">基于力场的打分（Force-field-based scoring）：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%8F%E9%AA%8C%E7%9A%84%E6%89%93%E5%88%86%E5%87%BD%E6%95%B0%EF%BC%88-Empirical-scoring-functions-%EF%BC%89"><span class="nav-number">6.2.</span> <span class="nav-text">基于经验的打分函数（*Empirical scoring functions.*）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%9F%A5%E8%AF%86%E7%9A%84%E6%89%93%E5%88%86%E5%87%BD%E6%95%B0%EF%BC%88Knowledge-based-scoring-functions-%EF%BC%89"><span class="nav-number">6.3.</span> <span class="nav-text">基于知识的打分函数（Knowledge-based scoring functions. ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B1%E8%AF%86%E5%87%BD%E6%95%B0%EF%BC%88Consensus-scoring%EF%BC%89"><span class="nav-number">6.4.</span> <span class="nav-text">共识函数（Consensus scoring）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#POSE%E5%92%8C%E6%89%93%E5%88%86%EF%BC%88Posing-versus-scoring%EF%BC%89"><span class="nav-number">6.5.</span> <span class="nav-text">POSE和打分（Posing versus scoring）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E6%89%93%E5%88%86%E5%87%BD%E6%95%B0%EF%BC%88Improving-scoring-functions-%EF%BC%89"><span class="nav-number">6.6.</span> <span class="nav-text">提升打分函数（Improving scoring functions. ）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%93%E6%9E%84%E7%9A%84%E8%99%9A%E6%8B%9F%E7%AD%9B%E9%80%89%EF%BC%88Structure-based-virtual-screening%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">基于结构的虚拟筛选（Structure-based virtual screening）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E8%AD%A6%E5%91%8A"><span class="nav-number">7.1.</span> <span class="nav-text">一般警告</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%89%E6%8B%A9%E7%AD%96%E7%95%A5%EF%BC%88-Selection-strategies-%EF%BC%89"><span class="nav-number">7.2.</span> <span class="nav-text">选择策略（*Selection strategies.*）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%B6%E7%82%B9%E7%BB%93%E6%9E%84%EF%BC%88Structures-of-target-sites%EF%BC%89"><span class="nav-number">7.3.</span> <span class="nav-text">靶点结构（Structures of target sites）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E7%AD%9B%E9%80%89%EF%BC%9A%E4%B8%89%E7%BB%B4%E8%BF%87%E6%BB%A4%EF%BC%88Pre-screening-three-dimensional-filtering-%EF%BC%89"><span class="nav-number">7.4.</span> <span class="nav-text">预筛选：三维过滤（Pre-screening: three-dimensional filtering.）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%BB%93%E6%9E%84%E7%9A%84%E5%85%88%E5%AF%BC%E5%8C%96%E5%90%88%E7%89%A9%E4%BC%98%E5%8C%96%EF%BC%88Structure-based-lead-optimization%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">基于结构的先导化合物优化（Structure-based lead optimization）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8E%E5%A4%B4%E8%AE%BE%E8%AE%A1%EF%BC%88De-novo-design-%EF%BC%89"><span class="nav-number">8.1.</span> <span class="nav-text">从头设计（De novo *design.*）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E6%8B%9F%EF%BC%88Simulations%EF%BC%89"><span class="nav-number">8.2.</span> <span class="nav-text">模拟（Simulations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B4%BB%E6%80%A7%E4%BD%8D%E7%82%B9%E5%88%86%E6%9E%90%EF%BC%88Active-site-analysis-%EF%BC%89"><span class="nav-number">8.3.</span> <span class="nav-text">活性位点分析（Active-site analysis. ）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%B8%E6%94%B6%EF%BC%8C%E5%88%86%E5%B8%83%EF%BC%8C%E4%BB%A3%E8%B0%A2%E5%8F%8A%E6%8E%92%E6%B3%84%EF%BC%88Absorption-distribution-metabolism-and-excretion-properties-%EF%BC%89"><span class="nav-number">8.4.</span> <span class="nav-text">吸收，分布，代谢及排泄（Absorption, distribution, metabolism and excretion properties. ）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">9.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="nav-number">10.</span> <span class="nav-text">重要概念：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaqi Su</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
