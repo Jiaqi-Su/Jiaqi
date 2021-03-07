@@ -1,213 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>基于Typora以及Gitee的云笔记搭建</title>
-    <url>/2021/02/05/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E5%9F%BA%E4%BA%8ETypora%E4%BB%A5%E5%8F%8AGithub%E7%9A%84%E4%BA%91%E7%AC%94%E8%AE%B0%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>额，上次我发了一个marktext的简介，就是这个</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncftgz8zwj30ja092dmn.jpg" alt="Screen Shot 2021-02-05 at 10.14.16 AM"></p>
-<p>然后就有小伙伴来询问</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncfxjwt2tj30n007mdh9.jpg" alt="IMG_0F68F7F98C6E-1"></p>
-<p>说实话，我确实用过Typora，但是放弃的原因是因为Typora不支持图床，虽然除了这一个缺点，typora基本是完美的，但本着实事求是的原则，去确定了一下。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnchb5go99j30oo05wgm5.jpg" alt="image-20210205102311943"></p>
-<p>well，这让我想起了一句话，自古评论出人才。</p>
-<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p>web: <a href="https://typora.io/">https://typora.io/</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg4soy5xj31500igwg6.jpg" alt="Screen Shot 2021-02-05 at 10.24.59 AM"></p>
-<p>很简单的下载安装，不多赘述</p>
-<h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>1:preference</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8ad7yhj30v00egdvh.jpg" alt="Screen Shot 2021-02-05 at 10.27.34 AM"></p>
-<p>2:language</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8vttfij313k0rg7ag.jpg" alt="Screen Shot 2021-02-05 at 10.28.48 AM"></p>
-<p>3:Chinese</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg9lpmh5j30u00w44i6.jpg" alt="image-20210205102947769"></p>
-<p>4:关闭typora然后重启</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgb2brc4j30v00h2k3o.jpg" alt="image-20210205103111616"></p>
-<p>5: typora教程结束</p>
-<p>都成为中文了，不需要其余的过多阐释了</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnch52x7pgj31wz0u0qfb.jpg" alt="image-20210205110001774"></p>
-<p>6: gitee私人仓库搭建</p>
-<p>选择gitee的原因是因为github在国外，怕会影响传输速度，新建一个仓库</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgo9n0bmj30pc0fedhc.jpg" alt="Screen Shot 2021-02-05 at 10.43.24 AM"></p>
-<p>7:随便写写</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgpevklcj30u00xlte2.jpg" alt="Screen Shot 2021-02-05 at 10.44.48 AM"></p>
-<p>8:建设本地仓库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd test</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://gitee.com/luskyqi/test.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
-
-<p>9:以后所有的日志都在本地test文件夹下进行编写</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgrtksrwj3162090abq.jpg" alt="Screen Shot 2021-02-05 at 10.47.08 AM"></p>
-<p>10:自动同步，python ，每10mins同步一次，</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os,time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>(<span class="params"><span class="built_in">dir</span></span>):</span></span><br><span class="line">    curtime = time.ctime()</span><br><span class="line">    os.chdir(<span class="built_in">dir</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;git add .&#x27;</span>)</span><br><span class="line">    com_line=<span class="string">&#x27;git commit -m \&#x27;%s\&#x27;&#x27;</span>%(curtime)</span><br><span class="line">    os.system(com_line)</span><br><span class="line">    os.system(<span class="string">&#x27;git push -u origin master&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    job(<span class="string">&#x27;/Users/MyNote&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">600</span>)</span><br></pre></td></tr></table></figure>
-
-<p>comment为最近一次同步的日期</p>
-<p>然后，脚本在后台挂起</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup python run.py &amp; </span><br></pre></td></tr></table></figure>
-
-<p>11:成品图</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgy2e3klj31420cs40z.jpg" alt="Screen Shot 2021-02-05 at 10.49.43 AM"></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
-<li><p>typora是一款很优质的markdown写作工具，功能健全，支持图床</p>
-</li>
-<li><p>下载安装简单，颜值在线</p>
-</li>
-<li><p>typora与gitee联用很适合作为云笔记使用</p>
-</li>
-</ul>
-<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>基于typora以及gitee的模式是否可以演变为多人协作写作工具，可惜暂时不支持插件</li>
-</ul>
-]]></content>
-      <categories>
-        <category>实用工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>图的两种表示方法以及与分子文件的关系</title>
-    <url>/2021/02/12/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E5%9B%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E4%B8%8E%E5%88%86%E5%AD%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<blockquote>
-<p>参考：</p>
-<ul>
-<li><a href="https://liuyangjun.blog.csdn.net/">https://liuyangjun.blog.csdn.net/</a></li>
-<li><a href="https://liuyangjun.blog.csdn.net/article/details/82759650">https://liuyangjun.blog.csdn.net/article/details/82759650</a></li>
-<li><a href="https://www.cnblogs.com/kaituorensheng/p/5423131.html">https://www.cnblogs.com/kaituorensheng/p/5423131.html</a></li>
-</ul>
-</blockquote>
-<h3 id="通常使用两种不同的方式来表示一张图："><a href="#通常使用两种不同的方式来表示一张图：" class="headerlink" title="通常使用两种不同的方式来表示一张图："></a>通常使用两种不同的方式来表示一张图：</h3><ol>
-<li><p>邻接矩阵</p>
-<p>如下图，一张图有4个节点，则对应的邻接表中就有4行4列。</p>
-<p>将这个矩阵命名为a，则a<sub>ij</sub>的值代表着i节点与j节点之间是否存在着边，我们用布尔值0和1来表示两种状态，0表示两点之间无连接。1表示两点之间存在着边连接。</p>
-<p>因为是无向图，则a<sub>ij</sub>与a<sub>ji</sub>表示的值是一样的.</p>
-<p>无向图的邻接矩阵关于斜对角线对称。</p>
-<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast.png" alt="img" style="zoom:50%;" />
-
-<ol start="2">
-<li><p>邻接表</p>
-<p>邻接矩阵将所有点与点之间的关系都表示出来，而邻接表则只是把存在关系的点表示了出来。</p>
-<p>第0行只有1个1节点，即表示与0节点相连的节点只有1节点，第1行有0,2,3这3个节点，表示着和1节点相连的节点有3个，即0节点，2节点，3节点。第2行后面有1,3节点，表示与2节点相连的节点有两个，分别是1节点和3节点，以此类推……</p>
-<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast-20210212185421093.png" alt="img" style="zoom:50%;" />
-
-<p>邻接表表示法也可以用来表示有向图，如下图</p>
-</li>
-</ol>
-</li>
-</ol>
-<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast-20210212190434746.png" alt="img" style="zoom:50%;" />
-
-
-
-<p>邻接表相比于邻接矩阵来说，所占用的空间更小，这是邻接表的一个优势。但是邻接表如果表示的是一个有很多条边的图，即稠密图的话，则邻接表的优势就不能够完好的体现了。因此，对于一个图来说，我们要根据具体的情况来判断使用哪种方式去表示图，一般邻接表适合表示稀疏图，邻接矩阵适合表示稠密图。</p>
-<h3 id="分子格式文件"><a href="#分子格式文件" class="headerlink" title="分子格式文件"></a>分子格式文件</h3><p>分子储存文件最主要的是储存其三维坐标以及这些点之间的联系，这里以mol2文件为例</p>
-<p>首先看官网介绍：</p>
-<p>MOL2格式：<a href="http://chemyang.ccnu.edu.cn/ccb/server/AIMMS/**mol2**.pdf">http://chemyang.ccnu.edu.cn/ccb/server/AIMMS/**mol2**.pdf</a></p>
-<p>一个简单的mol2格式文件</p>
-<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210212191419119.png" alt="image-20210212191419119" style="zoom:50%;" />
-
-
-
-<p>我们看<code>@&lt;TRIPOS&gt;BOND</code>这一项，</p>
-<p>其格式为：</p>
-<p><code>bond_id origin_atom_id target_atom_id bond_type</code></p>
-<ul>
-<li>bond_id (integer) =键ID号</li>
-<li>origin_atom_id (integer) = 键初始端原子ID</li>
-<li>target_atom_id (integer) = 键末端原子ID</li>
-<li>bond_type (string) = 键类型</li>
-<li>status_bits (string) = 与键关联的SYBYL状态位。 <strong>这些不应该由用户设置</strong>。 有效状态值为TYPECOL，GROUP，CAP，BACKBONE，DICT和INTERRES。</li>
-</ul>
-<p><code>Bond Types</code></p>
-<ul>
-<li>1 = 单键</li>
-<li>2 = 双键</li>
-<li>3 = 三键</li>
-<li>am = 酰胺键</li>
-<li>ar = 芳香键</li>
-<li>du = 虚键（虚设键）</li>
-<li>un = 未知 </li>
-<li>nc = 非连接</li>
-</ul>
-<p><code>Example:</code></p>
-<p>**5 4 9 am BACKBONE|DICT|INTERRES **</p>
-<p><strong>5 4 9 am</strong></p>
-<p>第一个示例中的键的ID号为5，并连接原子4和9。它是酰胺键。 状态位指示该键是主链的一部分，连接两个残基，并且在创建分子时使用了词典。 </p>
-<p>第二个示例是相同键的最简表示。</p>
-<p>从上述可以看出，mol2中的<code>@&lt;TRIPOS&gt;BOND</code>表示法为邻接表，且为有向图。</p>
-<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210212192618369.png" alt="image-20210212192618369" style="zoom:50%;" />
-
-<h4 id="用python表示图"><a href="#用python表示图" class="headerlink" title="用python表示图"></a>用python表示图</h4><p>要来看一个包，networkx</p>
-<blockquote>
-<p>Web:<a href="https://networkx.org/">https://networkx.org/</a></p>
-</blockquote>
-<p>安装：</p>
-<figure class="highlight shell"><figcaption><span>l</span></figcaption><table><tr><td class="code"><pre><span class="line">pip install networkx</span><br></pre></td></tr></table></figure>
-<p>教程：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="comment">#创建图</span></span><br><span class="line">G = nx.Graph()</span><br><span class="line"><span class="comment">#加一个节点</span></span><br><span class="line">G.add_node(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#从列表中增加节点</span></span><br><span class="line">G.add_nodes_from([<span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">#查看</span></span><br><span class="line">In [<span class="number">4</span>]: G.nodes</span><br><span class="line">Out[<span class="number">4</span>]: NodeView((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="comment">#加一条边</span></span><br><span class="line">G.add_edge(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">e = (<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">G.add_edge(*e)  <span class="comment"># unpack edge tuple*，这步不懂，希望有大佬可以解释一下</span></span><br><span class="line"><span class="comment">#从列表中加边</span></span><br><span class="line">G.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">3</span>)])</span><br><span class="line"><span class="comment">#查看</span></span><br><span class="line">In [<span class="number">6</span>]: G.edges</span><br><span class="line">Out[<span class="number">6</span>]: EdgeView([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">3</span>)])</span><br><span class="line"><span class="comment">#为点，边，图增加属性</span></span><br><span class="line"><span class="comment">#为图增加属性</span></span><br><span class="line">G = nx.Graph(day=<span class="string">&quot;Friday&quot;</span>)</span><br><span class="line">G.graph</span><br><span class="line">&#123;<span class="string">&#x27;day&#x27;</span>: <span class="string">&#x27;Friday&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#修改属性</span></span><br><span class="line">G.graph[<span class="string">&#x27;day&#x27;</span>] = <span class="string">&quot;Monday&quot;</span></span><br><span class="line">G.graph</span><br><span class="line">&#123;<span class="string">&#x27;day&#x27;</span>: <span class="string">&#x27;Monday&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#为节点增加属性</span></span><br><span class="line">G.add_node(<span class="number">1</span>, time=<span class="string">&#x27;5pm&#x27;</span>)</span><br><span class="line">G.add_nodes_from([<span class="number">3</span>], time=<span class="string">&#x27;2pm&#x27;</span>)</span><br><span class="line">G.nodes[<span class="number">1</span>]</span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">&#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;5pm&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">G.nodes[<span class="number">1</span>][<span class="string">&#x27;room&#x27;</span>] = <span class="number">714</span></span><br><span class="line">G.nodes.data()</span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">NodeDataView(&#123;<span class="number">1</span>: &#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;5pm&#x27;</span>, <span class="string">&#x27;room&#x27;</span>: <span class="number">714</span>&#125;, <span class="number">3</span>: &#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;2pm&#x27;</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#为边增加属性</span></span><br><span class="line">G.add_edge(<span class="number">1</span>, <span class="number">2</span>, weight=<span class="number">4.7</span> )</span><br><span class="line">G.add_edges_from([(<span class="number">3</span>, <span class="number">4</span>), (<span class="number">4</span>, <span class="number">5</span>)], color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">G.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;blue&#x27;</span>&#125;), (<span class="number">2</span>, <span class="number">3</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">8</span>&#125;)])</span><br><span class="line">G[<span class="number">1</span>][<span class="number">2</span>][<span class="string">&#x27;weight&#x27;</span>] = <span class="number">4.7</span></span><br><span class="line">G.edges[<span class="number">3</span>, <span class="number">4</span>][<span class="string">&#x27;weight&#x27;</span>] = <span class="number">4.2</span></span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">In [<span class="number">21</span>]: G.edges.data()</span><br><span class="line">Out[<span class="number">21</span>]: EdgeDataView([(<span class="number">1</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">4.7</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;blue&#x27;</span>&#125;), (<span class="number">3</span>, <span class="number">4</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;weight&#x27;</span>: <span class="number">4.2</span>&#125;), (<span class="number">3</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">8</span>&#125;), (<span class="number">4</span>, <span class="number">5</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="所以一张分子图可以表示为"><a href="#所以一张分子图可以表示为" class="headerlink" title="所以一张分子图可以表示为"></a>所以一张分子图可以表示为</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="comment">#创有向图</span></span><br><span class="line"><span class="comment">#苯环：smiles c1ccccc1</span></span><br><span class="line"><span class="comment">#原子序号： 1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">#原子坐标</span></span><br><span class="line"><span class="meta">@&lt;TRIPOS&gt;ATOM</span></span><br><span class="line"><span class="number">1</span>	 C01	<span class="number">1.405</span>	-<span class="number">0.000</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">2</span>	 C02	<span class="number">0.702</span>	<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">3</span>	 C03	-<span class="number">0.702</span>	<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">4</span>	 C04	-<span class="number">1.404</span>	-<span class="number">0.000</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">5</span>	 C05	-<span class="number">0.702</span>	-<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">6</span>	 C06	<span class="number">0.702</span>	-<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="comment">#邻接表</span></span><br><span class="line"><span class="meta">@&lt;TRIPOS&gt;BOND</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">6</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">4</span> <span class="number">3</span> <span class="number">4</span> <span class="number">2</span></span><br><span class="line"><span class="number">5</span> <span class="number">4</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="number">6</span> <span class="number">5</span> <span class="number">6</span> <span class="number">2</span></span><br><span class="line"><span class="comment">#键,[(1, 2), (1, 6),(2,3),(3,4),(4,5),(5,6)]</span></span><br><span class="line">GM = nx.DiGraph()</span><br><span class="line"><span class="comment">#从列表中增加节点</span></span><br><span class="line">GM.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">6</span>),(<span class="number">2</span>,<span class="number">3</span>),(<span class="number">3</span>,<span class="number">4</span>),(<span class="number">4</span>,<span class="number">5</span>),(<span class="number">5</span>,<span class="number">6</span>)])</span><br><span class="line"><span class="comment">#为节点增加属性</span></span><br><span class="line">GM.nodes[<span class="number">1</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">1.405</span>,-<span class="number">0.000</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">2</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">0.702</span>,<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">3</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">0.702</span>,<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">4</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">1.404</span>,-<span class="number">0.000</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">5</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">0.702</span>,-<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">6</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">0.702</span>,-<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line">In [<span class="number">38</span>]: GM.nodes.data()</span><br><span class="line">Out[<span class="number">38</span>]: NodeDataView(&#123;<span class="number">1</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">1.405</span>, -<span class="number">0.0</span>, <span class="number">0.0</span>]&#125;, <span class="number">2</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">0.702</span>, <span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">6</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">0.702</span>, -<span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">3</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">0.702</span>, <span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">4</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">1.404</span>, -<span class="number">0.0</span>, <span class="number">0.0</span>]&#125;, <span class="number">5</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">0.702</span>, -<span class="number">1.216</span>, <span class="number">0.0</span>]&#125;&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-
-]]></content>
-      <categories>
-        <category>科研工具</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>更好的科研辅助工具-scholarscope</title>
-    <url>/2021/02/09/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%A7%91%E7%A0%94%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-scholarscope/</url>
-    <content><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnp1owuqj316u0u0won.jpg" alt="image-20210209222739584"></p>
-<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p> 你需要做的只是安装浏览器插件，不用再考虑其他问题 。</p>
-<p>它能自动加载<strong>PubMed 期刊的影响因子</strong>，帮助用户筛选有用的期刊</p>
-<p>添加文献下载链接，<strong>在校外也能一键下载文献（基于Sci-Hub）</strong>     </p>
-<p>Web: <a href="https://www.scholarscope.cn/index.html">https://www.scholarscope.cn/index.html</a></p>
-<p>​      </p>
-<h3 id="支持浏览器："><a href="#支持浏览器：" class="headerlink" title="支持浏览器："></a>支持浏览器：</h3><p>火狐,Edge,Chrome,360,QQ</p>
-<h3 id="安装以及使用："><a href="#安装以及使用：" class="headerlink" title="安装以及使用："></a>安装以及使用：</h3><p>基于火狐浏览器</p>
-<ol>
-<li><p>下载火狐浏览器</p>
-<p>官网地址：<a href="https://www.firefox.com.cn/">https://www.firefox.com.cn/</a></p>
-<p>你们如果再拐到其余地方的话，那我就不管了</p>
-<p>安装即为程序化，不多赘述</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnphl8ewj31pc0u07co.jpg" alt="image-20210209223507765"></p>
-</li>
-<li><p>在地址框中输入：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/scholarscope/">https://addons.mozilla.org/zh-CN/firefox/addon/scholarscope/</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnrlu5dgj326m0pwahy.jpg" alt="image-20210209223709471"></p>
-</li>
-<li><p>点击添加</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnse5oxxj31hn0u07ky.jpg" alt="image-20210209223754210"></p>
-</li>
-<li><p>再次点击添加</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnsyp7tnj31xi0u0n9e.jpg" alt="image-20210209223827487"></p>
-</li>
-<li><p>出现下个界面，成功安装，会自动跳转到pubmed</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhntredu6j324s0u0ds6.jpg" alt="image-20210209223912887"></p>
-</li>
-<li><p>随便检索一些</p>
-<p>新的页面上出现了分区以及排名，后面还可以自己diy</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnvihfogj311i0u0dou.jpg" alt="image-20210209224053369"></p>
-</li>
-<li><p>随便点进去一篇</p>
-<p>右边的custom database就可以启动scihub进行下载，不过需要我们先配置一下</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho26xxdpj31gi0u0wof.jpg" alt="image-20210209224720592"></p>
-</li>
-<li><p>点击插件图标</p>
-<p>在浏览器右上方</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho3mgp62j31gd0u0toh.jpg" alt="image-20210209224842445"></p>
-</li>
-<li><p>可以自己勾选被引指数，领域排名等等<br>  <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho46vafdj30j20zmq8p.jpg" alt="image-20210209224915348"></p>
-</li>
-<li><p>点击全局设置</p>
-<p>然后在自定义数据库中，输入scihub的地址，点击确定</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho6tyqg2j31lb0u07h3.jpg" alt="image-20210209225146966"></p>
-</li>
-<li><p>然后就可以使用custom databse进行下载了（本质是使用scihub进行下载）</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho8xbv52j31350u0gwz.jpg" alt="image-20210209225348285"></p>
-</li>
-</ol>
-<hr>
-<h3 id="至此结束，祝大家新年快乐"><a href="#至此结束，祝大家新年快乐" class="headerlink" title="至此结束，祝大家新年快乐"></a>至此结束，祝大家新年快乐</h3>]]></content>
-      <categories>
-        <category>科研工具</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.1.学习所需资源</title>
     <url>/2021/02/21/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.1/</url>
     <content><![CDATA[<blockquote>
@@ -714,44 +507,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Python每日一谈｜No.5</title>
-    <url>/2021/02/24/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.5/</url>
-    <content><![CDATA[<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ul>
-<li><p>字典是经常使用的数据结构</p>
-</li>
-<li><p>字典分为key 以及value两部分</p>
-</li>
-<li><p>每个Key都可以对应一个value</p>
-</li>
-<li><p>使用<code>&#123;&#125;</code>来创建字典</p>
-</li>
-<li><p>字典的元素可以是比较任意的类型，例如列表，元祖等</p>
-</li>
-<li><p>字典的一般操作有创建，更新元素，删除元素，添加元素，以及遍历</p>
-</li>
-</ul>
-<p><strong>实例</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#创建一个空字典</span></span><br><span class="line">In [<span class="number">1</span>]: a = &#123;&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">dict</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 当然也可以创建一个非空字典</span></span><br><span class="line">In [<span class="number">4</span>]: b = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: b</span><br><span class="line">Out[<span class="number">5</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在b中更新元素</span></span><br><span class="line">In [<span class="number">6</span>]: b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;Zara&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b[<span class="string">&#x27;Name&#x27;</span>] = <span class="string">&#x27;Xiaoming&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: b</span><br><span class="line">Out[<span class="number">8</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Xiaoming&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在删除b中元素</span></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">del</span> b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b</span><br><span class="line">Out[<span class="number">10</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在b中添加元素</span></span><br><span class="line">In [<span class="number">11</span>]: b[<span class="string">&#x27;new&#x27;</span>] = <span class="string">&#x27;nihao&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b</span><br><span class="line">Out[<span class="number">12</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>, <span class="string">&#x27;new&#x27;</span>: <span class="string">&#x27;nihao&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
-<li>集合是无序的，<strong>不重复的</strong></li>
-<li>使用<code>set()</code>来创建一个集合</li>
-<li>你可以添加元素，也可以删除元素</li>
-<li>集合比较重要的是其运算求交集，并集等等</li>
-</ul>
-<p><strong>实例</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个集合</span></span><br><span class="line">In [<span class="number">13</span>]: a = <span class="built_in">set</span>(<span class="string">&#x27;abracadabra&#x27;</span>)</span><br><span class="line">    ...: b = <span class="built_in">set</span>(<span class="string">&#x27;alacazam&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">In [<span class="number">24</span>]: a = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>])</span><br><span class="line">In [<span class="number">26</span>]: b = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">In [<span class="number">25</span>]: a</span><br><span class="line">Out[<span class="number">25</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: b</span><br><span class="line">Out[<span class="number">27</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a</span><br><span class="line">Out[<span class="number">14</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: b</span><br><span class="line">Out[<span class="number">15</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的交集</span></span><br><span class="line">In [<span class="number">17</span>]: a &amp; b</span><br><span class="line">Out[<span class="number">17</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的并集</span></span><br><span class="line">In [<span class="number">16</span>]: a | b</span><br><span class="line">Out[<span class="number">16</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#在a中但不在b中的元素</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: a-b</span><br><span class="line">Out[<span class="number">18</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#不在a中不在b中</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">19</span>]: a ^ b</span><br><span class="line">Out[<span class="number">19</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#添加元素</span></span><br><span class="line">In [<span class="number">28</span>]: a.add(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: a</span><br><span class="line">Out[<span class="number">29</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#移除元素</span></span><br><span class="line">In [<span class="number">30</span>]: a.remove(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: a</span><br><span class="line">Out[<span class="number">31</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.4</title>
     <url>/2021/02/23/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.4/</url>
     <content><![CDATA[<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>上面我们谈了数据类型，这篇我们该看下数据结构</p>
@@ -787,6 +542,44 @@
 </ul>
 <p><strong>实例</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建元祖</span></span><br><span class="line">In [<span class="number">41</span>]: tup1=(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">42</span>]: tup2=(tup1,tup1)</span><br><span class="line"></span><br><span class="line">In [<span class="number">43</span>]: tup2</span><br><span class="line">Out[<span class="number">43</span>]: ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">44</span>]: <span class="built_in">type</span>(tup1)</span><br><span class="line">Out[<span class="number">44</span>]: <span class="built_in">tuple</span></span><br><span class="line"><span class="comment"># 元祖切片</span></span><br><span class="line">In [<span class="number">45</span>]: tup1[:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">45</span>]: (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># 根据index来使用元祖元素</span></span><br><span class="line">In [<span class="number">47</span>]: tup1[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">47</span>]: <span class="number">2</span></span><br><span class="line"><span class="comment"># 元祖连接</span></span><br><span class="line">In [<span class="number">48</span>]: tup3 = tup1 + tup2</span><br><span class="line"></span><br><span class="line">In [<span class="number">49</span>]: tup3</span><br><span class="line">Out[<span class="number">49</span>]: (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.5</title>
+    <url>/2021/02/24/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.5/</url>
+    <content><![CDATA[<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ul>
+<li><p>字典是经常使用的数据结构</p>
+</li>
+<li><p>字典分为key 以及value两部分</p>
+</li>
+<li><p>每个Key都可以对应一个value</p>
+</li>
+<li><p>使用<code>&#123;&#125;</code>来创建字典</p>
+</li>
+<li><p>字典的元素可以是比较任意的类型，例如列表，元祖等</p>
+</li>
+<li><p>字典的一般操作有创建，更新元素，删除元素，添加元素，以及遍历</p>
+</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#创建一个空字典</span></span><br><span class="line">In [<span class="number">1</span>]: a = &#123;&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">dict</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 当然也可以创建一个非空字典</span></span><br><span class="line">In [<span class="number">4</span>]: b = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: b</span><br><span class="line">Out[<span class="number">5</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在b中更新元素</span></span><br><span class="line">In [<span class="number">6</span>]: b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;Zara&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b[<span class="string">&#x27;Name&#x27;</span>] = <span class="string">&#x27;Xiaoming&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: b</span><br><span class="line">Out[<span class="number">8</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Xiaoming&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在删除b中元素</span></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">del</span> b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b</span><br><span class="line">Out[<span class="number">10</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在b中添加元素</span></span><br><span class="line">In [<span class="number">11</span>]: b[<span class="string">&#x27;new&#x27;</span>] = <span class="string">&#x27;nihao&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b</span><br><span class="line">Out[<span class="number">12</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>, <span class="string">&#x27;new&#x27;</span>: <span class="string">&#x27;nihao&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li>集合是无序的，<strong>不重复的</strong></li>
+<li>使用<code>set()</code>来创建一个集合</li>
+<li>你可以添加元素，也可以删除元素</li>
+<li>集合比较重要的是其运算求交集，并集等等</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个集合</span></span><br><span class="line">In [<span class="number">13</span>]: a = <span class="built_in">set</span>(<span class="string">&#x27;abracadabra&#x27;</span>)</span><br><span class="line">    ...: b = <span class="built_in">set</span>(<span class="string">&#x27;alacazam&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">In [<span class="number">24</span>]: a = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>])</span><br><span class="line">In [<span class="number">26</span>]: b = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">In [<span class="number">25</span>]: a</span><br><span class="line">Out[<span class="number">25</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: b</span><br><span class="line">Out[<span class="number">27</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a</span><br><span class="line">Out[<span class="number">14</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: b</span><br><span class="line">Out[<span class="number">15</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的交集</span></span><br><span class="line">In [<span class="number">17</span>]: a &amp; b</span><br><span class="line">Out[<span class="number">17</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的并集</span></span><br><span class="line">In [<span class="number">16</span>]: a | b</span><br><span class="line">Out[<span class="number">16</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#在a中但不在b中的元素</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: a-b</span><br><span class="line">Out[<span class="number">18</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#不在a中不在b中</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">19</span>]: a ^ b</span><br><span class="line">Out[<span class="number">19</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#添加元素</span></span><br><span class="line">In [<span class="number">28</span>]: a.add(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: a</span><br><span class="line">Out[<span class="number">29</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#移除元素</span></span><br><span class="line">In [<span class="number">30</span>]: a.remove(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: a</span><br><span class="line">Out[<span class="number">31</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -962,6 +755,213 @@
 </blockquote>
 <p>祝大家学习愉快！</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>图的两种表示方法以及与分子文件的关系</title>
+    <url>/2021/02/12/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E5%9B%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E4%B8%8E%E5%88%86%E5%AD%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<blockquote>
+<p>参考：</p>
+<ul>
+<li><a href="https://liuyangjun.blog.csdn.net/">https://liuyangjun.blog.csdn.net/</a></li>
+<li><a href="https://liuyangjun.blog.csdn.net/article/details/82759650">https://liuyangjun.blog.csdn.net/article/details/82759650</a></li>
+<li><a href="https://www.cnblogs.com/kaituorensheng/p/5423131.html">https://www.cnblogs.com/kaituorensheng/p/5423131.html</a></li>
+</ul>
+</blockquote>
+<h3 id="通常使用两种不同的方式来表示一张图："><a href="#通常使用两种不同的方式来表示一张图：" class="headerlink" title="通常使用两种不同的方式来表示一张图："></a>通常使用两种不同的方式来表示一张图：</h3><ol>
+<li><p>邻接矩阵</p>
+<p>如下图，一张图有4个节点，则对应的邻接表中就有4行4列。</p>
+<p>将这个矩阵命名为a，则a<sub>ij</sub>的值代表着i节点与j节点之间是否存在着边，我们用布尔值0和1来表示两种状态，0表示两点之间无连接。1表示两点之间存在着边连接。</p>
+<p>因为是无向图，则a<sub>ij</sub>与a<sub>ji</sub>表示的值是一样的.</p>
+<p>无向图的邻接矩阵关于斜对角线对称。</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast.png" alt="img" style="zoom:50%;" />
+
+<ol start="2">
+<li><p>邻接表</p>
+<p>邻接矩阵将所有点与点之间的关系都表示出来，而邻接表则只是把存在关系的点表示了出来。</p>
+<p>第0行只有1个1节点，即表示与0节点相连的节点只有1节点，第1行有0,2,3这3个节点，表示着和1节点相连的节点有3个，即0节点，2节点，3节点。第2行后面有1,3节点，表示与2节点相连的节点有两个，分别是1节点和3节点，以此类推……</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast-20210212185421093.png" alt="img" style="zoom:50%;" />
+
+<p>邻接表表示法也可以用来表示有向图，如下图</p>
+</li>
+</ol>
+</li>
+</ol>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/SouthEast-20210212190434746.png" alt="img" style="zoom:50%;" />
+
+
+
+<p>邻接表相比于邻接矩阵来说，所占用的空间更小，这是邻接表的一个优势。但是邻接表如果表示的是一个有很多条边的图，即稠密图的话，则邻接表的优势就不能够完好的体现了。因此，对于一个图来说，我们要根据具体的情况来判断使用哪种方式去表示图，一般邻接表适合表示稀疏图，邻接矩阵适合表示稠密图。</p>
+<h3 id="分子格式文件"><a href="#分子格式文件" class="headerlink" title="分子格式文件"></a>分子格式文件</h3><p>分子储存文件最主要的是储存其三维坐标以及这些点之间的联系，这里以mol2文件为例</p>
+<p>首先看官网介绍：</p>
+<p>MOL2格式：<a href="http://chemyang.ccnu.edu.cn/ccb/server/AIMMS/**mol2**.pdf">http://chemyang.ccnu.edu.cn/ccb/server/AIMMS/**mol2**.pdf</a></p>
+<p>一个简单的mol2格式文件</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210212191419119.png" alt="image-20210212191419119" style="zoom:50%;" />
+
+
+
+<p>我们看<code>@&lt;TRIPOS&gt;BOND</code>这一项，</p>
+<p>其格式为：</p>
+<p><code>bond_id origin_atom_id target_atom_id bond_type</code></p>
+<ul>
+<li>bond_id (integer) =键ID号</li>
+<li>origin_atom_id (integer) = 键初始端原子ID</li>
+<li>target_atom_id (integer) = 键末端原子ID</li>
+<li>bond_type (string) = 键类型</li>
+<li>status_bits (string) = 与键关联的SYBYL状态位。 <strong>这些不应该由用户设置</strong>。 有效状态值为TYPECOL，GROUP，CAP，BACKBONE，DICT和INTERRES。</li>
+</ul>
+<p><code>Bond Types</code></p>
+<ul>
+<li>1 = 单键</li>
+<li>2 = 双键</li>
+<li>3 = 三键</li>
+<li>am = 酰胺键</li>
+<li>ar = 芳香键</li>
+<li>du = 虚键（虚设键）</li>
+<li>un = 未知 </li>
+<li>nc = 非连接</li>
+</ul>
+<p><code>Example:</code></p>
+<p>**5 4 9 am BACKBONE|DICT|INTERRES **</p>
+<p><strong>5 4 9 am</strong></p>
+<p>第一个示例中的键的ID号为5，并连接原子4和9。它是酰胺键。 状态位指示该键是主链的一部分，连接两个残基，并且在创建分子时使用了词典。 </p>
+<p>第二个示例是相同键的最简表示。</p>
+<p>从上述可以看出，mol2中的<code>@&lt;TRIPOS&gt;BOND</code>表示法为邻接表，且为有向图。</p>
+<img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210212192618369.png" alt="image-20210212192618369" style="zoom:50%;" />
+
+<h4 id="用python表示图"><a href="#用python表示图" class="headerlink" title="用python表示图"></a>用python表示图</h4><p>要来看一个包，networkx</p>
+<blockquote>
+<p>Web:<a href="https://networkx.org/">https://networkx.org/</a></p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight shell"><figcaption><span>l</span></figcaption><table><tr><td class="code"><pre><span class="line">pip install networkx</span><br></pre></td></tr></table></figure>
+<p>教程：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="comment">#创建图</span></span><br><span class="line">G = nx.Graph()</span><br><span class="line"><span class="comment">#加一个节点</span></span><br><span class="line">G.add_node(<span class="number">1</span>)</span><br><span class="line"><span class="comment">#从列表中增加节点</span></span><br><span class="line">G.add_nodes_from([<span class="number">2</span>, <span class="number">3</span>])</span><br><span class="line"><span class="comment">#查看</span></span><br><span class="line">In [<span class="number">4</span>]: G.nodes</span><br><span class="line">Out[<span class="number">4</span>]: NodeView((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>))</span><br><span class="line"><span class="comment">#加一条边</span></span><br><span class="line">G.add_edge(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line">e = (<span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line">G.add_edge(*e)  <span class="comment"># unpack edge tuple*，这步不懂，希望有大佬可以解释一下</span></span><br><span class="line"><span class="comment">#从列表中加边</span></span><br><span class="line">G.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">3</span>)])</span><br><span class="line"><span class="comment">#查看</span></span><br><span class="line">In [<span class="number">6</span>]: G.edges</span><br><span class="line">Out[<span class="number">6</span>]: EdgeView([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">3</span>)])</span><br><span class="line"><span class="comment">#为点，边，图增加属性</span></span><br><span class="line"><span class="comment">#为图增加属性</span></span><br><span class="line">G = nx.Graph(day=<span class="string">&quot;Friday&quot;</span>)</span><br><span class="line">G.graph</span><br><span class="line">&#123;<span class="string">&#x27;day&#x27;</span>: <span class="string">&#x27;Friday&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#修改属性</span></span><br><span class="line">G.graph[<span class="string">&#x27;day&#x27;</span>] = <span class="string">&quot;Monday&quot;</span></span><br><span class="line">G.graph</span><br><span class="line">&#123;<span class="string">&#x27;day&#x27;</span>: <span class="string">&#x27;Monday&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#为节点增加属性</span></span><br><span class="line">G.add_node(<span class="number">1</span>, time=<span class="string">&#x27;5pm&#x27;</span>)</span><br><span class="line">G.add_nodes_from([<span class="number">3</span>], time=<span class="string">&#x27;2pm&#x27;</span>)</span><br><span class="line">G.nodes[<span class="number">1</span>]</span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">&#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;5pm&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">G.nodes[<span class="number">1</span>][<span class="string">&#x27;room&#x27;</span>] = <span class="number">714</span></span><br><span class="line">G.nodes.data()</span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">NodeDataView(&#123;<span class="number">1</span>: &#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;5pm&#x27;</span>, <span class="string">&#x27;room&#x27;</span>: <span class="number">714</span>&#125;, <span class="number">3</span>: &#123;<span class="string">&#x27;time&#x27;</span>: <span class="string">&#x27;2pm&#x27;</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">#为边增加属性</span></span><br><span class="line">G.add_edge(<span class="number">1</span>, <span class="number">2</span>, weight=<span class="number">4.7</span> )</span><br><span class="line">G.add_edges_from([(<span class="number">3</span>, <span class="number">4</span>), (<span class="number">4</span>, <span class="number">5</span>)], color=<span class="string">&#x27;red&#x27;</span>)</span><br><span class="line">G.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;blue&#x27;</span>&#125;), (<span class="number">2</span>, <span class="number">3</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">8</span>&#125;)])</span><br><span class="line">G[<span class="number">1</span>][<span class="number">2</span>][<span class="string">&#x27;weight&#x27;</span>] = <span class="number">4.7</span></span><br><span class="line">G.edges[<span class="number">3</span>, <span class="number">4</span>][<span class="string">&#x27;weight&#x27;</span>] = <span class="number">4.2</span></span><br><span class="line"><span class="comment">#out</span></span><br><span class="line">In [<span class="number">21</span>]: G.edges.data()</span><br><span class="line">Out[<span class="number">21</span>]: EdgeDataView([(<span class="number">1</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">4.7</span>, <span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;blue&#x27;</span>&#125;), (<span class="number">3</span>, <span class="number">4</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>, <span class="string">&#x27;weight&#x27;</span>: <span class="number">4.2</span>&#125;), (<span class="number">3</span>, <span class="number">2</span>, &#123;<span class="string">&#x27;weight&#x27;</span>: <span class="number">8</span>&#125;), (<span class="number">4</span>, <span class="number">5</span>, &#123;<span class="string">&#x27;color&#x27;</span>: <span class="string">&#x27;red&#x27;</span>&#125;)])</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="所以一张分子图可以表示为"><a href="#所以一张分子图可以表示为" class="headerlink" title="所以一张分子图可以表示为"></a>所以一张分子图可以表示为</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line"><span class="comment">#创有向图</span></span><br><span class="line"><span class="comment">#苯环：smiles c1ccccc1</span></span><br><span class="line"><span class="comment">#原子序号： 1 2 3 4 5 6</span></span><br><span class="line"><span class="comment">#原子坐标</span></span><br><span class="line"><span class="meta">@&lt;TRIPOS&gt;ATOM</span></span><br><span class="line"><span class="number">1</span>	 C01	<span class="number">1.405</span>	-<span class="number">0.000</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">2</span>	 C02	<span class="number">0.702</span>	<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">3</span>	 C03	-<span class="number">0.702</span>	<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">4</span>	 C04	-<span class="number">1.404</span>	-<span class="number">0.000</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">5</span>	 C05	-<span class="number">0.702</span>	-<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="number">6</span>	 C06	<span class="number">0.702</span>	-<span class="number">1.216</span>	<span class="number">0.000</span>	C<span class="number">.2</span>	<span class="number">1</span>	UNK1	<span class="number">0.000</span>	</span><br><span class="line"><span class="comment">#邻接表</span></span><br><span class="line"><span class="meta">@&lt;TRIPOS&gt;BOND</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">2</span></span><br><span class="line"><span class="number">2</span> <span class="number">1</span> <span class="number">6</span> <span class="number">1</span></span><br><span class="line"><span class="number">3</span> <span class="number">2</span> <span class="number">3</span> <span class="number">1</span></span><br><span class="line"><span class="number">4</span> <span class="number">3</span> <span class="number">4</span> <span class="number">2</span></span><br><span class="line"><span class="number">5</span> <span class="number">4</span> <span class="number">5</span> <span class="number">1</span></span><br><span class="line"><span class="number">6</span> <span class="number">5</span> <span class="number">6</span> <span class="number">2</span></span><br><span class="line"><span class="comment">#键,[(1, 2), (1, 6),(2,3),(3,4),(4,5),(5,6)]</span></span><br><span class="line">GM = nx.DiGraph()</span><br><span class="line"><span class="comment">#从列表中增加节点</span></span><br><span class="line">GM.add_edges_from([(<span class="number">1</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">6</span>),(<span class="number">2</span>,<span class="number">3</span>),(<span class="number">3</span>,<span class="number">4</span>),(<span class="number">4</span>,<span class="number">5</span>),(<span class="number">5</span>,<span class="number">6</span>)])</span><br><span class="line"><span class="comment">#为节点增加属性</span></span><br><span class="line">GM.nodes[<span class="number">1</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">1.405</span>,-<span class="number">0.000</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">2</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">0.702</span>,<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">3</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">0.702</span>,<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">4</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">1.404</span>,-<span class="number">0.000</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">5</span>][<span class="string">&#x27;coord&#x27;</span>] = [-<span class="number">0.702</span>,-<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line">GM.nodes[<span class="number">6</span>][<span class="string">&#x27;coord&#x27;</span>] = [<span class="number">0.702</span>,-<span class="number">1.216</span>,<span class="number">0.000</span>]</span><br><span class="line"><span class="comment">#输出</span></span><br><span class="line">In [<span class="number">38</span>]: GM.nodes.data()</span><br><span class="line">Out[<span class="number">38</span>]: NodeDataView(&#123;<span class="number">1</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">1.405</span>, -<span class="number">0.0</span>, <span class="number">0.0</span>]&#125;, <span class="number">2</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">0.702</span>, <span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">6</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [<span class="number">0.702</span>, -<span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">3</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">0.702</span>, <span class="number">1.216</span>, <span class="number">0.0</span>]&#125;, <span class="number">4</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">1.404</span>, -<span class="number">0.0</span>, <span class="number">0.0</span>]&#125;, <span class="number">5</span>: &#123;<span class="string">&#x27;coord&#x27;</span>: [-<span class="number">0.702</span>, -<span class="number">1.216</span>, <span class="number">0.0</span>]&#125;&#125;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+]]></content>
+      <categories>
+        <category>科研工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>更好的科研辅助工具-scholarscope</title>
+    <url>/2021/02/09/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%A7%91%E7%A0%94%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-scholarscope/</url>
+    <content><![CDATA[<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnp1owuqj316u0u0won.jpg" alt="image-20210209222739584"></p>
+<h3 id="简介："><a href="#简介：" class="headerlink" title="简介："></a>简介：</h3><p> 你需要做的只是安装浏览器插件，不用再考虑其他问题 。</p>
+<p>它能自动加载<strong>PubMed 期刊的影响因子</strong>，帮助用户筛选有用的期刊</p>
+<p>添加文献下载链接，<strong>在校外也能一键下载文献（基于Sci-Hub）</strong>     </p>
+<p>Web: <a href="https://www.scholarscope.cn/index.html">https://www.scholarscope.cn/index.html</a></p>
+<p>​      </p>
+<h3 id="支持浏览器："><a href="#支持浏览器：" class="headerlink" title="支持浏览器："></a>支持浏览器：</h3><p>火狐,Edge,Chrome,360,QQ</p>
+<h3 id="安装以及使用："><a href="#安装以及使用：" class="headerlink" title="安装以及使用："></a>安装以及使用：</h3><p>基于火狐浏览器</p>
+<ol>
+<li><p>下载火狐浏览器</p>
+<p>官网地址：<a href="https://www.firefox.com.cn/">https://www.firefox.com.cn/</a></p>
+<p>你们如果再拐到其余地方的话，那我就不管了</p>
+<p>安装即为程序化，不多赘述</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnphl8ewj31pc0u07co.jpg" alt="image-20210209223507765"></p>
+</li>
+<li><p>在地址框中输入：<a href="https://addons.mozilla.org/zh-CN/firefox/addon/scholarscope/">https://addons.mozilla.org/zh-CN/firefox/addon/scholarscope/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnrlu5dgj326m0pwahy.jpg" alt="image-20210209223709471"></p>
+</li>
+<li><p>点击添加</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnse5oxxj31hn0u07ky.jpg" alt="image-20210209223754210"></p>
+</li>
+<li><p>再次点击添加</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnsyp7tnj31xi0u0n9e.jpg" alt="image-20210209223827487"></p>
+</li>
+<li><p>出现下个界面，成功安装，会自动跳转到pubmed</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhntredu6j324s0u0ds6.jpg" alt="image-20210209223912887"></p>
+</li>
+<li><p>随便检索一些</p>
+<p>新的页面上出现了分区以及排名，后面还可以自己diy</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnhnvihfogj311i0u0dou.jpg" alt="image-20210209224053369"></p>
+</li>
+<li><p>随便点进去一篇</p>
+<p>右边的custom database就可以启动scihub进行下载，不过需要我们先配置一下</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho26xxdpj31gi0u0wof.jpg" alt="image-20210209224720592"></p>
+</li>
+<li><p>点击插件图标</p>
+<p>在浏览器右上方</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho3mgp62j31gd0u0toh.jpg" alt="image-20210209224842445"></p>
+</li>
+<li><p>可以自己勾选被引指数，领域排名等等<br>  <img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho46vafdj30j20zmq8p.jpg" alt="image-20210209224915348"></p>
+</li>
+<li><p>点击全局设置</p>
+<p>然后在自定义数据库中，输入scihub的地址，点击确定</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho6tyqg2j31lb0u07h3.jpg" alt="image-20210209225146966"></p>
+</li>
+<li><p>然后就可以使用custom databse进行下载了（本质是使用scihub进行下载）</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEly1gnho8xbv52j31350u0gwz.jpg" alt="image-20210209225348285"></p>
+</li>
+</ol>
+<hr>
+<h3 id="至此结束，祝大家新年快乐"><a href="#至此结束，祝大家新年快乐" class="headerlink" title="至此结束，祝大家新年快乐"></a>至此结束，祝大家新年快乐</h3>]]></content>
+      <categories>
+        <category>科研工具</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>基于Typora以及Gitee的云笔记搭建</title>
+    <url>/2021/02/05/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E5%9F%BA%E4%BA%8ETypora%E4%BB%A5%E5%8F%8AGithub%E7%9A%84%E4%BA%91%E7%AC%94%E8%AE%B0%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>额，上次我发了一个marktext的简介，就是这个</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncftgz8zwj30ja092dmn.jpg" alt="Screen Shot 2021-02-05 at 10.14.16 AM"></p>
+<p>然后就有小伙伴来询问</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncfxjwt2tj30n007mdh9.jpg" alt="IMG_0F68F7F98C6E-1"></p>
+<p>说实话，我确实用过Typora，但是放弃的原因是因为Typora不支持图床，虽然除了这一个缺点，typora基本是完美的，但本着实事求是的原则，去确定了一下。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnchb5go99j30oo05wgm5.jpg" alt="image-20210205102311943"></p>
+<p>well，这让我想起了一句话，自古评论出人才。</p>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p>web: <a href="https://typora.io/">https://typora.io/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg4soy5xj31500igwg6.jpg" alt="Screen Shot 2021-02-05 at 10.24.59 AM"></p>
+<p>很简单的下载安装，不多赘述</p>
+<h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>1:preference</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8ad7yhj30v00egdvh.jpg" alt="Screen Shot 2021-02-05 at 10.27.34 AM"></p>
+<p>2:language</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8vttfij313k0rg7ag.jpg" alt="Screen Shot 2021-02-05 at 10.28.48 AM"></p>
+<p>3:Chinese</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg9lpmh5j30u00w44i6.jpg" alt="image-20210205102947769"></p>
+<p>4:关闭typora然后重启</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgb2brc4j30v00h2k3o.jpg" alt="image-20210205103111616"></p>
+<p>5: typora教程结束</p>
+<p>都成为中文了，不需要其余的过多阐释了</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnch52x7pgj31wz0u0qfb.jpg" alt="image-20210205110001774"></p>
+<p>6: gitee私人仓库搭建</p>
+<p>选择gitee的原因是因为github在国外，怕会影响传输速度，新建一个仓库</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgo9n0bmj30pc0fedhc.jpg" alt="Screen Shot 2021-02-05 at 10.43.24 AM"></p>
+<p>7:随便写写</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgpevklcj30u00xlte2.jpg" alt="Screen Shot 2021-02-05 at 10.44.48 AM"></p>
+<p>8:建设本地仓库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd test</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://gitee.com/luskyqi/test.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>9:以后所有的日志都在本地test文件夹下进行编写</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgrtksrwj3162090abq.jpg" alt="Screen Shot 2021-02-05 at 10.47.08 AM"></p>
+<p>10:自动同步，python ，每10mins同步一次，</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os,time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>(<span class="params"><span class="built_in">dir</span></span>):</span></span><br><span class="line">    curtime = time.ctime()</span><br><span class="line">    os.chdir(<span class="built_in">dir</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;git add .&#x27;</span>)</span><br><span class="line">    com_line=<span class="string">&#x27;git commit -m \&#x27;%s\&#x27;&#x27;</span>%(curtime)</span><br><span class="line">    os.system(com_line)</span><br><span class="line">    os.system(<span class="string">&#x27;git push -u origin master&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    job(<span class="string">&#x27;/Users/MyNote&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">600</span>)</span><br></pre></td></tr></table></figure>
+
+<p>comment为最近一次同步的日期</p>
+<p>然后，脚本在后台挂起</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup python run.py &amp; </span><br></pre></td></tr></table></figure>
+
+<p>11:成品图</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgy2e3klj31420cs40z.jpg" alt="Screen Shot 2021-02-05 at 10.49.43 AM"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li><p>typora是一款很优质的markdown写作工具，功能健全，支持图床</p>
+</li>
+<li><p>下载安装简单，颜值在线</p>
+</li>
+<li><p>typora与gitee联用很适合作为云笔记使用</p>
+</li>
+</ul>
+<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
+<li>基于typora以及gitee的模式是否可以演变为多人协作写作工具，可惜暂时不支持插件</li>
+</ul>
+]]></content>
+      <categories>
+        <category>实用工具</category>
+      </categories>
   </entry>
   <entry>
     <title>2020 年FDA药物总览</title>
