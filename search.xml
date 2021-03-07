@@ -3,8 +3,7 @@
   <entry>
     <title>Python每日一谈｜No.1.学习所需资源</title>
     <url>/2021/02/21/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.1/</url>
-    <content><![CDATA[<p>-</p>
-<blockquote>
+    <content><![CDATA[<blockquote>
 <p>Hi, 大家好。</p>
 <p>开这个专栏是因为大家想学，而且，基本不需要更新的问题。</p>
 <p>我们会从基础开始进行教学，继而进行安装，包使用，编程等等。</p>
@@ -58,91 +57,9 @@
 <li>Spyder:<a href="https://www.spyder-ide.org/">https://www.spyder-ide.org/</a></li>
 </ol>
 ]]></content>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.10.迭代器</title>
-    <url>/2021/03/01/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
-    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
-<blockquote>
-<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
-</blockquote>
-<blockquote>
-<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
-</blockquote>
-<blockquote>
-<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>当然，你也可以记住一句话</p>
-</blockquote>
-<blockquote>
-<p><strong>万物皆对象</strong></p>
-</blockquote>
-<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
-<ol>
-<li>迭代器是可迭代的对象</li>
-<li>迭代器只能往前不会后退。</li>
-<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
-<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
-<li>你也可以使用循环来进行遍历</li>
-</ol>
-<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
-<p>我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
-<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
-<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
-<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.12.列表生成式.1</title>
-    <url>/2021/03/03/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.12.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="额"><a href="#额" class="headerlink" title="额"></a>额</h3><p>竟然就到了函数，为什么这么快，我。。。是不是落了一些hh</p>
-<p>来看一个我经常使用的方式</p>
-<p>**列表生成式 **</p>
-<p>一般来说我们如果要创建一个列表的话，那么可选的方案有</p>
-<ol>
-<li><p>直接定义列表</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure></li>
-<li><p>将其余数据结构直接列表化</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">3</span>]: b = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="built_in">tuple</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: c = <span class="built_in">list</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">type</span>(c)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: print(c)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>先创建一个空列表，然后往里面塞元素</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">8</span>]: d = []</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">   ...:     d.append(i)</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: d</span><br><span class="line">Out[<span class="number">10</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="built_in">type</span>(d)</span><br><span class="line">Out[<span class="number">11</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>但是python提供了一个更为强大的列表生成方案</p>
-<p>他的一般形式是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表]</span><br></pre></td></tr></table></figure>
-
-<p>当然你也可以复杂一点</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表 判断式]</span><br></pre></td></tr></table></figure>
-
-<p>那么我们就可以这样使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a</span><br><span class="line">Out[<span class="number">13</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">14</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a</span><br><span class="line">Out[<span class="number">15</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
-
-<p>甚至于这样</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">16</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>) <span class="keyword">if</span> i &gt; <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: a</span><br><span class="line">Out[<span class="number">17</span>]: [<span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.11.函数</title>
@@ -225,6 +142,100 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里简单引入驼峰命名法，其实就是justdo不好看hhh</span></span><br><span class="line"><span class="comment"># 驼峰命名法：https://baike.baidu.com/item/骆驼命名法</span></span><br><span class="line">In [<span class="number">49</span>]: <span class="function"><span class="keyword">def</span> <span class="title">just_do</span>(<span class="params">a, b, c=<span class="number">0</span>, *, d, **kw</span>):</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;a =&#x27;</span>, a, <span class="string">&#x27;b =&#x27;</span>, b, <span class="string">&#x27;c =&#x27;</span>, c, <span class="string">&#x27;d =&#x27;</span>, d, <span class="string">&#x27;kw =&#x27;</span>, kw)</span><br><span class="line">    ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">50</span>]:  just_do(<span class="number">1</span>, <span class="number">2</span>, d=<span class="number">99</span>, ext=<span class="literal">None</span>)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">0</span> d = <span class="number">99</span> kw = &#123;<span class="string">&#x27;ext&#x27;</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.10.迭代器</title>
+    <url>/2021/03/01/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
+    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
+<blockquote>
+<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
+</blockquote>
+<blockquote>
+<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
+</blockquote>
+<blockquote>
+<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>当然，你也可以记住一句话</p>
+</blockquote>
+<blockquote>
+<p><strong>万物皆对象</strong></p>
+</blockquote>
+<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
+<ol>
+<li>迭代器是可迭代的对象</li>
+<li>迭代器只能往前不会后退。</li>
+<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
+<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
+<li>你也可以使用循环来进行遍历</li>
+</ol>
+<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
+<p>我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
+<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
+<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
+<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.12.列表生成式.1</title>
+    <url>/2021/03/03/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.12.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="额"><a href="#额" class="headerlink" title="额"></a>额</h3><p>竟然就到了函数，为什么这么快，我。。。是不是落了一些hh</p>
+<p>来看一个我经常使用的方式</p>
+<p>**列表生成式 **</p>
+<p>一般来说我们如果要创建一个列表的话，那么可选的方案有</p>
+<ol>
+<li><p>直接定义列表</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure></li>
+<li><p>将其余数据结构直接列表化</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">3</span>]: b = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="built_in">tuple</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: c = <span class="built_in">list</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">type</span>(c)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: print(c)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>先创建一个空列表，然后往里面塞元素</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">8</span>]: d = []</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">   ...:     d.append(i)</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: d</span><br><span class="line">Out[<span class="number">10</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="built_in">type</span>(d)</span><br><span class="line">Out[<span class="number">11</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是python提供了一个更为强大的列表生成方案</p>
+<p>他的一般形式是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表]</span><br></pre></td></tr></table></figure>
+
+<p>当然你也可以复杂一点</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表 判断式]</span><br></pre></td></tr></table></figure>
+
+<p>那么我们就可以这样使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a</span><br><span class="line">Out[<span class="number">13</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">14</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a</span><br><span class="line">Out[<span class="number">15</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
+<p>甚至于这样</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">16</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>) <span class="keyword">if</span> i &gt; <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: a</span><br><span class="line">Out[<span class="number">17</span>]: [<span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.13.列表生成式.2</title>
@@ -250,6 +261,9 @@
 
 <p>好，水文结束，大家早午晚安</p>
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.14.模块(包)的使用</title>
@@ -287,6 +301,9 @@
 
 
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.15.模块(包)的安装</title>
@@ -334,6 +351,9 @@
 <p>下面是biopython中对于结构的解析</p>
 <p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/smcra.png" alt="img"></p>
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.16.错误</title>
@@ -355,6 +375,9 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">5</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: b = <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: c = <span class="string">&#x27;nihao&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 打印出一个未定义的变量</span></span><br><span class="line">In [<span class="number">8</span>]: print(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">NameError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">8</span>-85549cb1de5f&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 print(d)</span><br><span class="line"></span><br><span class="line">NameError: name <span class="string">&#x27;d&#x27;</span> <span class="keyword">is</span> <span class="keyword">not</span> defined</span><br><span class="line"></span><br><span class="line"><span class="comment"># 整数和字符串相加</span></span><br><span class="line">In [<span class="number">9</span>]: a + c</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-e81e582b6fa9&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 a + c</span><br><span class="line"></span><br><span class="line">TypeError: unsupported operand <span class="built_in">type</span>(s) <span class="keyword">for</span> +: <span class="string">&#x27;int&#x27;</span> <span class="keyword">and</span> <span class="string">&#x27;str&#x27;</span></span><br></pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.2.IDE简介</title>
@@ -391,6 +414,53 @@
 
 
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.4</title>
+    <url>/2021/02/23/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.4/</url>
+    <content><![CDATA[<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>上面我们谈了数据类型，这篇我们该看下数据结构</p>
+<p>Python中的数据结构有list(列表)，dict（字典），set（集合）, tuple（元祖）</p>
+<p>可以对元素进行修改的数据结构有：list(列表)，dict（字典），set（集合）</p>
+<p>不可以对元素进行修改的数据结构有： tuple（元祖）</p>
+<h3 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h3><ul>
+<li><p>列表是最常用的，也是最基本的数据结构。</p>
+</li>
+<li><p>使用<code>[]</code>来生成一个列表</p>
+</li>
+<li><p>列表的元素可以是，字符串，数字等基本数据类型，也可以是列表，元祖等其余数据结构</p>
+</li>
+<li><p>列表是有序的，你可以正向使用，也可以反向使用。</p>
+</li>
+<li><p>列表可以进行的基本操作有索引，切片，加，乘，检查成员。</p>
+</li>
+</ul>
+<p><img src="/Users/sujiaqi/Pictures/Typora/python-list.png" alt="查看源图像"></p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">6</span>]: a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">  </span><br><span class="line">In [<span class="number">35</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">35</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b=[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: c=[a,b]</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: print(a)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: print(b)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: print(c)</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#列表索引操作</span></span><br><span class="line">In [<span class="number">12</span>]: a[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">12</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a[<span class="number">0</span>]</span><br><span class="line">Out[<span class="number">13</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a[-<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a[-<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#列表加操作</span></span><br><span class="line">In [<span class="number">16</span>]: d = a + b</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: print(d)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#列表乘操作</span></span><br><span class="line">In [<span class="number">18</span>]: a*<span class="number">3</span></span><br><span class="line">Out[<span class="number">18</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: c*<span class="number">2</span></span><br><span class="line">Out[<span class="number">24</span>]: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查成员</span></span><br><span class="line">In [<span class="number">25</span>]: <span class="number">1</span> <span class="keyword">in</span> a</span><br><span class="line">Out[<span class="number">25</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">26</span>]: <span class="number">7</span> <span class="keyword">in</span> a</span><br><span class="line">Out[<span class="number">26</span>]: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表切片</span></span><br><span class="line">In [<span class="number">27</span>]: f = a*<span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">28</span>]: print(f)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="comment"># 一般用法</span></span><br><span class="line">In [<span class="number">29</span>]: f[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">Out[<span class="number">29</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">30</span>]: f[<span class="number">3</span>:]</span><br><span class="line">Out[<span class="number">30</span>]: [<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">32</span>]: f[:-<span class="number">3</span>]</span><br><span class="line">Out[<span class="number">32</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">  </span><br><span class="line"> <span class="comment"># 步长</span></span><br><span class="line"><span class="comment"># 从f[1]到f[4]，每隔两位抽取一个元素</span></span><br><span class="line">In [<span class="number">34</span>]: f[<span class="number">1</span>:<span class="number">4</span>:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">34</span>]: [<span class="number">2</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="元祖"><a href="#元祖" class="headerlink" title="元祖"></a>元祖</h3><ul>
+<li><p>元祖是不可修改的</p>
+</li>
+<li><p>使用<code>( )</code>来创造一个元祖</p>
+</li>
+<li><p>也可以根据索引来使用元素，或切片</p>
+</li>
+<li><p>不可以修改元祖中的值，但元祖之间可以进行连接</p>
+</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建元祖</span></span><br><span class="line">In [<span class="number">41</span>]: tup1=(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">42</span>]: tup2=(tup1,tup1)</span><br><span class="line"></span><br><span class="line">In [<span class="number">43</span>]: tup2</span><br><span class="line">Out[<span class="number">43</span>]: ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">44</span>]: <span class="built_in">type</span>(tup1)</span><br><span class="line">Out[<span class="number">44</span>]: <span class="built_in">tuple</span></span><br><span class="line"><span class="comment"># 元祖切片</span></span><br><span class="line">In [<span class="number">45</span>]: tup1[:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">45</span>]: (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># 根据index来使用元祖元素</span></span><br><span class="line">In [<span class="number">47</span>]: tup1[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">47</span>]: <span class="number">2</span></span><br><span class="line"><span class="comment"># 元祖连接</span></span><br><span class="line">In [<span class="number">48</span>]: tup3 = tup1 + tup2</span><br><span class="line"></span><br><span class="line">In [<span class="number">49</span>]: tup3</span><br><span class="line">Out[<span class="number">49</span>]: (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.3 :hello world；注释；数据类型</title>
@@ -476,47 +546,9 @@
 
 
 ]]></content>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.4</title>
-    <url>/2021/02/23/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.4/</url>
-    <content><![CDATA[<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>上面我们谈了数据类型，这篇我们该看下数据结构</p>
-<p>Python中的数据结构有list(列表)，dict（字典），set（集合）, tuple（元祖）</p>
-<p>可以对元素进行修改的数据结构有：list(列表)，dict（字典），set（集合）</p>
-<p>不可以对元素进行修改的数据结构有： tuple（元祖）</p>
-<h3 id="列表："><a href="#列表：" class="headerlink" title="列表："></a>列表：</h3><ul>
-<li><p>列表是最常用的，也是最基本的数据结构。</p>
-</li>
-<li><p>使用<code>[]</code>来生成一个列表</p>
-</li>
-<li><p>列表的元素可以是，字符串，数字等基本数据类型，也可以是列表，元祖等其余数据结构</p>
-</li>
-<li><p>列表是有序的，你可以正向使用，也可以反向使用。</p>
-</li>
-<li><p>列表可以进行的基本操作有索引，切片，加，乘，检查成员。</p>
-</li>
-</ul>
-<p><img src="/Users/sujiaqi/Pictures/Typora/python-list.png" alt="查看源图像"></p>
-<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">6</span>]: a=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">  </span><br><span class="line">In [<span class="number">35</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">35</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b=[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: c=[a,b]</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: print(a)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: print(b)</span><br><span class="line">[<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: print(c)</span><br><span class="line">[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#列表索引操作</span></span><br><span class="line">In [<span class="number">12</span>]: a[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">12</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a[<span class="number">0</span>]</span><br><span class="line">Out[<span class="number">13</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a[-<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a[-<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#列表加操作</span></span><br><span class="line">In [<span class="number">16</span>]: d = a + b</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: print(d)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#列表乘操作</span></span><br><span class="line">In [<span class="number">18</span>]: a*<span class="number">3</span></span><br><span class="line">Out[<span class="number">18</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: c*<span class="number">2</span></span><br><span class="line">Out[<span class="number">24</span>]: [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>], [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line"></span><br><span class="line"><span class="comment">#检查成员</span></span><br><span class="line">In [<span class="number">25</span>]: <span class="number">1</span> <span class="keyword">in</span> a</span><br><span class="line">Out[<span class="number">25</span>]: <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">26</span>]: <span class="number">7</span> <span class="keyword">in</span> a</span><br><span class="line">Out[<span class="number">26</span>]: <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 列表切片</span></span><br><span class="line">In [<span class="number">27</span>]: f = a*<span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">28</span>]: print(f)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"><span class="comment"># 一般用法</span></span><br><span class="line">In [<span class="number">29</span>]: f[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">Out[<span class="number">29</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">30</span>]: f[<span class="number">3</span>:]</span><br><span class="line">Out[<span class="number">30</span>]: [<span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">32</span>]: f[:-<span class="number">3</span>]</span><br><span class="line">Out[<span class="number">32</span>]: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">1</span>]</span><br><span class="line">  </span><br><span class="line"> <span class="comment"># 步长</span></span><br><span class="line"><span class="comment"># 从f[1]到f[4]，每隔两位抽取一个元素</span></span><br><span class="line">In [<span class="number">34</span>]: f[<span class="number">1</span>:<span class="number">4</span>:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">34</span>]: [<span class="number">2</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="元祖"><a href="#元祖" class="headerlink" title="元祖"></a>元祖</h3><ul>
-<li><p>元祖是不可修改的</p>
-</li>
-<li><p>使用<code>( )</code>来创造一个元祖</p>
-</li>
-<li><p>也可以根据索引来使用元素，或切片</p>
-</li>
-<li><p>不可以修改元祖中的值，但元祖之间可以进行连接</p>
-</li>
-</ul>
-<p><strong>实例</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建元祖</span></span><br><span class="line">In [<span class="number">41</span>]: tup1=(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">42</span>]: tup2=(tup1,tup1)</span><br><span class="line"></span><br><span class="line">In [<span class="number">43</span>]: tup2</span><br><span class="line">Out[<span class="number">43</span>]: ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">44</span>]: <span class="built_in">type</span>(tup1)</span><br><span class="line">Out[<span class="number">44</span>]: <span class="built_in">tuple</span></span><br><span class="line"><span class="comment"># 元祖切片</span></span><br><span class="line">In [<span class="number">45</span>]: tup1[:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">45</span>]: (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># 根据index来使用元祖元素</span></span><br><span class="line">In [<span class="number">47</span>]: tup1[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">47</span>]: <span class="number">2</span></span><br><span class="line"><span class="comment"># 元祖连接</span></span><br><span class="line">In [<span class="number">48</span>]: tup3 = tup1 + tup2</span><br><span class="line"></span><br><span class="line">In [<span class="number">49</span>]: tup3</span><br><span class="line">Out[<span class="number">49</span>]: (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.5</title>
@@ -552,6 +584,9 @@
 
 
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.6</title>
@@ -613,6 +648,9 @@
 </tr>
 </tbody></table>
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.7</title>
@@ -648,44 +686,9 @@
 <p>其实，写到这里我也有些困了，<code>for </code>和<code>else</code>一起搭的用法确实有些反人类，看看官方的这个例子，也就是在整体的<code>for</code>循环中，又分为两个部分，一个用于判断，如果判断成功则<code>else</code>不被执行，否则执行<code>else</code></p>
 <p>好了，今天就到这里.</p>
 ]]></content>
-  </entry>
-  <entry>
-    <title>PythonEveryDay</title>
-    <url>/2021/02/22/python-every-day/README/</url>
-    <content><![CDATA[<p>Hi, 大家好。</p>
-<blockquote>
-<p>开这个专栏是因为大家想学，而且，基本不需要更新的问题。</p>
-<p>我们会从基础开始进行教学，继而进行安装，包使用，编程等等。</p>
-<p>由于是总结以及教学方面，我会参考各种教程，如有引用，必定开源(本教程遵循MIT协议)。</p>
-<p>当然，我们的实例重点是偏向于python使用与结构生物学，CADD，化学信息学等方面的使用。</p>
-<p>（毕竟爬PubChem，也算爬虫的一种）</p>
-<p>最终会提供几个实例，作为结尾，说到这里，又应该开一个仓库了。</p>
-<p>(Typora + Gitee)[<a href="https://zhuanlan.zhihu.com/p/349427506]%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F%F0%9F%98%8E">https://zhuanlan.zhihu.com/p/349427506]自动上传了解一下？😎</a></p>
-</blockquote>
-<p>祝大家学习愉快！</p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.9</title>
-    <url>/2021/02/28/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.9/</url>
-    <content><![CDATA[<h3 id="循环中的一些关键词"><a href="#循环中的一些关键词" class="headerlink" title="循环中的一些关键词"></a>循环中的一些关键词</h3><p>在上面我们已经说了<code>else</code></p>
-<p>现在那么只有三个关键词<code>break, continue,pass</code></p>
-<ol>
-<li><p><code>break</code></p>
-<p><code>break</code> 用于打破循环，想到了悟空，hhh，在循环中，当值满足某个条件值，可以使用<code>break</code>打破此循环，避免执行后续语句，减少计算量</p>
-<p>一般形式</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">22</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span></span><br><span class="line">    ...: <span class="keyword">for</span>   i  <span class="keyword">in</span> a:</span><br><span class="line">    ...: 	<span class="keyword">if</span> i == <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">    ...:		print(<span class="string">&#x27;find d and break&#x27;</span>)</span><br><span class="line">    ...:		<span class="keyword">break</span></span><br><span class="line">    ...:	print(<span class="string">&#x27;find&#x27;</span>,i)</span><br><span class="line">    ...: print(<span class="string">&#x27;finished&#x27;</span>)</span><br><span class="line">find a</span><br><span class="line">find b</span><br><span class="line">find c</span><br><span class="line">find d <span class="keyword">and</span> <span class="keyword">break</span></span><br><span class="line">finished</span><br></pre></td></tr></table></figure></li>
-<li><p><code>continue</code>用于跳过当前的循环</p>
-<p>当满足你的判断条件时，使用<code>continue</code>可以跳过本次循环，进入下一循环</p>
-<p>我们来看一个实例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当我们使用continue时</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span> </span><br><span class="line">    ...: print(<span class="string">&#x27;continue&#x27;</span>) </span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">continue</span> </span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i) </span><br><span class="line">    ...:                                                                                                                                                   </span><br><span class="line"><span class="keyword">continue</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出我们跳过了c进行了后续的循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当我们使用break是</span></span><br><span class="line">In [<span class="number">62</span>]: print(<span class="string">&#x27;break&#x27;</span>)</span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">break</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line"><span class="comment"># 可以看出当遇到break时，循环直接被打破</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p><code>pass</code></p>
-<p>pass是空语句，不做任何事情，你可以把它当作一个为了保证程序结构完整性而创造出来的词</p>
-<p>只是为了占个位置，看起来顺眼</p>
-<p>例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">63</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">pass</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  c</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出当我们使用pass时，实际上没有发生任何变化，程序会正常执行，循环</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者下面一个例子</span></span><br><span class="line">In [<span class="number">38</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">pass</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         print(i,<span class="string">&#x27;is not c&#x27;</span>) </span><br><span class="line"><span class="comment"># 当我们在使用pass时，程序不执行任何操作，但当条件不是‘c’时，程序执行print操作                                                                                                                                               </span></span><br><span class="line">a <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">b <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">d <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">e <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">f <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">g <span class="keyword">is</span> <span class="keyword">not</span> c</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.8</title>
@@ -708,5 +711,285 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: b = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">    ...:     print(a)</span><br><span class="line">    ...:     a = a + <span class="number">1</span></span><br><span class="line">    ...: <span class="keyword">else</span>:</span><br><span class="line">    ...:     print(<span class="string">&#x27;jump&#x27;</span>)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">jump</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.9</title>
+    <url>/2021/02/28/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.9/</url>
+    <content><![CDATA[<h3 id="循环中的一些关键词"><a href="#循环中的一些关键词" class="headerlink" title="循环中的一些关键词"></a>循环中的一些关键词</h3><p>在上面我们已经说了<code>else</code></p>
+<p>现在那么只有三个关键词<code>break, continue,pass</code></p>
+<ol>
+<li><p><code>break</code></p>
+<p><code>break</code> 用于打破循环，想到了悟空，hhh，在循环中，当值满足某个条件值，可以使用<code>break</code>打破此循环，避免执行后续语句，减少计算量</p>
+<p>一般形式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">22</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span></span><br><span class="line">    ...: <span class="keyword">for</span>   i  <span class="keyword">in</span> a:</span><br><span class="line">    ...: 	<span class="keyword">if</span> i == <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">    ...:		print(<span class="string">&#x27;find d and break&#x27;</span>)</span><br><span class="line">    ...:		<span class="keyword">break</span></span><br><span class="line">    ...:	print(<span class="string">&#x27;find&#x27;</span>,i)</span><br><span class="line">    ...: print(<span class="string">&#x27;finished&#x27;</span>)</span><br><span class="line">find a</span><br><span class="line">find b</span><br><span class="line">find c</span><br><span class="line">find d <span class="keyword">and</span> <span class="keyword">break</span></span><br><span class="line">finished</span><br></pre></td></tr></table></figure></li>
+<li><p><code>continue</code>用于跳过当前的循环</p>
+<p>当满足你的判断条件时，使用<code>continue</code>可以跳过本次循环，进入下一循环</p>
+<p>我们来看一个实例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当我们使用continue时</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span> </span><br><span class="line">    ...: print(<span class="string">&#x27;continue&#x27;</span>) </span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">continue</span> </span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i) </span><br><span class="line">    ...:                                                                                                                                                   </span><br><span class="line"><span class="keyword">continue</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出我们跳过了c进行了后续的循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当我们使用break是</span></span><br><span class="line">In [<span class="number">62</span>]: print(<span class="string">&#x27;break&#x27;</span>)</span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">break</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line"><span class="comment"># 可以看出当遇到break时，循环直接被打破</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p><code>pass</code></p>
+<p>pass是空语句，不做任何事情，你可以把它当作一个为了保证程序结构完整性而创造出来的词</p>
+<p>只是为了占个位置，看起来顺眼</p>
+<p>例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">63</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">pass</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  c</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出当我们使用pass时，实际上没有发生任何变化，程序会正常执行，循环</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者下面一个例子</span></span><br><span class="line">In [<span class="number">38</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">pass</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         print(i,<span class="string">&#x27;is not c&#x27;</span>) </span><br><span class="line"><span class="comment"># 当我们在使用pass时，程序不执行任何操作，但当条件不是‘c’时，程序执行print操作                                                                                                                                               </span></span><br><span class="line">a <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">b <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">d <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">e <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">f <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">g <span class="keyword">is</span> <span class="keyword">not</span> c</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PythonEveryDay</title>
+    <url>/2021/02/22/python-every-day/README/</url>
+    <content><![CDATA[<p>Hi, 大家好。</p>
+<blockquote>
+<p>开这个专栏是因为大家想学，而且，基本不需要更新的问题。</p>
+<p>我们会从基础开始进行教学，继而进行安装，包使用，编程等等。</p>
+<p>由于是总结以及教学方面，我会参考各种教程，如有引用，必定开源(本教程遵循MIT协议)。</p>
+<p>当然，我们的实例重点是偏向于python使用与结构生物学，CADD，化学信息学等方面的使用。</p>
+<p>（毕竟爬PubChem，也算爬虫的一种）</p>
+<p>最终会提供几个实例，作为结尾，说到这里，又应该开一个仓库了。</p>
+<p>(Typora + Gitee)[<a href="https://zhuanlan.zhihu.com/p/349427506]%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F%F0%9F%98%8E">https://zhuanlan.zhihu.com/p/349427506]自动上传了解一下？😎</a></p>
+</blockquote>
+<p>祝大家学习愉快！</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>OpenMM.No.2.可视化界面及力场</title>
+    <url>/2021/02/02/openmm/oenmm-2/</url>
+    <content><![CDATA[<p>创建openmm脚本的一种方法是从上面给出的示例开始，并对其进行自定义以满足实际需求，但是还有一个更简单的选择。</p>
+<p> OpenMM-Setup是一个图形应用程序，可引导完成加载输入文件和设置选项的整个过程。 然后，它会生成一个完整的脚本，甚至可以直接运行。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn90llb3bkj30vq0jpn11.jpg"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge openmm-setup</span><br><span class="line">#启动</span><br><span class="line">openmm-setup</span><br></pre></td></tr></table></figure>
+
+<p>它将自动在Web浏览器中打开一个显示用户界面的窗口。</p>
+<p>OpenMM-Setup不仅仅是脚本生成器。 它可以解决输入文件中的问题，添加缺失的原子，构建膜和water box等。 这是快速完成所有必要准备和设置的非常简单的方法。 </p>
+<p>openmm强烈建议所有新手到专家使用OpenMM-setup。</p>
+<p>我这里使用的是<strong>chrome</strong></p>
+<p>比较容易使用，会单独出一章</p>
+<img src="/Users/sujiaqi/Desktop/d5896691e28d602f21209709df02e47c9e8e68ac.png" title="" alt="" width="650">
+
+<h2 id="模拟参数"><a href="#模拟参数" class="headerlink" title="模拟参数"></a>模拟参数</h2><h3 id="platforms"><a href="#platforms" class="headerlink" title="platforms"></a>platforms</h3><p>创建模拟时，可以选择要使用的平台。</p>
+<p> OpenMM包括四个平台：Reference，CPU，CUDA和OpenCL。 </p>
+<p> 可以通过三种方式选择平台：</p>
+<p>1.默认情况下，OpenMM将尝试选择最快的可用平台。 通常，它的选择是比较合理的，但是有时需要自定义。</p>
+<p>2.或者，可以将OPENMM_DEFAULT_PLATFORM环境变量设置为要使用的平台的名称。 这将覆盖默认选项。</p>
+<p>3.最后，在创建模拟时，可以在脚本中显式指定Platform对象。</p>
+<p> 以下各行指定使用CUDA平台：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#platform参数应为下列：</span></span><br><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CPU&#x27;</span>)</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform)</span><br></pre></td></tr></table></figure>
+
+<p>您还可以自定义特定平台的属性，以进行计算。 </p>
+<p>有关每个平台支持的属性的详细信息，请参见Chapter <a href="http://docs.openmm.org/latest/userguide/library.html#platform-specific-properties">10</a></p>
+<p> 例如，以下代码指定使用两个GPU（CUDA：0和1）之间进行并行处理工作，以双精度执行所有计算：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CUDA&#x27;</span>)</span><br><span class="line">properties = &#123;<span class="string">&#x27;DeviceIndex&#x27;</span>: <span class="string">&#x27;0,1&#x27;</span>, <span class="string">&#x27;Precision&#x27;</span>: <span class="string">&#x27;double&#x27;</span>&#125;</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform, properties)</span><br></pre></td></tr></table></figure>
+
+<h3 id="力场"><a href="#力场" class="headerlink" title="力场"></a>力场</h3><p>创建力场时，可以指定一个或多个XML文件，使用加载力场定义。 </p>
+<p>通常，会有一个文件定义主要力场，可能还有另一个文件定义水模型（隐式或显式）。</p>
+<p> 例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">forcefield = ForceField(<span class="string">&#x27;amber14-all.xml&#x27;</span>, <span class="string">&#x27;amber14/tip3pfb.xml&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在某些情况下，一个XML文件包含其余的力场文件。</p>
+<p> 例如，amber14-all.xml实际上只是加载几个不同文件的快捷方式，这些文件共同构成了AMBER14力场。 </p>
+<p>如果需要对加载哪些参数进行更精细的控制，则可以单独指定组件文件。</p>
+<p>请注意，某些力场和水模型包括“额外粒子”，例如 lone pairs or Drude particles。</p>
+<p> 示例包括CHARMM极化力场以及所有4或5点水模型。 要使用这些力场，必须首先将多余的粒子添加到 <strong>拓扑</strong> 中。 </p>
+<p>下面描述的力场是与OpenMM捆绑在一起的力场。 </p>
+<p>其他力场可从<strong><a href="https://github.com/choderalab/openmm-forcefields">https://github.com/choderalab/openmm-forcefields</a></strong> 在线获得。</p>
+<h5 id="Amber14"><a href="#Amber14" class="headerlink" title="Amber14"></a>Amber14</h5><p>Amber14 力场由各种文件组成，这些文件定义了蛋白质，DNA，RNA，脂质，水和离子的参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>amber14/protein.ff14SB.xml</code></td>
+<td>Protein (recommended)</td>
+</tr>
+<tr>
+<td><code>amber14/protein.ff15ipq.xml</code></td>
+<td>Protein (alternative)</td>
+</tr>
+<tr>
+<td><code>amber14/DNA.OL15.xml</code></td>
+<td>DNA (recommended)</td>
+</tr>
+<tr>
+<td><code>amber14/DNA.bsc1.xml</code></td>
+<td>DNA (alternative)</td>
+</tr>
+<tr>
+<td><code>amber14/RNA.OL3.xml</code></td>
+<td>RNA</td>
+</tr>
+<tr>
+<td><code>amber14/lipid17.xml</code></td>
+<td>Lipid</td>
+</tr>
+<tr>
+<td><code>amber14/tip3p.xml</code></td>
+<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip3pfb.xml</code></td>
+<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip4pew.xml</code></td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip4pfb.xml</code></td>
+<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/spce.xml</code></td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
+</tr>
+</tbody></table>
+<p>为了方便，可以将文件amber14-all.xml用作包含：<code>amber14 / protein.ff14SB.xml，amber14 / DNA.OL15.xml，amber14 / RNA.OL3.xml和amber14 / lipid17.xml</code>的快捷方式。 </p>
+<p>在大多数情况下，在构建模型时，您只需包含amber14-all.xml，再加上其中一种水模型，例如<code>amber14 / tip3pfb.xml</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;amber14-all.xml&#39;, &#39;amber14&#x2F;tip3pfb.xml&#39;)</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="CHARMM36"><a href="#CHARMM36" class="headerlink" title="CHARMM36"></a>CHARMM36</h4><p>CHARMM36 力场提供了蛋白质，DNA，RNA，脂质，碳水化合物，水，离子和各种小分子的参数（有关完整参考资料，请参见此处）。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>charmm36.xml</code></td>
+<td>Protein, DNA, RNA, lipids, carbohydrates, and small molecules</td>
+</tr>
+<tr>
+<td><code>charmm36/water.xml</code></td>
+<td>Default CHARMM water model (a modified version of TIP3P<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a>) and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/spce.xml</code></td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip3p-pme-b.xml</code></td>
+<td>TIP3P-PME-B water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip3p-pme-f.xml</code></td>
+<td>TIP3P-PME-F water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip4pew.xml</code></td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip4p2005.xml</code></td>
+<td>TIP4P-2005 water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#abascal2005">[8]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip5p.xml</code></td>
+<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip5pew.xml</code></td>
+<td>TIP5P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#rick2004">[10]</a> and ions</td>
+</tr>
+</tbody></table>
+<p>charmm36.xml将除水和离子力场以外的所有xml都捆绑到一个文件中。</p>
+<p> 在大多数情况下，只需包含该文件，再加上一个水模型，例:<code>charmm36 / water.xml</code>，它指定了默认的CHARMM水模型（TIP3P 的修改版）和离子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;charmm36.xml&#39;, &#39;charmm36&#x2F;water.xml&#39;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h5><ul>
+<li><p>charmm36 /目录中包含的溶剂模型XML文件同时包含水和离子模型，因此，如果错误地指定了tip3p.xml而不是charmm36/water.xml，则可能会引发异常： 系统中缺少离子参数。</p>
+</li>
+<li><p>CHARMM广泛使用<strong>patches</strong>，这些patches会与残基模板自动结合，通过ForceField创建扩展的patches残基模板库。 这意味着修补残基（例如ACE和NME修补末端）必须作为单个残基出现，以便ForceField正确匹配残基模板并应用参数。 由于这些修补的残基不是标准的PDB残基，因此Modeller不知道如何向这些非标准残基中添加氢，并且<strong>输入拓扑必须已经包含适当的氢</strong>。</p>
+</li>
+<li><p>如果读取从CHARMM-GUI之类程序处理之后的PDB文件可能会出现问题。某些程序会生成不符合<strong>PDB标准的PDB文件</strong>，并忽略指定残基（例如半胱氨酸）之间键的CONECT记录，可能导致二硫键的检测和参数分配出现问题。 <strong>确保您阅读的文件符合有关键和非标准残基定义的适当标准。</strong>  如果使用的是CHARMM-GUI中的文件，则直接加载PSF文件最简单。</p>
+</li>
+</ul>
+<h4 id="AMOEBA"><a href="#AMOEBA" class="headerlink" title="AMOEBA"></a>AMOEBA</h4><p>AMOEBA极化力场提供蛋白质，水和离子的参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>amoeba2013.xml</code></td>
+<td>AMOEBA 2013<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#shi2013">[12]</a></td>
+</tr>
+<tr>
+<td><code>amoeba2013_gk.xml</code></td>
+<td>Generalized Kirkwood solvation model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#schnieders2007">[13]</a> for use with AMOEBA 2013 force field</td>
+</tr>
+<tr>
+<td><code>amoeba2009.xml</code></td>
+<td>AMOEBA 2009<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#ren2002">[14]</a>. This force field is deprecated. It is<br>recommended to use AMOEBA 2013 instead.</td>
+</tr>
+<tr>
+<td><code>amoeba2009_gk.xml</code></td>
+<td>Generalized Kirkwood solvation model for use with AMOEBA 2009 force field</td>
+</tr>
+</tbody></table>
+<h4 id="Water-Models"><a href="#Water-Models" class="headerlink" title="Water Models"></a>Water Models</h4><p>以下文件定义了流行的水模型。 它们可以与不提供自己的水模型的力场一起使用。 使用Amber14或CHARMM36时，请改用那些力场附带的水文件，因为它们也包含离子参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Water Model</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tip3p.xml</td>
+<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a></td>
+</tr>
+<tr>
+<td>tip3pfb.xml</td>
+<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
+</tr>
+<tr>
+<td>tip4pew.xml</td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a></td>
+</tr>
+<tr>
+<td>tip4pfb.xml</td>
+<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
+</tr>
+<tr>
+<td>tip5p.xml</td>
+<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a></td>
+</tr>
+<tr>
+<td>spce.xml</td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a></td>
+</tr>
+<tr>
+<td>swm4ndp.xml</td>
+<td>SWM4-NDP water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#lamoureux2006">[23]</a></td>
+</tr>
+</tbody></table>
+<h3 id="小分子参数"><a href="#小分子参数" class="headerlink" title="小分子参数"></a>小分子参数</h3><p>上面的OpenMM力场包括用于大分子和溶剂的预生成模板。 如果系统包含小分子，则通常需要即时生成这些参数。</p>
+<p>在OpenMM生态系统中，有两种方法可以执行此操作：</p>
+<ul>
+<li>Small molecule residue template generators（小分子残基模版生产器）一种方法是对openmmforcefields conda软件包中的小分子使用残基模板生成器。 您可以通过conda安装此程序：<code>$ conda install -c conda-forge openmmforcefields</code>然后，可以使用Open Force Field Initiative小分子力场（通过以下示例）添加小分子残基模板生成器：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#使用 Open Force Field Initiative小分子力场 来创建 the SMIRNOFF template generator </span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个SMIRNOFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br></pre></td></tr></table></figure>
+
+同样的，你也可以使用<a href="http://ambermd.org/antechamber/gaff.html">AMBER GAFF small molecule force field</a><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#创建以一个GAFF模版生成器</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> GAFFTemplateGenerator</span><br><span class="line">gaff = GAFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个 GAFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(gaff.generator)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system = forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>SystemGenerator</code>来操纵力场  openmm forcefields软件包提供了SystemGenerator工具来简化大分子和小分子力场管理。 要使用此功能，只需指定要使用的小分子力场即可：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> simtk <span class="keyword">import</span> unit</span><br><span class="line"><span class="keyword">from</span> simtk.openmm <span class="keyword">import</span> app</span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SystemGenerator</span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">forcefield_kwargs = &#123; <span class="string">&#x27;constraints&#x27;</span> : app.HBonds, <span class="string">&#x27;rigidWater&#x27;</span> : <span class="literal">True</span>, <span class="string">&#x27;removeCMMotion&#x27;</span> : <span class="literal">False</span>, <span class="string">&#x27;hydrogenMass&#x27;</span> : <span class="number">4</span>*unit.amu &#125;</span><br><span class="line"><span class="comment"># Initialize a SystemGenerator using the Open Force Field Initiative 1.2.0 force field (openff-1.2.0)</span></span><br><span class="line">system_generator = SystemGenerator(forcefields=[<span class="string">&#x27;amber/ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>], small_molecule_forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>, forcefield_kwargs=forcefield_kwargs, cache=<span class="string">&#x27;db.json&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM System from an OpenMM Topology object and a list of openforcefield Molecule objects</span></span><br><span class="line">molecules = Molecule.from_file(<span class="string">&#x27;molecule.sdf&#x27;</span>, file_format=<span class="string">&#x27;sdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现在拓扑中的那些实例进行匹配。 请注意，质子化和互变异构状态必须在读取的分子与出现在拓扑结构中的分子之间完全匹配。 有关更多详细信息，请参见openmmforcefields文档。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create an OpenFF Molecule object for benzene from SMILES</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment"># Create the SMIRNOFF template generator with the default installed force field (openff-1.0.0)</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule, forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM ForceField object with AMBER ff14SB and TIP3P with compatible ions</span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># Register the SMIRNOFF template generator</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system =forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure></li>
+</ul>
+]]></content>
+      <categories>
+        <category>OpenMM</category>
+      </categories>
   </entry>
 </search>
