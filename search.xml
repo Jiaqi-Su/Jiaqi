@@ -1,6 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>基于Typora以及Gitee的云笔记搭建</title>
+    <url>/2021/02/05/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E5%9F%BA%E4%BA%8ETypora%E4%BB%A5%E5%8F%8AGithub%E7%9A%84%E4%BA%91%E7%AC%94%E8%AE%B0%E6%90%AD%E5%BB%BA/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>额，上次我发了一个marktext的简介，就是这个</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncftgz8zwj30ja092dmn.jpg" alt="Screen Shot 2021-02-05 at 10.14.16 AM"></p>
+<p>然后就有小伙伴来询问</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncfxjwt2tj30n007mdh9.jpg" alt="IMG_0F68F7F98C6E-1"></p>
+<p>说实话，我确实用过Typora，但是放弃的原因是因为Typora不支持图床，虽然除了这一个缺点，typora基本是完美的，但本着实事求是的原则，去确定了一下。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnchb5go99j30oo05wgm5.jpg" alt="image-20210205102311943"></p>
+<p>well，这让我想起了一句话，自古评论出人才。</p>
+<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p>web: <a href="https://typora.io/">https://typora.io/</a></p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg4soy5xj31500igwg6.jpg" alt="Screen Shot 2021-02-05 at 10.24.59 AM"></p>
+<p>很简单的下载安装，不多赘述</p>
+<h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>1:preference</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8ad7yhj30v00egdvh.jpg" alt="Screen Shot 2021-02-05 at 10.27.34 AM"></p>
+<p>2:language</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8vttfij313k0rg7ag.jpg" alt="Screen Shot 2021-02-05 at 10.28.48 AM"></p>
+<p>3:Chinese</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg9lpmh5j30u00w44i6.jpg" alt="image-20210205102947769"></p>
+<p>4:关闭typora然后重启</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgb2brc4j30v00h2k3o.jpg" alt="image-20210205103111616"></p>
+<p>5: typora教程结束</p>
+<p>都成为中文了，不需要其余的过多阐释了</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnch52x7pgj31wz0u0qfb.jpg" alt="image-20210205110001774"></p>
+<p>6: gitee私人仓库搭建</p>
+<p>选择gitee的原因是因为github在国外，怕会影响传输速度，新建一个仓库</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgo9n0bmj30pc0fedhc.jpg" alt="Screen Shot 2021-02-05 at 10.43.24 AM"></p>
+<p>7:随便写写</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgpevklcj30u00xlte2.jpg" alt="Screen Shot 2021-02-05 at 10.44.48 AM"></p>
+<p>8:建设本地仓库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd test</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://gitee.com/luskyqi/test.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>9:以后所有的日志都在本地test文件夹下进行编写</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgrtksrwj3162090abq.jpg" alt="Screen Shot 2021-02-05 at 10.47.08 AM"></p>
+<p>10:自动同步，python ，每10mins同步一次，</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os,time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>(<span class="params"><span class="built_in">dir</span></span>):</span></span><br><span class="line">    curtime = time.ctime()</span><br><span class="line">    os.chdir(<span class="built_in">dir</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;git add .&#x27;</span>)</span><br><span class="line">    com_line=<span class="string">&#x27;git commit -m \&#x27;%s\&#x27;&#x27;</span>%(curtime)</span><br><span class="line">    os.system(com_line)</span><br><span class="line">    os.system(<span class="string">&#x27;git push -u origin master&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    job(<span class="string">&#x27;/Users/MyNote&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">600</span>)</span><br></pre></td></tr></table></figure>
+
+<p>comment为最近一次同步的日期</p>
+<p>然后，脚本在后台挂起</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup python run.py &amp; </span><br></pre></td></tr></table></figure>
+
+<p>11:成品图</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgy2e3klj31420cs40z.jpg" alt="Screen Shot 2021-02-05 at 10.49.43 AM"></p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
+<li><p>typora是一款很优质的markdown写作工具，功能健全，支持图床</p>
+</li>
+<li><p>下载安装简单，颜值在线</p>
+</li>
+<li><p>typora与gitee联用很适合作为云笔记使用</p>
+</li>
+</ul>
+<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
+<li>基于typora以及gitee的模式是否可以演变为多人协作写作工具，可惜暂时不支持插件</li>
+</ul>
+]]></content>
+      <categories>
+        <category>实用工具</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python每日一谈｜No.1.学习所需资源</title>
     <url>/2021/02/21/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.1/</url>
     <content><![CDATA[<blockquote>
@@ -56,54 +115,6 @@
 <li>Sublime Text:<a href="https://www.sublimetext.com/">https://www.sublimetext.com</a></li>
 <li>Spyder:<a href="https://www.spyder-ide.org/">https://www.spyder-ide.org/</a></li>
 </ol>
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.10.迭代器</title>
-    <url>/2021/03/01/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
-    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
-<blockquote>
-<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
-</blockquote>
-<blockquote>
-<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
-</blockquote>
-<blockquote>
-<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>当然，你也可以记住一句话</p>
-</blockquote>
-<blockquote>
-<p><strong>万物皆对象</strong></p>
-</blockquote>
-<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
-<ol>
-<li>迭代器是可迭代的对象</li>
-<li>迭代器只能往前不会后退。</li>
-<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
-<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
-<li>你也可以使用循环来进行遍历</li>
-</ol>
-<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
-<p>我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
-<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
-<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
-<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
 ]]></content>
       <categories>
         <category>Python每日一谈</category>
@@ -260,6 +271,54 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
 
 <p>好，水文结束，大家早午晚安</p>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.10.迭代器</title>
+    <url>/2021/03/01/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
+    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
+<blockquote>
+<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
+</blockquote>
+<blockquote>
+<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
+</blockquote>
+<blockquote>
+<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>当然，你也可以记住一句话</p>
+</blockquote>
+<blockquote>
+<p><strong>万物皆对象</strong></p>
+</blockquote>
+<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
+<ol>
+<li>迭代器是可迭代的对象</li>
+<li>迭代器只能往前不会后退。</li>
+<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
+<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
+<li>你也可以使用循环来进行遍历</li>
+</ol>
+<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
+<p>我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
+<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
+<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
+<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
 ]]></content>
       <categories>
         <category>Python每日一谈</category>
@@ -507,6 +566,44 @@
       </categories>
   </entry>
   <entry>
+    <title>Python每日一谈｜No.5</title>
+    <url>/2021/02/24/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.5/</url>
+    <content><![CDATA[<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ul>
+<li><p>字典是经常使用的数据结构</p>
+</li>
+<li><p>字典分为key 以及value两部分</p>
+</li>
+<li><p>每个Key都可以对应一个value</p>
+</li>
+<li><p>使用<code>&#123;&#125;</code>来创建字典</p>
+</li>
+<li><p>字典的元素可以是比较任意的类型，例如列表，元祖等</p>
+</li>
+<li><p>字典的一般操作有创建，更新元素，删除元素，添加元素，以及遍历</p>
+</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#创建一个空字典</span></span><br><span class="line">In [<span class="number">1</span>]: a = &#123;&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">dict</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 当然也可以创建一个非空字典</span></span><br><span class="line">In [<span class="number">4</span>]: b = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: b</span><br><span class="line">Out[<span class="number">5</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在b中更新元素</span></span><br><span class="line">In [<span class="number">6</span>]: b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;Zara&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b[<span class="string">&#x27;Name&#x27;</span>] = <span class="string">&#x27;Xiaoming&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: b</span><br><span class="line">Out[<span class="number">8</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Xiaoming&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在删除b中元素</span></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">del</span> b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b</span><br><span class="line">Out[<span class="number">10</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在b中添加元素</span></span><br><span class="line">In [<span class="number">11</span>]: b[<span class="string">&#x27;new&#x27;</span>] = <span class="string">&#x27;nihao&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b</span><br><span class="line">Out[<span class="number">12</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>, <span class="string">&#x27;new&#x27;</span>: <span class="string">&#x27;nihao&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
+<li>集合是无序的，<strong>不重复的</strong></li>
+<li>使用<code>set()</code>来创建一个集合</li>
+<li>你可以添加元素，也可以删除元素</li>
+<li>集合比较重要的是其运算求交集，并集等等</li>
+</ul>
+<p><strong>实例</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个集合</span></span><br><span class="line">In [<span class="number">13</span>]: a = <span class="built_in">set</span>(<span class="string">&#x27;abracadabra&#x27;</span>)</span><br><span class="line">    ...: b = <span class="built_in">set</span>(<span class="string">&#x27;alacazam&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">In [<span class="number">24</span>]: a = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>])</span><br><span class="line">In [<span class="number">26</span>]: b = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">In [<span class="number">25</span>]: a</span><br><span class="line">Out[<span class="number">25</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: b</span><br><span class="line">Out[<span class="number">27</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a</span><br><span class="line">Out[<span class="number">14</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: b</span><br><span class="line">Out[<span class="number">15</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的交集</span></span><br><span class="line">In [<span class="number">17</span>]: a &amp; b</span><br><span class="line">Out[<span class="number">17</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的并集</span></span><br><span class="line">In [<span class="number">16</span>]: a | b</span><br><span class="line">Out[<span class="number">16</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#在a中但不在b中的元素</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: a-b</span><br><span class="line">Out[<span class="number">18</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#不在a中不在b中</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">19</span>]: a ^ b</span><br><span class="line">Out[<span class="number">19</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#添加元素</span></span><br><span class="line">In [<span class="number">28</span>]: a.add(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: a</span><br><span class="line">Out[<span class="number">29</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#移除元素</span></span><br><span class="line">In [<span class="number">30</span>]: a.remove(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: a</span><br><span class="line">Out[<span class="number">31</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Python每日一谈｜No.4</title>
     <url>/2021/02/23/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.4/</url>
     <content><![CDATA[<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><p>上面我们谈了数据类型，这篇我们该看下数据结构</p>
@@ -542,44 +639,6 @@
 </ul>
 <p><strong>实例</strong></p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建元祖</span></span><br><span class="line">In [<span class="number">41</span>]: tup1=(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">42</span>]: tup2=(tup1,tup1)</span><br><span class="line"></span><br><span class="line">In [<span class="number">43</span>]: tup2</span><br><span class="line">Out[<span class="number">43</span>]: ((<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">44</span>]: <span class="built_in">type</span>(tup1)</span><br><span class="line">Out[<span class="number">44</span>]: <span class="built_in">tuple</span></span><br><span class="line"><span class="comment"># 元祖切片</span></span><br><span class="line">In [<span class="number">45</span>]: tup1[:<span class="number">2</span>]</span><br><span class="line">Out[<span class="number">45</span>]: (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="comment"># 根据index来使用元祖元素</span></span><br><span class="line">In [<span class="number">47</span>]: tup1[<span class="number">1</span>]</span><br><span class="line">Out[<span class="number">47</span>]: <span class="number">2</span></span><br><span class="line"><span class="comment"># 元祖连接</span></span><br><span class="line">In [<span class="number">48</span>]: tup3 = tup1 + tup2</span><br><span class="line"></span><br><span class="line">In [<span class="number">49</span>]: tup3</span><br><span class="line">Out[<span class="number">49</span>]: (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>))</span><br><span class="line">  </span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-
-
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Python每日一谈｜No.5</title>
-    <url>/2021/02/24/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.5/</url>
-    <content><![CDATA[<h3 id="字典"><a href="#字典" class="headerlink" title="字典"></a>字典</h3><ul>
-<li><p>字典是经常使用的数据结构</p>
-</li>
-<li><p>字典分为key 以及value两部分</p>
-</li>
-<li><p>每个Key都可以对应一个value</p>
-</li>
-<li><p>使用<code>&#123;&#125;</code>来创建字典</p>
-</li>
-<li><p>字典的元素可以是比较任意的类型，例如列表，元祖等</p>
-</li>
-<li><p>字典的一般操作有创建，更新元素，删除元素，添加元素，以及遍历</p>
-</li>
-</ul>
-<p><strong>实例</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#创建一个空字典</span></span><br><span class="line">In [<span class="number">1</span>]: a = &#123;&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">dict</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 当然也可以创建一个非空字典</span></span><br><span class="line">In [<span class="number">4</span>]: b = &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: b</span><br><span class="line">Out[<span class="number">5</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Zara&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在b中更新元素</span></span><br><span class="line">In [<span class="number">6</span>]: b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;Zara&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: b[<span class="string">&#x27;Name&#x27;</span>] = <span class="string">&#x27;Xiaoming&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: b</span><br><span class="line">Out[<span class="number">8</span>]: &#123;<span class="string">&#x27;Name&#x27;</span>: <span class="string">&#x27;Xiaoming&#x27;</span>, <span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 在删除b中元素</span></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">del</span> b[<span class="string">&#x27;Name&#x27;</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b</span><br><span class="line">Out[<span class="number">10</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 在b中添加元素</span></span><br><span class="line">In [<span class="number">11</span>]: b[<span class="string">&#x27;new&#x27;</span>] = <span class="string">&#x27;nihao&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b</span><br><span class="line">Out[<span class="number">12</span>]: &#123;<span class="string">&#x27;Age&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;Class&#x27;</span>: <span class="string">&#x27;First&#x27;</span>, <span class="string">&#x27;new&#x27;</span>: <span class="string">&#x27;nihao&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-
-<h3 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h3><ul>
-<li>集合是无序的，<strong>不重复的</strong></li>
-<li>使用<code>set()</code>来创建一个集合</li>
-<li>你可以添加元素，也可以删除元素</li>
-<li>集合比较重要的是其运算求交集，并集等等</li>
-</ul>
-<p><strong>实例</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个集合</span></span><br><span class="line">In [<span class="number">13</span>]: a = <span class="built_in">set</span>(<span class="string">&#x27;abracadabra&#x27;</span>)</span><br><span class="line">    ...: b = <span class="built_in">set</span>(<span class="string">&#x27;alacazam&#x27;</span>)</span><br><span class="line">    </span><br><span class="line">In [<span class="number">24</span>]: a = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>])</span><br><span class="line">In [<span class="number">26</span>]: b = <span class="built_in">set</span>([<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>])</span><br><span class="line">In [<span class="number">25</span>]: a</span><br><span class="line">Out[<span class="number">25</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">27</span>]: b</span><br><span class="line">Out[<span class="number">27</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: a</span><br><span class="line">Out[<span class="number">14</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: b</span><br><span class="line">Out[<span class="number">15</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的交集</span></span><br><span class="line">In [<span class="number">17</span>]: a &amp; b</span><br><span class="line">Out[<span class="number">17</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;c&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 求ab的并集</span></span><br><span class="line">In [<span class="number">16</span>]: a | b</span><br><span class="line">Out[<span class="number">16</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#在a中但不在b中的元素</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: a-b</span><br><span class="line">Out[<span class="number">18</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#不在a中不在b中</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">19</span>]: a ^ b</span><br><span class="line">Out[<span class="number">19</span>]: &#123;<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;z&#x27;</span>&#125;</span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line"><span class="comment">#添加元素</span></span><br><span class="line">In [<span class="number">28</span>]: a.add(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">29</span>]: a</span><br><span class="line">Out[<span class="number">29</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br><span class="line"><span class="comment">#移除元素</span></span><br><span class="line">In [<span class="number">30</span>]: a.remove(<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">31</span>]: a</span><br><span class="line">Out[<span class="number">31</span>]: &#123;<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;r&#x27;</span>&#125;</span><br></pre></td></tr></table></figure>
 
 
 
@@ -905,62 +964,332 @@
       </categories>
   </entry>
   <entry>
-    <title>基于Typora以及Gitee的云笔记搭建</title>
-    <url>/2021/02/05/%E5%AE%9E%E7%94%A8%E5%B7%A5%E5%85%B7/%E5%9F%BA%E4%BA%8ETypora%E4%BB%A5%E5%8F%8AGithub%E7%9A%84%E4%BA%91%E7%AC%94%E8%AE%B0%E6%90%AD%E5%BB%BA/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>额，上次我发了一个marktext的简介，就是这个</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncftgz8zwj30ja092dmn.jpg" alt="Screen Shot 2021-02-05 at 10.14.16 AM"></p>
-<p>然后就有小伙伴来询问</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncfxjwt2tj30n007mdh9.jpg" alt="IMG_0F68F7F98C6E-1"></p>
-<p>说实话，我确实用过Typora，但是放弃的原因是因为Typora不支持图床，虽然除了这一个缺点，typora基本是完美的，但本着实事求是的原则，去确定了一下。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnchb5go99j30oo05wgm5.jpg" alt="image-20210205102311943"></p>
-<p>well，这让我想起了一句话，自古评论出人才。</p>
-<h2 id="安装："><a href="#安装：" class="headerlink" title="安装："></a>安装：</h2><p>web: <a href="https://typora.io/">https://typora.io/</a></p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg4soy5xj31500igwg6.jpg" alt="Screen Shot 2021-02-05 at 10.24.59 AM"></p>
-<p>很简单的下载安装，不多赘述</p>
-<h2 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h2><p>1:preference</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8ad7yhj30v00egdvh.jpg" alt="Screen Shot 2021-02-05 at 10.27.34 AM"></p>
-<p>2:language</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg8vttfij313k0rg7ag.jpg" alt="Screen Shot 2021-02-05 at 10.28.48 AM"></p>
-<p>3:Chinese</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncg9lpmh5j30u00w44i6.jpg" alt="image-20210205102947769"></p>
-<p>4:关闭typora然后重启</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgb2brc4j30v00h2k3o.jpg" alt="image-20210205103111616"></p>
-<p>5: typora教程结束</p>
-<p>都成为中文了，不需要其余的过多阐释了</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gnch52x7pgj31wz0u0qfb.jpg" alt="image-20210205110001774"></p>
-<p>6: gitee私人仓库搭建</p>
-<p>选择gitee的原因是因为github在国外，怕会影响传输速度，新建一个仓库</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgo9n0bmj30pc0fedhc.jpg" alt="Screen Shot 2021-02-05 at 10.43.24 AM"></p>
-<p>7:随便写写</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgpevklcj30u00xlte2.jpg" alt="Screen Shot 2021-02-05 at 10.44.48 AM"></p>
-<p>8:建设本地仓库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mkdir test</span><br><span class="line">cd test</span><br><span class="line">git init</span><br><span class="line">touch README.md</span><br><span class="line">git add README.md</span><br><span class="line">git commit -m &quot;first commit&quot;</span><br><span class="line">git remote add origin https://gitee.com/luskyqi/test.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+    <title>一篇综述一个领域｜谨慎对待对接</title>
+    <url>/2021/02/16/paper/%E5%B0%8F%E5%BF%83%E5%AF%B9%E6%8E%A5/</url>
+    <content><![CDATA[<h3 id="Cite"><a href="#Cite" class="headerlink" title="Cite"></a>Cite</h3><p>Chen YC. Beware of  docking! Trends Pharmacol Sci. 2015 Feb;36(2):78-95. doi:  10.1016/j.tips.2014.12.001. Epub 2014 Dec 24. Erratum in: Trends  Pharmacol Sci. 2015 Sep;36(9):617. PMID: 25543280.</p>
+<h3 id="编前语"><a href="#编前语" class="headerlink" title="编前语"></a>编前语</h3><p>well，我知道你们此时充满疑惑，我刚刚不久之前刚刚写过一篇文章关于对接的综述，这次便是这个题目，就仿佛是在打自己的脸。但本质上某个领域有优势自然也有缺点，<strong>我们远未达到可以依靠某个单一技术手段去解决一个科学问题或者工程的时代</strong>。关于分子对接，上篇的综述主要是讲了其应用以及方法，这次，我们来看看这项技术手段的缺点，作为互补，以便更明确的展示DOCKING的全貌，以及他究竟能做些什么，应该注意什么。</p>
+<p><img src="https://i.loli.net/2021/02/16/T7ylmM8tz9f1HZg.png" alt="image-20210216161043469"></p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>分子对接经常被用于虚拟筛选或者先导化合物优化过程中。在过去十年中，分子对接相关的论文数量急剧增加。然而，在进行对接研究时，有许多问题需要考虑。经常出现的问题，如目标蛋白的错误结合位点、使用不合适的小分子数据库进行筛选、对接姿势的选择、较高的对接分数但在分子动力学（MD）模拟中失败，以及对复合物是抑制剂还是激动剂缺乏明确性。在执行对接之前，这些问题应该引起注意和并被考虑到。一些论文展示了丰富且全面的生化实验，但最终结果只是一个简单的对接图。此综述提供了一些证据表明，有可能对接得分很高，但对接结果是存在问题的。在某些情况下，对接精度甚至可以从0%变为92.66%。因此，请认真对待。</p>
+<p><img src="https://i.loli.net/2021/02/16/dH8LyeCDZsiPUJR.png" alt="image-20210216163805226"></p>
+<h3 id="对接本质是基于结构的药物筛选（SBDD）"><a href="#对接本质是基于结构的药物筛选（SBDD）" class="headerlink" title="对接本质是基于结构的药物筛选（SBDD）"></a>对接本质是基于结构的药物筛选（SBDD）</h3><blockquote>
+<p>请注意是基于结构的对接，并不是基于对接的结构</p>
+</blockquote>
+<p>从20世纪60年代开始，随着物理学、化学、信息技术、生物化学和计算机的发展，分子对接已经成为一种强有力的工具和基本技术，不仅在药物筛选方面，而且在蛋白质-蛋白质相互作用和纳米材料等方面都显示出了巨大的潜力。目前计算机辅助药物设计（CADD）领域主要是将小分子对接到大分子（特别是蛋白质靶点上），其应用案例逐年增加。在现代CADD中，基于结构的药物设计是必不可少的，大多数大型制药公司都有这个部门。许多商业药物是直接使用CADD方法进行设计的。毫无疑问，在理解药物作用的分子机制上，对接技术是一项非常重要的科学进步，特别是当三位顶尖计算科学家获得2013年诺贝尔化学奖时。</p>
+<p>蛋白质-配体或蛋白质-蛋白质对接是一种计算技术，用于预测配体与蛋白质受体结合时的取向。多数情况下，可以选择最佳的“结合亲和力”配体进行进一步的生物化学实验。因为对接很简单，设备要求也很低（甚至在个人电脑上也能工作），对接相关的论文在过去十年里急剧增加。然而，我们能否相信这些对接研究的结果？本文对相关领域进行了调查，指出了优势和劣势。评估表明，精确性是对接研究的一个主要问题，因为如果不能精确地对接，那么这些论文就没有什么价值。</p>
+<p>即使在知名期刊上，也能找到可疑的对接结果。常见的问题有：<strong>靶蛋白的结合位点不准确</strong>，<strong>使用不合适的小分子数据库进行筛选</strong>，<strong>对接姿势（POSE）的选择</strong>，<strong>高对接分数（结合亲和力）但在MD模拟中失败</strong>，<strong>缺乏对化合物是抑制剂还是激动剂的解释</strong>，或者<strong>对接结果与结果不一致生物测定</strong>。一些情况常常出现在一些顶级期刊上，这些期刊显示了极好的生物测定，但只有一个简单的对接图。对接结果在解释这些问题时应该引起警惕和关注。虽然有些论文通过比较对接前后配体的结合姿势差异来表明对接结果的准确性很高，但作者提出了一些观点，表明对接仍然可能存在问题。在某些情况下，对接精度甚至可以从0%变为92.66%。</p>
+<h3 id="对接算法和程序"><a href="#对接算法和程序" class="headerlink" title="对接算法和程序"></a>对接算法和程序</h3><blockquote>
+<p>Well，基本关于对接的论文都绕不开此项的讨论，我上一篇可能更详细，但是此篇主要偏向于对接程序的总结，总而言之，互有偏重。</p>
+</blockquote>
+<p>对接的最初概念来自于“锁钥”概念，但将“钥匙”（配体）与“锁”（受体蛋白）匹配的算法多种多样。下表列出了对接程序、对接web服务器、屏幕软件和屏幕web服务器的最新发展，从中我们可以看出，近年来新算法的数量不断增加。如果我们进一步分析所有对接软件，我们可以看到最常用的对接程序是Autodock和GOLD。这并不意味着Autodock或GOLD比其他对接程序更精确，它们只是更受欢迎和知名。它们的高引用率可能是因为这些程序是免费的，并且比最近的其他对接程序创建得更早。目前，有一种新的蛋白质结构预测算法Rosetta(<a href="http://boinc.bakerlab.org/)%EF%BC%8C%E4%B9%9F%E5%BE%97%E5%88%B0%E4%BA%86%E9%AB%98%E5%BA%A6%E8%AF%84%E4%BB%B7%E3%80%82">http://boinc.bakerlab.org/)，也得到了高度评价。</a></p>
+<img src="https://i.loli.net/2021/02/16/F5PC6aLHSUJQoT1.png" alt="image-20210216165225143" style="zoom:50%;" />
 
-<p>9:以后所有的日志都在本地test文件夹下进行编写</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgrtksrwj3162090abq.jpg" alt="Screen Shot 2021-02-05 at 10.47.08 AM"></p>
-<p>10:自动同步，python ，每10mins同步一次，</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os,time</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">job</span>(<span class="params"><span class="built_in">dir</span></span>):</span></span><br><span class="line">    curtime = time.ctime()</span><br><span class="line">    os.chdir(<span class="built_in">dir</span>)</span><br><span class="line">    os.system(<span class="string">&#x27;git add .&#x27;</span>)</span><br><span class="line">    com_line=<span class="string">&#x27;git commit -m \&#x27;%s\&#x27;&#x27;</span>%(curtime)</span><br><span class="line">    os.system(com_line)</span><br><span class="line">    os.system(<span class="string">&#x27;git push -u origin master&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    job(<span class="string">&#x27;/Users/MyNote&#x27;</span>)</span><br><span class="line">    time.sleep(<span class="number">600</span>)</span><br></pre></td></tr></table></figure>
+<p>尽管程序多种多样，但每个对接程序的算法必须在速度和精度之间取得平衡。对接的算法也因评分函数的不同而有差异。结合亲和力（Binding affinity）通常被认为是一个最优先考虑因素。有不同的对接程序可以供用户根据自己的特殊要求进行选择。目前，对接算法包含了了基于结构的药物设计（SBDD）的不同方面，如<strong>基于片段的药物设计</strong>、<strong>柔性对接</strong>、<strong>水，特定pH值溶剂下对接</strong>。例如，如果我们需要从一个数据库中筛选超过10000种化合物，那么<strong>柔性对接</strong>可能不是一个好的选择，除非我们有一台强大的服务器。如果我们只需要在特定的蛋白质结合位点、特定的pH值、水或溶剂化条件下对接一些化合物，那么柔性对接程序可能是一个不错的选择。因此，对接程序的选择取决于您拥有的<strong>硬件类型</strong>以及正在筛选的<strong>数据库</strong>的规模。根据本文作者经验，将药物从CADD转化为临床是比较困难的。例如，通过对接从中医药数据库中筛选出的一些top hits在最终生物活性测试中失败。</p>
+<h3 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h3><p>最新的软件和网络服务器，基本都总结自此网站：<a href="http://www.click2drug.org/">http://www.Click2Drug.org</a> </p>
+<blockquote>
+<p>这个网址还是不错的，有时间单独出一篇</p>
+</blockquote>
+<p>瑞士生物信息学研究所（SIB-swissinstituteofbioinformatics）提供了一系列计算机辅助药物设计软件和基于结构和配体计算的web服务</p>
+<blockquote>
+<p>table 我就不翻译了，大家自己去需要的部分进行探索就好</p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/02/16/VbtZ9kzcsvOQgxf.png" alt="image-20210216170735486"></p>
+<p><img src="https://i.loli.net/2021/02/16/CmfxMplHetAuNvF.png" alt="image-20210216171618180"></p>
+<p><img src="https://i.loli.net/2021/02/16/W3tpC7vh19gMlUS.png" alt="image-20210216171648825"></p>
+<p><img src="https://i.loli.net/2021/02/16/yfx2URqk3PenozM.png" alt="image-20210216171719373"></p>
+<p><img src="https://i.loli.net/2021/02/16/AP1soSZpj6JhzbE.png" alt="image-20210216171741160"></p>
+<p><img src="https://i.loli.net/2021/02/16/2FyuqUEIRDghSfv.png" alt="image-20210216171806074"></p>
+<p><img src="https://i.loli.net/2021/02/16/L9iwhjV6xCe8D15.png" alt="image-20210216171829322"></p>
+<p>然而，如果hits首先来自生物测定，例如，如果是通过自动化机器人技术、数据处理和体外软件利用高通量筛选（HTS）中筛选出来的——那么就更容易转移到体内。也更容易解释潜在的生物学机制。在对接研究中，谨慎是很重要的。下面列举了一些重要的因素，开发人员在进行对接时应该牢记这些影响因素。</p>
+<blockquote>
+<p>只是列举，不是全部</p>
+</blockquote>
+<h3 id="蛋白结构可用吗？可信吗？"><a href="#蛋白结构可用吗？可信吗？" class="headerlink" title="蛋白结构可用吗？可信吗？"></a>蛋白结构可用吗？可信吗？</h3><p>在尝试对接之前，需要做大量的准备工作。这包括使用配体和蛋白质的能量最小化来确定稳定的三维结构。</p>
+<blockquote>
+<p>当然此项属于部分重要操作，但不是必须操作，毕竟局部最小值不等于全局最小值。</p>
+</blockquote>
+<p>这项准备工作可以在下面的流程图中看到。如图所示，目标蛋白质序列应该可知，然后蛋白质结构应该可用，可以从同源性建模、从头建模或从蛋白质数据库（PDB）下载(<a href="http://www.rcsb.org/pdb)%E4%B8%8B%E8%BD%BD%E8%9B%8B%E7%99%BD%E7%BB%93%E6%9E%84">http://www.rcsb.org/pdb)下载蛋白结构</a>. 如果蛋白质和配体准备好了，就可以进行对接。现阶段的一个主要问题是蛋白质结构是否可用，是否可靠。如果蛋白质结构是从PDB数据库中下载，必须注意分辨率和获得蛋白质结构的条件。<strong>不同的温度，可以获得不同的蛋白结构。</strong> 我们可以直接利用这些蛋白质结构而不需要进一步的能量最小化或MD和聚类吗？MD模拟得到的蛋白质结构的精度会受到力场精度的影响。如果在PDB中没有蛋白质结构，那么难度将急剧上升。蛋白质结构预测的方法很多。此外，许多不同类型的验证方法被用来提高结构预测的准确性，例如著名的Ramachandran plot（拉氏图）。</p>
+<img src="https://i.loli.net/2021/02/16/Isk2FitvxOVfZm1.png" alt="image-20210216171418581" style="zoom:33%;" />
 
-<p>comment为最近一次同步的日期</p>
-<p>然后，脚本在后台挂起</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nohup python run.py &amp; </span><br></pre></td></tr></table></figure>
+<h3 id="柔性对接还是刚性对接"><a href="#柔性对接还是刚性对接" class="headerlink" title="柔性对接还是刚性对接"></a>柔性对接还是刚性对接</h3><p>刚性对接是指蛋白质和配体构象固定，使键角或长度不变。柔性对接，允许构象的变化，今天被广泛使用的是半柔性对接，尽管它需要更多的时间和计算资源。其他对接方法包括<strong>改变溶剂化、改变pH值以及在有无水的情况下对接</strong>。用户可以根据其计算硬件和目标蛋白质的特性选择不同的对接模式。对接大致可以分为四种模式（从原理上来说）：锁和钥匙、构象异构、诱导契合和构象选择。从下图可以看出，似乎只有诱导契合模式会改变口袋的形状。然而，根据MD实验的模拟，配体进入结合口袋有时会改变结合位点的形状。当配体结合时发生构象变化时，刚性对接程序将不能提供有用的结果。这表明，将蛋白质结构构象固定的对接结果可能存在错误。</p>
+<img src="https://i.loli.net/2021/02/17/9a2RstFZqhYCWTv.png" alt="image-20210217114604012" style="zoom:33%;" />
 
-<p>11:成品图</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gncgy2e3klj31420cs40z.jpg" alt="Screen Shot 2021-02-05 at 10.49.43 AM"></p>
-<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><ul>
-<li><p>typora是一款很优质的markdown写作工具，功能健全，支持图床</p>
+<h3 id="如何去选择最佳的打分函数"><a href="#如何去选择最佳的打分函数" class="headerlink" title="如何去选择最佳的打分函数"></a>如何去选择最佳的打分函数</h3><p>有许多评分函数，例如，LigScore1、LigScore2、PLP1、PLP2、PMF、Dock Score、Jain、Ludi和结合能。如何选择合适的打分函数来挑选出正确的结合姿势和可能的hits？这是一个很难回答的问题。理论上，较低的吉布斯自由能表明蛋白质-配体复合物更稳定。然而，这些打分函数是针对用户的不同需求而设计的。很难确定哪种评分函数适合不同的靶蛋白。例如，我们之前已经讨论了每个打分函数的准确性，这是使用IC50与每个评分函数的回归得出的结果。我们还提出了加权打分函数，并表明其精度优于一致性打分。加权打分比一致性打分函数更准确也就不足为奇了。一致性评分允许用户选取多个或所有评分函数来评估。每个评分函数在共识评分函数中的权重相等。与此相反，加权评分是基于它们的回归系数。在该算法中，回归系数越高，权重越大。因此，加权评分比普通的一致性打分更准确。<br>然而，加权评分函数必须有足够的关于化合物IC50的信息，以便从评分函数中获得预测IC50的公式。它比一致性得分更精确，但不太实用，因为在大多数筛选情况下，很难获得足够的IC50数据。如果一个靶蛋白有数百个不同的配体具有不同的IC50，那么我建议使用加权评分。然而，根据我们的经验，很难从一篇论文中收集到如此多的生物活性数据。如果从不同的论文中收集生物活性数据，它们可能会因实验室环境以及protocol的不同而有所不同。普通的一致性评分避免了这个问题，因为它不需要生物活性数据。选择一致性打分或加权得分涉及到用户的所处的环境。显然，很难获得如此庞大的生物活性数据，然后用它得到最优权重评分函数，这需要大量的工作。</p>
+<blockquote>
+<p>加权打分函数</p>
+</blockquote>
+<blockquote>
+<p><img src="https://i.loli.net/2021/02/17/PB5VqANcLarSfxD.png" alt="image-20210217115304330"></p>
+</blockquote>
+<blockquote>
+<p>其中打分函数的数目；pIC50=-log（IC50）；SFc是对照打分函数的值；SFi是打分函数的值；Wi是权重。方程中的SFc用于归一化加权方程。</p>
+</blockquote>
+<h3 id="打分函数的精确度"><a href="#打分函数的精确度" class="headerlink" title="打分函数的精确度"></a>打分函数的精确度</h3><p>决定使用什么样的对接程序来对特定的靶蛋白进行筛选存在问题的。基本上，如果可以对生物活性与评分函数进行回归分析，那么我们就可以选择最佳的打分函数回归作为标准。准确度似乎是可以接受的，但是既然大多数hits在计算、体外或体内似乎都有很好的结合亲和力，为什么很难找到一种商业药物的先导化合物呢？<strong>首先，如果我们仅仅从PDB网站下载蛋白质-配体复合物，并从复合物中删除配体而不进一步分离纯蛋白质结构，那么蛋白质结构可能会有问题。其次，结合位点的环境是一个大问题。例如，结合位点可能位于细胞膜的内表面，因此即使配体具有较高的dock分数，它仍然必须转移到疏水性脂双层中才能到达结合域。第三，目标蛋白可能位于人体内不同的pH值。</strong></p>
+<h3 id="如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？"><a href="#如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？" class="headerlink" title="如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？"></a>如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？</h3><p>如何确定一个高分化合物是一个抑制剂还是激动剂是十分困难的。许多研究仅仅使用一个对接程序，然后声称他们已经找到了激动剂或抑制剂。但是我们怎么知道这个复合体的真正机制呢？对接程序只提供计算出的结合亲和力。仅此而已，没有别的。一些论文声称，一个对接结果良好的配体表明它是一个强有力的激动剂或抑制剂。当然，在我们对生物测定进行进一步验证之前，我们不会知道它是激动剂还是抑制剂。从对接结果我们唯一确定的是配体在结合位点结合良好。因此，除非进行了其他验证，否则不建议在论文中过度解释对接结果。</p>
+<h3 id="对接结果与基于配体的研究不一致"><a href="#对接结果与基于配体的研究不一致" class="headerlink" title="对接结果与基于配体的研究不一致"></a>对接结果与基于配体的研究不一致</h3><p>有时，基于配体的研究表明，该模型是完美的，具有良好的R方（表明该模型是可靠的预测）。然后，我们可以使用这个基于配体的模型（LBDD）来预测潜在强效candidates。不幸的是，根据我们的大多数研究，大多数基于结构的结果似乎与基于配体的结果不一致。McGaughey认为，这种差异可能是因为所有的虚拟筛选方法都依赖于数据库，对于特定的靶点可能会有很大的不同。例如，在表2中，control化合物（T2384）具有非常高的对接分数，因此基于不同算法的LBDD模型也有非常高的预测活性，包括多元线性回归（MLR）、支持向量机（SVM）和贝叶斯（BNT）。然而，其他化合物也有很高的预测活性，但dock分数很低。由表2可知，对接结果显示结合能最低的对照化合物（D71904）同样在基于配体的预测（MLR和SVM）上表现出的活性也很低。相比之下，其他化合物在dock上表现较差，但在基于配体的预测（MLR和SVM）上活性很高。在表3中，较差的dock得分也显示了MLR、SVM和BNT的高预测活性。然而，具有讽刺意味的是，control化合物（SAHA）具有非常高的dock分数，但是MLR和BNT的预测结果非常差。</p>
+<img src="https://i.loli.net/2021/02/17/IDvH6yeZkMSLi9R.png" alt="image-20210217122114904" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2021/02/17/l7GRQHSnaKF1LPJ.png" alt="image-20210217122150356" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2021/02/17/BUN3JZLHTmKDtrO.png" alt="image-20210217122217407" style="zoom:50%;" />
+
+<p>从表4可以看出，基于配体的研究（MLR、SVM和BNT）的预测活性非常高，因此表明这些化合物应该是有效的。然而，他们也表现出很差的dock分数。表5也显示了预测活性很高，但dock得分很低（方框2）。上述问题在CADD过程中并不少见，但很少出现在已发表的论文中。在他们的论文，作者把最好的数据与高dock分数结合在了一起。然而，最好的hits可能无法从最高的dock得分中找到。从我们过去的研究中，从这样的筛选中获得的前10个最有效的配体通常在真正的生物测试中失败。然而，前100名的配体往往在体外实验中显示出了good hits。这表明，虽然最高的对接分数可能不会提供最好的线索，但总的来说，对接的预测似乎没有那么糟糕。可以肯定的是，对接是基于理论计算算法，并肯定优于随机生化实验测试。</p>
+<img src="https://i.loli.net/2021/02/17/9h7bdIWDQzMs5Xo.png" alt="image-20210217122355813" style="zoom:50%;" />
+
+<h3 id="对接结果与MD结果不一致"><a href="#对接结果与MD结果不一致" class="headerlink" title="对接结果与MD结果不一致"></a>对接结果与MD结果不一致</h3><p>从PubMed或Web of Science数据库检索到的对接论文大多缺乏MD模拟的进一步验证。对接是一种可以计算蛋白质-蛋白质或蛋白质-配体复合物结合亲和力的工具。分析一个300 kDa的蛋白质和50-300 Da的配体结合结构通常只需要1-10秒。换句话说，对接是高通量筛选配体数据库的理想工具。MD模拟也是计算复合物构象变化“运动”的一种技术。对接和MD最大的不同时时间。对接只考虑结合能或亲和力。相比之下，MD强调了结合构象随时间的变化，与对接实验相比，MD增加了每次筛选的时间。在图5中，配体（当归）与蛋白磷酸酶2A（PP2A）的结合位点对接良好，对接得分最高。然而，对接所获得的姿势与经过20 ns的MD模拟后的最终姿势之间存在巨大差异。同样的问题可以在图6-8中看到。MD模拟也说明了配体可能“飞”出结合口袋的过程，表明MD模拟可能是我们从对接结果得出任何结论之前的必要验证。通常MD的模拟时间不是很长（由于硬件的限制，通常小于1ms）。因此，MD在CADD中肯定不是<strong>决定性的或必要的</strong>，但可以提供对接结果的进一步验证。</p>
+<img src="https://i.loli.net/2021/02/17/Djwrlt1dQYsb9xX.png" alt="image-20210217123530505" style="zoom:50%;" />
+
+<img src="https://i.loli.net/2021/02/17/5z7XEMVvGpI6RQD.png" alt="image-20210217123619732" style="zoom:50%;" />
+
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p><img src="/Users/sujiaqi/Pictures/Typora/image-20210217123753747.png" alt="image-20210217123753747"></p>
+<p>现在越来越多的研究依赖于先进的计算工具，因此对接结果问题变得越来越重要。许多专业的生物化学家在top期刊上发表了重要的研究结果，但只有一个简单的数字来验证配体与受体结合的关键残基。毫无疑问，这些论文都是非常重要的；然而，他们都缺乏MD研究的验证。并不是说这些类型的研究必须总是伴随着MD模拟的验证。然而，经验表明，单靠对接分析可能得出不准确的配体结合构象。<strong>尽管dock分数很高，有时配体会在MD模拟过程中飞走。</strong>因此，我强烈建议科学家们应该谨慎得出他们的结论，特别是如果只有一个对接或虚拟筛选结果，而没有进一步的验证。上图和下面提出了一个框架来对传统CADD进行改进。</p>
+<blockquote>
+<p>计算机辅助药物设计（CADD）的集成框架与改进方法</p>
+<p>CADD方案的完整流程图包括基于结构的药物设计（SBDD）、基于配体的药物设计（LBDD）、先导化合物优化，最后通过分子动力学（MD）模拟进行验证。对于SBDD，蛋白质结构可从蛋白质数据库获得(<a href="http://www.rcsb.org/pdb/home)%E6%88%96%E8%80%85%E7%94%A8%E5%90%8C%E6%BA%90%E5%BB%BA%E6%A8%A1%E6%88%96%E4%BB%8E%E5%A4%B4%E5%BB%BA%E6%A8%A1%E3%80%82%E9%A2%84%E6%B5%8B%E8%8E%B7%E5%BE%97%E7%9A%84%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E5%BA%94%E9%80%9A%E8%BF%87**profiles-3D%E3%80%81Ramachandran%E5%9B%BE%E5%92%8C%E6%97%A0%E5%BA%8F%E8%9B%8B%E7%99%BD%E8%B4%A8%E5%88%86%E6%9E%90%E8%BD%AF%E4%BB%B6**%E8%BF%9B%E8%A1%8C%E9%AA%8C%E8%AF%81%E3%80%82%E5%A6%82%E6%9E%9C%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%BB%93%E5%90%88%E4%BD%8D%E7%82%B9%E7%AC%A6%E5%90%88%E5%BF%85%E8%A6%81%E7%9A%84%E6%A0%87%E5%87%86%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%8E%A5%E3%80%82%E5%AF%B9%E4%BA%8E%E7%AD%9B%E9%80%89%EF%BC%8C%E5%BA%94%E6%8F%90%E4%BE%9B%E5%90%88%E9%80%82%E7%9A%84%E5%B0%8F%E5%88%86%E5%AD%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%91%98%E8%BF%98%E5%8F%AF%E4%BB%A5%E7%AD%9B%E9%80%89%E8%82%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82">http://www.rcsb.org/pdb/home)或者用同源建模或从头建模。预测获得的蛋白质结构应通过**profiles-3D、Ramachandran图和无序蛋白质分析软件**进行验证。如果蛋白质的结构和结合位点符合必要的标准，我们就可以进行对接。对于筛选，应提供合适的小分子数据库。研究人员还可以筛选肽数据库。</a><br>SBDD通常与LBDD相结合来筛选潜在活性化合物。LBDD的方法是建立基于生物活性或分子描述符的模型，然后预测SBDD筛选出的化合物的生物活性。最著名的基于配体的模型<strong>QSAR</strong>是基于生物活性和药效团特征的。尽管这些模型有很大的不同，但它们都有相同的目标：在没有目标蛋白结构的情况下预测生物活性。<br>最后，利用MD模拟进一步验证了蛋白质结合位点的最佳对接复合物。</p>
+</blockquote>
+<p>总之，药物设计原则可分为四种模式，（A）快速结合和长滞留时间（1/Koff），（B）缓慢结合但停留时间长，（C）快速结合但停留时间短，以及（D）缓慢结合和停留时间短。由于硬件和软件的限制，目前不可能使用MD来模拟复合物结构4小时或8小时知乎德变化。在未来，硬件或软件的进展可能允许MD模拟更长时间。但是，目前，MD模拟时间很短（只有几毫秒或微秒）。在本文中，MD模拟的飞走配体只是证明dock得分最高的配体并不意味着该配体是有效的先导化合物的一个证据。这是许多已发表论文中经常出现的错误。理论上，（A）模式可能是药物设计的最佳选择。然而，在实验中，我们发现超过300种商业药物和对照化合物位于（B）和（C）情境下中。辩论仍在继续。。。</p>
+<blockquote>
+<p>Well,基本就可以分为，快结合慢解离，慢结合慢解离，快结合快解离，慢结合快解离</p>
+</blockquote>
+<p><img src="https://i.loli.net/2021/02/17/kD3RHgrh9IWPaVp.png" alt="image-20210217124434139"></p>
+]]></content>
+      <categories>
+        <category>文献解读</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>OpenMM.No.2.可视化界面及力场</title>
+    <url>/2021/02/02/openmm/oenmm-2/</url>
+    <content><![CDATA[<p>创建openmm脚本的一种方法是从上面给出的示例开始，并对其进行自定义以满足实际需求，但是还有一个更简单的选择。</p>
+<p> OpenMM-Setup是一个图形应用程序，可引导完成加载输入文件和设置选项的整个过程。 然后，它会生成一个完整的脚本，甚至可以直接运行。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn90llb3bkj30vq0jpn11.jpg"></p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge openmm-setup</span><br><span class="line">#启动</span><br><span class="line">openmm-setup</span><br></pre></td></tr></table></figure>
+
+<p>它将自动在Web浏览器中打开一个显示用户界面的窗口。</p>
+<p>OpenMM-Setup不仅仅是脚本生成器。 它可以解决输入文件中的问题，添加缺失的原子，构建膜和water box等。 这是快速完成所有必要准备和设置的非常简单的方法。 </p>
+<p>openmm强烈建议所有新手到专家使用OpenMM-setup。</p>
+<p>我这里使用的是<strong>chrome</strong></p>
+<p>比较容易使用，会单独出一章</p>
+<img src="/Users/sujiaqi/Desktop/d5896691e28d602f21209709df02e47c9e8e68ac.png" title="" alt="" width="650">
+
+<h2 id="模拟参数"><a href="#模拟参数" class="headerlink" title="模拟参数"></a>模拟参数</h2><h3 id="platforms"><a href="#platforms" class="headerlink" title="platforms"></a>platforms</h3><p>创建模拟时，可以选择要使用的平台。</p>
+<p> OpenMM包括四个平台：Reference，CPU，CUDA和OpenCL。 </p>
+<p> 可以通过三种方式选择平台：</p>
+<p>1.默认情况下，OpenMM将尝试选择最快的可用平台。 通常，它的选择是比较合理的，但是有时需要自定义。</p>
+<p>2.或者，可以将OPENMM_DEFAULT_PLATFORM环境变量设置为要使用的平台的名称。 这将覆盖默认选项。</p>
+<p>3.最后，在创建模拟时，可以在脚本中显式指定Platform对象。</p>
+<p> 以下各行指定使用CUDA平台：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#platform参数应为下列：</span></span><br><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CPU&#x27;</span>)</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform)</span><br></pre></td></tr></table></figure>
+
+<p>您还可以自定义特定平台的属性，以进行计算。 </p>
+<p>有关每个平台支持的属性的详细信息，请参见Chapter <a href="http://docs.openmm.org/latest/userguide/library.html#platform-specific-properties">10</a></p>
+<p> 例如，以下代码指定使用两个GPU（CUDA：0和1）之间进行并行处理工作，以双精度执行所有计算：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CUDA&#x27;</span>)</span><br><span class="line">properties = &#123;<span class="string">&#x27;DeviceIndex&#x27;</span>: <span class="string">&#x27;0,1&#x27;</span>, <span class="string">&#x27;Precision&#x27;</span>: <span class="string">&#x27;double&#x27;</span>&#125;</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform, properties)</span><br></pre></td></tr></table></figure>
+
+<h3 id="力场"><a href="#力场" class="headerlink" title="力场"></a>力场</h3><p>创建力场时，可以指定一个或多个XML文件，使用加载力场定义。 </p>
+<p>通常，会有一个文件定义主要力场，可能还有另一个文件定义水模型（隐式或显式）。</p>
+<p> 例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">forcefield = ForceField(<span class="string">&#x27;amber14-all.xml&#x27;</span>, <span class="string">&#x27;amber14/tip3pfb.xml&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>在某些情况下，一个XML文件包含其余的力场文件。</p>
+<p> 例如，amber14-all.xml实际上只是加载几个不同文件的快捷方式，这些文件共同构成了AMBER14力场。 </p>
+<p>如果需要对加载哪些参数进行更精细的控制，则可以单独指定组件文件。</p>
+<p>请注意，某些力场和水模型包括“额外粒子”，例如 lone pairs or Drude particles。</p>
+<p> 示例包括CHARMM极化力场以及所有4或5点水模型。 要使用这些力场，必须首先将多余的粒子添加到 <strong>拓扑</strong> 中。 </p>
+<p>下面描述的力场是与OpenMM捆绑在一起的力场。 </p>
+<p>其他力场可从<strong><a href="https://github.com/choderalab/openmm-forcefields">https://github.com/choderalab/openmm-forcefields</a></strong> 在线获得。</p>
+<h5 id="Amber14"><a href="#Amber14" class="headerlink" title="Amber14"></a>Amber14</h5><p>Amber14 力场由各种文件组成，这些文件定义了蛋白质，DNA，RNA，脂质，水和离子的参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>amber14/protein.ff14SB.xml</code></td>
+<td>Protein (recommended)</td>
+</tr>
+<tr>
+<td><code>amber14/protein.ff15ipq.xml</code></td>
+<td>Protein (alternative)</td>
+</tr>
+<tr>
+<td><code>amber14/DNA.OL15.xml</code></td>
+<td>DNA (recommended)</td>
+</tr>
+<tr>
+<td><code>amber14/DNA.bsc1.xml</code></td>
+<td>DNA (alternative)</td>
+</tr>
+<tr>
+<td><code>amber14/RNA.OL3.xml</code></td>
+<td>RNA</td>
+</tr>
+<tr>
+<td><code>amber14/lipid17.xml</code></td>
+<td>Lipid</td>
+</tr>
+<tr>
+<td><code>amber14/tip3p.xml</code></td>
+<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip3pfb.xml</code></td>
+<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip4pew.xml</code></td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/tip4pfb.xml</code></td>
+<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
+</tr>
+<tr>
+<td><code>amber14/spce.xml</code></td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
+</tr>
+</tbody></table>
+<p>为了方便，可以将文件amber14-all.xml用作包含：<code>amber14 / protein.ff14SB.xml，amber14 / DNA.OL15.xml，amber14 / RNA.OL3.xml和amber14 / lipid17.xml</code>的快捷方式。 </p>
+<p>在大多数情况下，在构建模型时，您只需包含amber14-all.xml，再加上其中一种水模型，例如<code>amber14 / tip3pfb.xml</code></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;amber14-all.xml&#39;, &#39;amber14&#x2F;tip3pfb.xml&#39;)</span><br></pre></td></tr></table></figure>
+
+<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="CHARMM36"><a href="#CHARMM36" class="headerlink" title="CHARMM36"></a>CHARMM36</h4><p>CHARMM36 力场提供了蛋白质，DNA，RNA，脂质，碳水化合物，水，离子和各种小分子的参数（有关完整参考资料，请参见此处）。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>charmm36.xml</code></td>
+<td>Protein, DNA, RNA, lipids, carbohydrates, and small molecules</td>
+</tr>
+<tr>
+<td><code>charmm36/water.xml</code></td>
+<td>Default CHARMM water model (a modified version of TIP3P<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a>) and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/spce.xml</code></td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip3p-pme-b.xml</code></td>
+<td>TIP3P-PME-B water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip3p-pme-f.xml</code></td>
+<td>TIP3P-PME-F water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip4pew.xml</code></td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip4p2005.xml</code></td>
+<td>TIP4P-2005 water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#abascal2005">[8]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip5p.xml</code></td>
+<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a> and ions</td>
+</tr>
+<tr>
+<td><code>charmm36/tip5pew.xml</code></td>
+<td>TIP5P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#rick2004">[10]</a> and ions</td>
+</tr>
+</tbody></table>
+<p>charmm36.xml将除水和离子力场以外的所有xml都捆绑到一个文件中。</p>
+<p> 在大多数情况下，只需包含该文件，再加上一个水模型，例:<code>charmm36 / water.xml</code>，它指定了默认的CHARMM水模型（TIP3P 的修改版）和离子：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;charmm36.xml&#39;, &#39;charmm36&#x2F;water.xml&#39;)</span><br></pre></td></tr></table></figure>
+
+<h5 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h5><ul>
+<li><p>charmm36 /目录中包含的溶剂模型XML文件同时包含水和离子模型，因此，如果错误地指定了tip3p.xml而不是charmm36/water.xml，则可能会引发异常： 系统中缺少离子参数。</p>
 </li>
-<li><p>下载安装简单，颜值在线</p>
+<li><p>CHARMM广泛使用<strong>patches</strong>，这些patches会与残基模板自动结合，通过ForceField创建扩展的patches残基模板库。 这意味着修补残基（例如ACE和NME修补末端）必须作为单个残基出现，以便ForceField正确匹配残基模板并应用参数。 由于这些修补的残基不是标准的PDB残基，因此Modeller不知道如何向这些非标准残基中添加氢，并且<strong>输入拓扑必须已经包含适当的氢</strong>。</p>
 </li>
-<li><p>typora与gitee联用很适合作为云笔记使用</p>
+<li><p>如果读取从CHARMM-GUI之类程序处理之后的PDB文件可能会出现问题。某些程序会生成不符合<strong>PDB标准的PDB文件</strong>，并忽略指定残基（例如半胱氨酸）之间键的CONECT记录，可能导致二硫键的检测和参数分配出现问题。 <strong>确保您阅读的文件符合有关键和非标准残基定义的适当标准。</strong>  如果使用的是CHARMM-GUI中的文件，则直接加载PSF文件最简单。</p>
 </li>
 </ul>
-<h2 id="Q"><a href="#Q" class="headerlink" title="Q"></a>Q</h2><ul>
-<li>基于typora以及gitee的模式是否可以演变为多人协作写作工具，可惜暂时不支持插件</li>
+<h4 id="AMOEBA"><a href="#AMOEBA" class="headerlink" title="AMOEBA"></a>AMOEBA</h4><p>AMOEBA极化力场提供蛋白质，水和离子的参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Parameters</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>amoeba2013.xml</code></td>
+<td>AMOEBA 2013<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#shi2013">[12]</a></td>
+</tr>
+<tr>
+<td><code>amoeba2013_gk.xml</code></td>
+<td>Generalized Kirkwood solvation model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#schnieders2007">[13]</a> for use with AMOEBA 2013 force field</td>
+</tr>
+<tr>
+<td><code>amoeba2009.xml</code></td>
+<td>AMOEBA 2009<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#ren2002">[14]</a>. This force field is deprecated. It is<br>recommended to use AMOEBA 2013 instead.</td>
+</tr>
+<tr>
+<td><code>amoeba2009_gk.xml</code></td>
+<td>Generalized Kirkwood solvation model for use with AMOEBA 2009 force field</td>
+</tr>
+</tbody></table>
+<h4 id="Water-Models"><a href="#Water-Models" class="headerlink" title="Water Models"></a>Water Models</h4><p>以下文件定义了流行的水模型。 它们可以与不提供自己的水模型的力场一起使用。 使用Amber14或CHARMM36时，请改用那些力场附带的水文件，因为它们也包含离子参数。</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Water Model</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>tip3p.xml</td>
+<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a></td>
+</tr>
+<tr>
+<td>tip3pfb.xml</td>
+<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
+</tr>
+<tr>
+<td>tip4pew.xml</td>
+<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a></td>
+</tr>
+<tr>
+<td>tip4pfb.xml</td>
+<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
+</tr>
+<tr>
+<td>tip5p.xml</td>
+<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a></td>
+</tr>
+<tr>
+<td>spce.xml</td>
+<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a></td>
+</tr>
+<tr>
+<td>swm4ndp.xml</td>
+<td>SWM4-NDP water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#lamoureux2006">[23]</a></td>
+</tr>
+</tbody></table>
+<h3 id="小分子参数"><a href="#小分子参数" class="headerlink" title="小分子参数"></a>小分子参数</h3><p>上面的OpenMM力场包括用于大分子和溶剂的预生成模板。 如果系统包含小分子，则通常需要即时生成这些参数。</p>
+<p>在OpenMM生态系统中，有两种方法可以执行此操作：</p>
+<ul>
+<li>Small molecule residue template generators（小分子残基模版生产器）一种方法是对openmmforcefields conda软件包中的小分子使用残基模板生成器。 您可以通过conda安装此程序：<code>$ conda install -c conda-forge openmmforcefields</code>然后，可以使用Open Force Field Initiative小分子力场（通过以下示例）添加小分子残基模板生成器：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#使用 Open Force Field Initiative小分子力场 来创建 the SMIRNOFF template generator </span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个SMIRNOFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br></pre></td></tr></table></figure>
+
+同样的，你也可以使用<a href="http://ambermd.org/antechamber/gaff.html">AMBER GAFF small molecule force field</a><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#创建以一个GAFF模版生成器</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> GAFFTemplateGenerator</span><br><span class="line">gaff = GAFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个 GAFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(gaff.generator)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system = forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>SystemGenerator</code>来操纵力场  openmm forcefields软件包提供了SystemGenerator工具来简化大分子和小分子力场管理。 要使用此功能，只需指定要使用的小分子力场即可：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> simtk <span class="keyword">import</span> unit</span><br><span class="line"><span class="keyword">from</span> simtk.openmm <span class="keyword">import</span> app</span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SystemGenerator</span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">forcefield_kwargs = &#123; <span class="string">&#x27;constraints&#x27;</span> : app.HBonds, <span class="string">&#x27;rigidWater&#x27;</span> : <span class="literal">True</span>, <span class="string">&#x27;removeCMMotion&#x27;</span> : <span class="literal">False</span>, <span class="string">&#x27;hydrogenMass&#x27;</span> : <span class="number">4</span>*unit.amu &#125;</span><br><span class="line"><span class="comment"># Initialize a SystemGenerator using the Open Force Field Initiative 1.2.0 force field (openff-1.2.0)</span></span><br><span class="line">system_generator = SystemGenerator(forcefields=[<span class="string">&#x27;amber/ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>], small_molecule_forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>, forcefield_kwargs=forcefield_kwargs, cache=<span class="string">&#x27;db.json&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM System from an OpenMM Topology object and a list of openforcefield Molecule objects</span></span><br><span class="line">molecules = Molecule.from_file(<span class="string">&#x27;molecule.sdf&#x27;</span>, file_format=<span class="string">&#x27;sdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现在拓扑中的那些实例进行匹配。 请注意，质子化和互变异构状态必须在读取的分子与出现在拓扑结构中的分子之间完全匹配。 有关更多详细信息，请参见openmmforcefields文档。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create an OpenFF Molecule object for benzene from SMILES</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment"># Create the SMIRNOFF template generator with the default installed force field (openff-1.0.0)</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule, forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM ForceField object with AMBER ff14SB and TIP3P with compatible ions</span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># Register the SMIRNOFF template generator</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system =forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure></li>
 </ul>
 ]]></content>
       <categories>
-        <category>实用工具</category>
+        <category>OpenMM</category>
       </categories>
   </entry>
   <entry>
@@ -1425,335 +1754,6 @@
 ]]></content>
       <categories>
         <category>文献解读</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>一篇综述一个领域｜谨慎对待对接</title>
-    <url>/2021/02/16/paper/%E5%B0%8F%E5%BF%83%E5%AF%B9%E6%8E%A5/</url>
-    <content><![CDATA[<h3 id="Cite"><a href="#Cite" class="headerlink" title="Cite"></a>Cite</h3><p>Chen YC. Beware of  docking! Trends Pharmacol Sci. 2015 Feb;36(2):78-95. doi:  10.1016/j.tips.2014.12.001. Epub 2014 Dec 24. Erratum in: Trends  Pharmacol Sci. 2015 Sep;36(9):617. PMID: 25543280.</p>
-<h3 id="编前语"><a href="#编前语" class="headerlink" title="编前语"></a>编前语</h3><p>well，我知道你们此时充满疑惑，我刚刚不久之前刚刚写过一篇文章关于对接的综述，这次便是这个题目，就仿佛是在打自己的脸。但本质上某个领域有优势自然也有缺点，<strong>我们远未达到可以依靠某个单一技术手段去解决一个科学问题或者工程的时代</strong>。关于分子对接，上篇的综述主要是讲了其应用以及方法，这次，我们来看看这项技术手段的缺点，作为互补，以便更明确的展示DOCKING的全貌，以及他究竟能做些什么，应该注意什么。</p>
-<p><img src="https://i.loli.net/2021/02/16/T7ylmM8tz9f1HZg.png" alt="image-20210216161043469"></p>
-<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>分子对接经常被用于虚拟筛选或者先导化合物优化过程中。在过去十年中，分子对接相关的论文数量急剧增加。然而，在进行对接研究时，有许多问题需要考虑。经常出现的问题，如目标蛋白的错误结合位点、使用不合适的小分子数据库进行筛选、对接姿势的选择、较高的对接分数但在分子动力学（MD）模拟中失败，以及对复合物是抑制剂还是激动剂缺乏明确性。在执行对接之前，这些问题应该引起注意和并被考虑到。一些论文展示了丰富且全面的生化实验，但最终结果只是一个简单的对接图。此综述提供了一些证据表明，有可能对接得分很高，但对接结果是存在问题的。在某些情况下，对接精度甚至可以从0%变为92.66%。因此，请认真对待。</p>
-<p><img src="https://i.loli.net/2021/02/16/dH8LyeCDZsiPUJR.png" alt="image-20210216163805226"></p>
-<h3 id="对接本质是基于结构的药物筛选（SBDD）"><a href="#对接本质是基于结构的药物筛选（SBDD）" class="headerlink" title="对接本质是基于结构的药物筛选（SBDD）"></a>对接本质是基于结构的药物筛选（SBDD）</h3><blockquote>
-<p>请注意是基于结构的对接，并不是基于对接的结构</p>
-</blockquote>
-<p>从20世纪60年代开始，随着物理学、化学、信息技术、生物化学和计算机的发展，分子对接已经成为一种强有力的工具和基本技术，不仅在药物筛选方面，而且在蛋白质-蛋白质相互作用和纳米材料等方面都显示出了巨大的潜力。目前计算机辅助药物设计（CADD）领域主要是将小分子对接到大分子（特别是蛋白质靶点上），其应用案例逐年增加。在现代CADD中，基于结构的药物设计是必不可少的，大多数大型制药公司都有这个部门。许多商业药物是直接使用CADD方法进行设计的。毫无疑问，在理解药物作用的分子机制上，对接技术是一项非常重要的科学进步，特别是当三位顶尖计算科学家获得2013年诺贝尔化学奖时。</p>
-<p>蛋白质-配体或蛋白质-蛋白质对接是一种计算技术，用于预测配体与蛋白质受体结合时的取向。多数情况下，可以选择最佳的“结合亲和力”配体进行进一步的生物化学实验。因为对接很简单，设备要求也很低（甚至在个人电脑上也能工作），对接相关的论文在过去十年里急剧增加。然而，我们能否相信这些对接研究的结果？本文对相关领域进行了调查，指出了优势和劣势。评估表明，精确性是对接研究的一个主要问题，因为如果不能精确地对接，那么这些论文就没有什么价值。</p>
-<p>即使在知名期刊上，也能找到可疑的对接结果。常见的问题有：<strong>靶蛋白的结合位点不准确</strong>，<strong>使用不合适的小分子数据库进行筛选</strong>，<strong>对接姿势（POSE）的选择</strong>，<strong>高对接分数（结合亲和力）但在MD模拟中失败</strong>，<strong>缺乏对化合物是抑制剂还是激动剂的解释</strong>，或者<strong>对接结果与结果不一致生物测定</strong>。一些情况常常出现在一些顶级期刊上，这些期刊显示了极好的生物测定，但只有一个简单的对接图。对接结果在解释这些问题时应该引起警惕和关注。虽然有些论文通过比较对接前后配体的结合姿势差异来表明对接结果的准确性很高，但作者提出了一些观点，表明对接仍然可能存在问题。在某些情况下，对接精度甚至可以从0%变为92.66%。</p>
-<h3 id="对接算法和程序"><a href="#对接算法和程序" class="headerlink" title="对接算法和程序"></a>对接算法和程序</h3><blockquote>
-<p>Well，基本关于对接的论文都绕不开此项的讨论，我上一篇可能更详细，但是此篇主要偏向于对接程序的总结，总而言之，互有偏重。</p>
-</blockquote>
-<p>对接的最初概念来自于“锁钥”概念，但将“钥匙”（配体）与“锁”（受体蛋白）匹配的算法多种多样。下表列出了对接程序、对接web服务器、屏幕软件和屏幕web服务器的最新发展，从中我们可以看出，近年来新算法的数量不断增加。如果我们进一步分析所有对接软件，我们可以看到最常用的对接程序是Autodock和GOLD。这并不意味着Autodock或GOLD比其他对接程序更精确，它们只是更受欢迎和知名。它们的高引用率可能是因为这些程序是免费的，并且比最近的其他对接程序创建得更早。目前，有一种新的蛋白质结构预测算法Rosetta(<a href="http://boinc.bakerlab.org/)%EF%BC%8C%E4%B9%9F%E5%BE%97%E5%88%B0%E4%BA%86%E9%AB%98%E5%BA%A6%E8%AF%84%E4%BB%B7%E3%80%82">http://boinc.bakerlab.org/)，也得到了高度评价。</a></p>
-<img src="https://i.loli.net/2021/02/16/F5PC6aLHSUJQoT1.png" alt="image-20210216165225143" style="zoom:50%;" />
-
-<p>尽管程序多种多样，但每个对接程序的算法必须在速度和精度之间取得平衡。对接的算法也因评分函数的不同而有差异。结合亲和力（Binding affinity）通常被认为是一个最优先考虑因素。有不同的对接程序可以供用户根据自己的特殊要求进行选择。目前，对接算法包含了了基于结构的药物设计（SBDD）的不同方面，如<strong>基于片段的药物设计</strong>、<strong>柔性对接</strong>、<strong>水，特定pH值溶剂下对接</strong>。例如，如果我们需要从一个数据库中筛选超过10000种化合物，那么<strong>柔性对接</strong>可能不是一个好的选择，除非我们有一台强大的服务器。如果我们只需要在特定的蛋白质结合位点、特定的pH值、水或溶剂化条件下对接一些化合物，那么柔性对接程序可能是一个不错的选择。因此，对接程序的选择取决于您拥有的<strong>硬件类型</strong>以及正在筛选的<strong>数据库</strong>的规模。根据本文作者经验，将药物从CADD转化为临床是比较困难的。例如，通过对接从中医药数据库中筛选出的一些top hits在最终生物活性测试中失败。</p>
-<h3 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h3><p>最新的软件和网络服务器，基本都总结自此网站：<a href="http://www.click2drug.org/">http://www.Click2Drug.org</a> </p>
-<blockquote>
-<p>这个网址还是不错的，有时间单独出一篇</p>
-</blockquote>
-<p>瑞士生物信息学研究所（SIB-swissinstituteofbioinformatics）提供了一系列计算机辅助药物设计软件和基于结构和配体计算的web服务</p>
-<blockquote>
-<p>table 我就不翻译了，大家自己去需要的部分进行探索就好</p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/02/16/VbtZ9kzcsvOQgxf.png" alt="image-20210216170735486"></p>
-<p><img src="https://i.loli.net/2021/02/16/CmfxMplHetAuNvF.png" alt="image-20210216171618180"></p>
-<p><img src="https://i.loli.net/2021/02/16/W3tpC7vh19gMlUS.png" alt="image-20210216171648825"></p>
-<p><img src="https://i.loli.net/2021/02/16/yfx2URqk3PenozM.png" alt="image-20210216171719373"></p>
-<p><img src="https://i.loli.net/2021/02/16/AP1soSZpj6JhzbE.png" alt="image-20210216171741160"></p>
-<p><img src="https://i.loli.net/2021/02/16/2FyuqUEIRDghSfv.png" alt="image-20210216171806074"></p>
-<p><img src="https://i.loli.net/2021/02/16/L9iwhjV6xCe8D15.png" alt="image-20210216171829322"></p>
-<p>然而，如果hits首先来自生物测定，例如，如果是通过自动化机器人技术、数据处理和体外软件利用高通量筛选（HTS）中筛选出来的——那么就更容易转移到体内。也更容易解释潜在的生物学机制。在对接研究中，谨慎是很重要的。下面列举了一些重要的因素，开发人员在进行对接时应该牢记这些影响因素。</p>
-<blockquote>
-<p>只是列举，不是全部</p>
-</blockquote>
-<h3 id="蛋白结构可用吗？可信吗？"><a href="#蛋白结构可用吗？可信吗？" class="headerlink" title="蛋白结构可用吗？可信吗？"></a>蛋白结构可用吗？可信吗？</h3><p>在尝试对接之前，需要做大量的准备工作。这包括使用配体和蛋白质的能量最小化来确定稳定的三维结构。</p>
-<blockquote>
-<p>当然此项属于部分重要操作，但不是必须操作，毕竟局部最小值不等于全局最小值。</p>
-</blockquote>
-<p>这项准备工作可以在下面的流程图中看到。如图所示，目标蛋白质序列应该可知，然后蛋白质结构应该可用，可以从同源性建模、从头建模或从蛋白质数据库（PDB）下载(<a href="http://www.rcsb.org/pdb)%E4%B8%8B%E8%BD%BD%E8%9B%8B%E7%99%BD%E7%BB%93%E6%9E%84">http://www.rcsb.org/pdb)下载蛋白结构</a>. 如果蛋白质和配体准备好了，就可以进行对接。现阶段的一个主要问题是蛋白质结构是否可用，是否可靠。如果蛋白质结构是从PDB数据库中下载，必须注意分辨率和获得蛋白质结构的条件。<strong>不同的温度，可以获得不同的蛋白结构。</strong> 我们可以直接利用这些蛋白质结构而不需要进一步的能量最小化或MD和聚类吗？MD模拟得到的蛋白质结构的精度会受到力场精度的影响。如果在PDB中没有蛋白质结构，那么难度将急剧上升。蛋白质结构预测的方法很多。此外，许多不同类型的验证方法被用来提高结构预测的准确性，例如著名的Ramachandran plot（拉氏图）。</p>
-<img src="https://i.loli.net/2021/02/16/Isk2FitvxOVfZm1.png" alt="image-20210216171418581" style="zoom:33%;" />
-
-<h3 id="柔性对接还是刚性对接"><a href="#柔性对接还是刚性对接" class="headerlink" title="柔性对接还是刚性对接"></a>柔性对接还是刚性对接</h3><p>刚性对接是指蛋白质和配体构象固定，使键角或长度不变。柔性对接，允许构象的变化，今天被广泛使用的是半柔性对接，尽管它需要更多的时间和计算资源。其他对接方法包括<strong>改变溶剂化、改变pH值以及在有无水的情况下对接</strong>。用户可以根据其计算硬件和目标蛋白质的特性选择不同的对接模式。对接大致可以分为四种模式（从原理上来说）：锁和钥匙、构象异构、诱导契合和构象选择。从下图可以看出，似乎只有诱导契合模式会改变口袋的形状。然而，根据MD实验的模拟，配体进入结合口袋有时会改变结合位点的形状。当配体结合时发生构象变化时，刚性对接程序将不能提供有用的结果。这表明，将蛋白质结构构象固定的对接结果可能存在错误。</p>
-<img src="https://i.loli.net/2021/02/17/9a2RstFZqhYCWTv.png" alt="image-20210217114604012" style="zoom:33%;" />
-
-<h3 id="如何去选择最佳的打分函数"><a href="#如何去选择最佳的打分函数" class="headerlink" title="如何去选择最佳的打分函数"></a>如何去选择最佳的打分函数</h3><p>有许多评分函数，例如，LigScore1、LigScore2、PLP1、PLP2、PMF、Dock Score、Jain、Ludi和结合能。如何选择合适的打分函数来挑选出正确的结合姿势和可能的hits？这是一个很难回答的问题。理论上，较低的吉布斯自由能表明蛋白质-配体复合物更稳定。然而，这些打分函数是针对用户的不同需求而设计的。很难确定哪种评分函数适合不同的靶蛋白。例如，我们之前已经讨论了每个打分函数的准确性，这是使用IC50与每个评分函数的回归得出的结果。我们还提出了加权打分函数，并表明其精度优于一致性打分。加权打分比一致性打分函数更准确也就不足为奇了。一致性评分允许用户选取多个或所有评分函数来评估。每个评分函数在共识评分函数中的权重相等。与此相反，加权评分是基于它们的回归系数。在该算法中，回归系数越高，权重越大。因此，加权评分比普通的一致性打分更准确。<br>然而，加权评分函数必须有足够的关于化合物IC50的信息，以便从评分函数中获得预测IC50的公式。它比一致性得分更精确，但不太实用，因为在大多数筛选情况下，很难获得足够的IC50数据。如果一个靶蛋白有数百个不同的配体具有不同的IC50，那么我建议使用加权评分。然而，根据我们的经验，很难从一篇论文中收集到如此多的生物活性数据。如果从不同的论文中收集生物活性数据，它们可能会因实验室环境以及protocol的不同而有所不同。普通的一致性评分避免了这个问题，因为它不需要生物活性数据。选择一致性打分或加权得分涉及到用户的所处的环境。显然，很难获得如此庞大的生物活性数据，然后用它得到最优权重评分函数，这需要大量的工作。</p>
-<blockquote>
-<p>加权打分函数</p>
-</blockquote>
-<blockquote>
-<p><img src="https://i.loli.net/2021/02/17/PB5VqANcLarSfxD.png" alt="image-20210217115304330"></p>
-</blockquote>
-<blockquote>
-<p>其中打分函数的数目；pIC50=-log（IC50）；SFc是对照打分函数的值；SFi是打分函数的值；Wi是权重。方程中的SFc用于归一化加权方程。</p>
-</blockquote>
-<h3 id="打分函数的精确度"><a href="#打分函数的精确度" class="headerlink" title="打分函数的精确度"></a>打分函数的精确度</h3><p>决定使用什么样的对接程序来对特定的靶蛋白进行筛选存在问题的。基本上，如果可以对生物活性与评分函数进行回归分析，那么我们就可以选择最佳的打分函数回归作为标准。准确度似乎是可以接受的，但是既然大多数hits在计算、体外或体内似乎都有很好的结合亲和力，为什么很难找到一种商业药物的先导化合物呢？<strong>首先，如果我们仅仅从PDB网站下载蛋白质-配体复合物，并从复合物中删除配体而不进一步分离纯蛋白质结构，那么蛋白质结构可能会有问题。其次，结合位点的环境是一个大问题。例如，结合位点可能位于细胞膜的内表面，因此即使配体具有较高的dock分数，它仍然必须转移到疏水性脂双层中才能到达结合域。第三，目标蛋白可能位于人体内不同的pH值。</strong></p>
-<h3 id="如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？"><a href="#如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？" class="headerlink" title="如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？"></a>如何知道具有较高打分的候选化合物是否可以说吗此药物时拮抗剂还是抑制剂？</h3><p>如何确定一个高分化合物是一个抑制剂还是激动剂是十分困难的。许多研究仅仅使用一个对接程序，然后声称他们已经找到了激动剂或抑制剂。但是我们怎么知道这个复合体的真正机制呢？对接程序只提供计算出的结合亲和力。仅此而已，没有别的。一些论文声称，一个对接结果良好的配体表明它是一个强有力的激动剂或抑制剂。当然，在我们对生物测定进行进一步验证之前，我们不会知道它是激动剂还是抑制剂。从对接结果我们唯一确定的是配体在结合位点结合良好。因此，除非进行了其他验证，否则不建议在论文中过度解释对接结果。</p>
-<h3 id="对接结果与基于配体的研究不一致"><a href="#对接结果与基于配体的研究不一致" class="headerlink" title="对接结果与基于配体的研究不一致"></a>对接结果与基于配体的研究不一致</h3><p>有时，基于配体的研究表明，该模型是完美的，具有良好的R方（表明该模型是可靠的预测）。然后，我们可以使用这个基于配体的模型（LBDD）来预测潜在强效candidates。不幸的是，根据我们的大多数研究，大多数基于结构的结果似乎与基于配体的结果不一致。McGaughey认为，这种差异可能是因为所有的虚拟筛选方法都依赖于数据库，对于特定的靶点可能会有很大的不同。例如，在表2中，control化合物（T2384）具有非常高的对接分数，因此基于不同算法的LBDD模型也有非常高的预测活性，包括多元线性回归（MLR）、支持向量机（SVM）和贝叶斯（BNT）。然而，其他化合物也有很高的预测活性，但dock分数很低。由表2可知，对接结果显示结合能最低的对照化合物（D71904）同样在基于配体的预测（MLR和SVM）上表现出的活性也很低。相比之下，其他化合物在dock上表现较差，但在基于配体的预测（MLR和SVM）上活性很高。在表3中，较差的dock得分也显示了MLR、SVM和BNT的高预测活性。然而，具有讽刺意味的是，control化合物（SAHA）具有非常高的dock分数，但是MLR和BNT的预测结果非常差。</p>
-<img src="https://i.loli.net/2021/02/17/IDvH6yeZkMSLi9R.png" alt="image-20210217122114904" style="zoom:50%;" />
-
-<img src="https://i.loli.net/2021/02/17/l7GRQHSnaKF1LPJ.png" alt="image-20210217122150356" style="zoom:50%;" />
-
-<img src="https://i.loli.net/2021/02/17/BUN3JZLHTmKDtrO.png" alt="image-20210217122217407" style="zoom:50%;" />
-
-<p>从表4可以看出，基于配体的研究（MLR、SVM和BNT）的预测活性非常高，因此表明这些化合物应该是有效的。然而，他们也表现出很差的dock分数。表5也显示了预测活性很高，但dock得分很低（方框2）。上述问题在CADD过程中并不少见，但很少出现在已发表的论文中。在他们的论文，作者把最好的数据与高dock分数结合在了一起。然而，最好的hits可能无法从最高的dock得分中找到。从我们过去的研究中，从这样的筛选中获得的前10个最有效的配体通常在真正的生物测试中失败。然而，前100名的配体往往在体外实验中显示出了good hits。这表明，虽然最高的对接分数可能不会提供最好的线索，但总的来说，对接的预测似乎没有那么糟糕。可以肯定的是，对接是基于理论计算算法，并肯定优于随机生化实验测试。</p>
-<img src="https://i.loli.net/2021/02/17/9h7bdIWDQzMs5Xo.png" alt="image-20210217122355813" style="zoom:50%;" />
-
-<h3 id="对接结果与MD结果不一致"><a href="#对接结果与MD结果不一致" class="headerlink" title="对接结果与MD结果不一致"></a>对接结果与MD结果不一致</h3><p>从PubMed或Web of Science数据库检索到的对接论文大多缺乏MD模拟的进一步验证。对接是一种可以计算蛋白质-蛋白质或蛋白质-配体复合物结合亲和力的工具。分析一个300 kDa的蛋白质和50-300 Da的配体结合结构通常只需要1-10秒。换句话说，对接是高通量筛选配体数据库的理想工具。MD模拟也是计算复合物构象变化“运动”的一种技术。对接和MD最大的不同时时间。对接只考虑结合能或亲和力。相比之下，MD强调了结合构象随时间的变化，与对接实验相比，MD增加了每次筛选的时间。在图5中，配体（当归）与蛋白磷酸酶2A（PP2A）的结合位点对接良好，对接得分最高。然而，对接所获得的姿势与经过20 ns的MD模拟后的最终姿势之间存在巨大差异。同样的问题可以在图6-8中看到。MD模拟也说明了配体可能“飞”出结合口袋的过程，表明MD模拟可能是我们从对接结果得出任何结论之前的必要验证。通常MD的模拟时间不是很长（由于硬件的限制，通常小于1ms）。因此，MD在CADD中肯定不是<strong>决定性的或必要的</strong>，但可以提供对接结果的进一步验证。</p>
-<img src="https://i.loli.net/2021/02/17/Djwrlt1dQYsb9xX.png" alt="image-20210217123530505" style="zoom:50%;" />
-
-<img src="https://i.loli.net/2021/02/17/5z7XEMVvGpI6RQD.png" alt="image-20210217123619732" style="zoom:50%;" />
-
-<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p><img src="/Users/sujiaqi/Pictures/Typora/image-20210217123753747.png" alt="image-20210217123753747"></p>
-<p>现在越来越多的研究依赖于先进的计算工具，因此对接结果问题变得越来越重要。许多专业的生物化学家在top期刊上发表了重要的研究结果，但只有一个简单的数字来验证配体与受体结合的关键残基。毫无疑问，这些论文都是非常重要的；然而，他们都缺乏MD研究的验证。并不是说这些类型的研究必须总是伴随着MD模拟的验证。然而，经验表明，单靠对接分析可能得出不准确的配体结合构象。<strong>尽管dock分数很高，有时配体会在MD模拟过程中飞走。</strong>因此，我强烈建议科学家们应该谨慎得出他们的结论，特别是如果只有一个对接或虚拟筛选结果，而没有进一步的验证。上图和下面提出了一个框架来对传统CADD进行改进。</p>
-<blockquote>
-<p>计算机辅助药物设计（CADD）的集成框架与改进方法</p>
-<p>CADD方案的完整流程图包括基于结构的药物设计（SBDD）、基于配体的药物设计（LBDD）、先导化合物优化，最后通过分子动力学（MD）模拟进行验证。对于SBDD，蛋白质结构可从蛋白质数据库获得(<a href="http://www.rcsb.org/pdb/home)%E6%88%96%E8%80%85%E7%94%A8%E5%90%8C%E6%BA%90%E5%BB%BA%E6%A8%A1%E6%88%96%E4%BB%8E%E5%A4%B4%E5%BB%BA%E6%A8%A1%E3%80%82%E9%A2%84%E6%B5%8B%E8%8E%B7%E5%BE%97%E7%9A%84%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%BB%93%E6%9E%84%E5%BA%94%E9%80%9A%E8%BF%87**profiles-3D%E3%80%81Ramachandran%E5%9B%BE%E5%92%8C%E6%97%A0%E5%BA%8F%E8%9B%8B%E7%99%BD%E8%B4%A8%E5%88%86%E6%9E%90%E8%BD%AF%E4%BB%B6**%E8%BF%9B%E8%A1%8C%E9%AA%8C%E8%AF%81%E3%80%82%E5%A6%82%E6%9E%9C%E8%9B%8B%E7%99%BD%E8%B4%A8%E7%9A%84%E7%BB%93%E6%9E%84%E5%92%8C%E7%BB%93%E5%90%88%E4%BD%8D%E7%82%B9%E7%AC%A6%E5%90%88%E5%BF%85%E8%A6%81%E7%9A%84%E6%A0%87%E5%87%86%EF%BC%8C%E6%88%91%E4%BB%AC%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%BF%9B%E8%A1%8C%E5%AF%B9%E6%8E%A5%E3%80%82%E5%AF%B9%E4%BA%8E%E7%AD%9B%E9%80%89%EF%BC%8C%E5%BA%94%E6%8F%90%E4%BE%9B%E5%90%88%E9%80%82%E7%9A%84%E5%B0%8F%E5%88%86%E5%AD%90%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82%E7%A0%94%E7%A9%B6%E4%BA%BA%E5%91%98%E8%BF%98%E5%8F%AF%E4%BB%A5%E7%AD%9B%E9%80%89%E8%82%BD%E6%95%B0%E6%8D%AE%E5%BA%93%E3%80%82">http://www.rcsb.org/pdb/home)或者用同源建模或从头建模。预测获得的蛋白质结构应通过**profiles-3D、Ramachandran图和无序蛋白质分析软件**进行验证。如果蛋白质的结构和结合位点符合必要的标准，我们就可以进行对接。对于筛选，应提供合适的小分子数据库。研究人员还可以筛选肽数据库。</a><br>SBDD通常与LBDD相结合来筛选潜在活性化合物。LBDD的方法是建立基于生物活性或分子描述符的模型，然后预测SBDD筛选出的化合物的生物活性。最著名的基于配体的模型<strong>QSAR</strong>是基于生物活性和药效团特征的。尽管这些模型有很大的不同，但它们都有相同的目标：在没有目标蛋白结构的情况下预测生物活性。<br>最后，利用MD模拟进一步验证了蛋白质结合位点的最佳对接复合物。</p>
-</blockquote>
-<p>总之，药物设计原则可分为四种模式，（A）快速结合和长滞留时间（1/Koff），（B）缓慢结合但停留时间长，（C）快速结合但停留时间短，以及（D）缓慢结合和停留时间短。由于硬件和软件的限制，目前不可能使用MD来模拟复合物结构4小时或8小时知乎德变化。在未来，硬件或软件的进展可能允许MD模拟更长时间。但是，目前，MD模拟时间很短（只有几毫秒或微秒）。在本文中，MD模拟的飞走配体只是证明dock得分最高的配体并不意味着该配体是有效的先导化合物的一个证据。这是许多已发表论文中经常出现的错误。理论上，（A）模式可能是药物设计的最佳选择。然而，在实验中，我们发现超过300种商业药物和对照化合物位于（B）和（C）情境下中。辩论仍在继续。。。</p>
-<blockquote>
-<p>Well,基本就可以分为，快结合慢解离，慢结合慢解离，快结合快解离，慢结合快解离</p>
-</blockquote>
-<p><img src="https://i.loli.net/2021/02/17/kD3RHgrh9IWPaVp.png" alt="image-20210217124434139"></p>
-]]></content>
-      <categories>
-        <category>文献解读</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>OpenMM.No.2.可视化界面及力场</title>
-    <url>/2021/02/02/openmm/oenmm-2/</url>
-    <content><![CDATA[<p>创建openmm脚本的一种方法是从上面给出的示例开始，并对其进行自定义以满足实际需求，但是还有一个更简单的选择。</p>
-<p> OpenMM-Setup是一个图形应用程序，可引导完成加载输入文件和设置选项的整个过程。 然后，它会生成一个完整的脚本，甚至可以直接运行。</p>
-<p><img src="https://tva1.sinaimg.cn/large/008eGmZEgy1gn90llb3bkj30vq0jpn11.jpg"></p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">conda install -c conda-forge openmm-setup</span><br><span class="line">#启动</span><br><span class="line">openmm-setup</span><br></pre></td></tr></table></figure>
-
-<p>它将自动在Web浏览器中打开一个显示用户界面的窗口。</p>
-<p>OpenMM-Setup不仅仅是脚本生成器。 它可以解决输入文件中的问题，添加缺失的原子，构建膜和water box等。 这是快速完成所有必要准备和设置的非常简单的方法。 </p>
-<p>openmm强烈建议所有新手到专家使用OpenMM-setup。</p>
-<p>我这里使用的是<strong>chrome</strong></p>
-<p>比较容易使用，会单独出一章</p>
-<img src="/Users/sujiaqi/Desktop/d5896691e28d602f21209709df02e47c9e8e68ac.png" title="" alt="" width="650">
-
-<h2 id="模拟参数"><a href="#模拟参数" class="headerlink" title="模拟参数"></a>模拟参数</h2><h3 id="platforms"><a href="#platforms" class="headerlink" title="platforms"></a>platforms</h3><p>创建模拟时，可以选择要使用的平台。</p>
-<p> OpenMM包括四个平台：Reference，CPU，CUDA和OpenCL。 </p>
-<p> 可以通过三种方式选择平台：</p>
-<p>1.默认情况下，OpenMM将尝试选择最快的可用平台。 通常，它的选择是比较合理的，但是有时需要自定义。</p>
-<p>2.或者，可以将OPENMM_DEFAULT_PLATFORM环境变量设置为要使用的平台的名称。 这将覆盖默认选项。</p>
-<p>3.最后，在创建模拟时，可以在脚本中显式指定Platform对象。</p>
-<p> 以下各行指定使用CUDA平台：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#platform参数应为下列：</span></span><br><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CPU&#x27;</span>)</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform)</span><br></pre></td></tr></table></figure>
-
-<p>您还可以自定义特定平台的属性，以进行计算。 </p>
-<p>有关每个平台支持的属性的详细信息，请参见Chapter <a href="http://docs.openmm.org/latest/userguide/library.html#platform-specific-properties">10</a></p>
-<p> 例如，以下代码指定使用两个GPU（CUDA：0和1）之间进行并行处理工作，以双精度执行所有计算：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">platform = Platform.getPlatformByName(<span class="string">&#x27;CUDA&#x27;</span>)</span><br><span class="line">properties = &#123;<span class="string">&#x27;DeviceIndex&#x27;</span>: <span class="string">&#x27;0,1&#x27;</span>, <span class="string">&#x27;Precision&#x27;</span>: <span class="string">&#x27;double&#x27;</span>&#125;</span><br><span class="line">simulation = Simulation(prmtop.topology, system, integrator, platform, properties)</span><br></pre></td></tr></table></figure>
-
-<h3 id="力场"><a href="#力场" class="headerlink" title="力场"></a>力场</h3><p>创建力场时，可以指定一个或多个XML文件，使用加载力场定义。 </p>
-<p>通常，会有一个文件定义主要力场，可能还有另一个文件定义水模型（隐式或显式）。</p>
-<p> 例如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">forcefield = ForceField(<span class="string">&#x27;amber14-all.xml&#x27;</span>, <span class="string">&#x27;amber14/tip3pfb.xml&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>在某些情况下，一个XML文件包含其余的力场文件。</p>
-<p> 例如，amber14-all.xml实际上只是加载几个不同文件的快捷方式，这些文件共同构成了AMBER14力场。 </p>
-<p>如果需要对加载哪些参数进行更精细的控制，则可以单独指定组件文件。</p>
-<p>请注意，某些力场和水模型包括“额外粒子”，例如 lone pairs or Drude particles。</p>
-<p> 示例包括CHARMM极化力场以及所有4或5点水模型。 要使用这些力场，必须首先将多余的粒子添加到 <strong>拓扑</strong> 中。 </p>
-<p>下面描述的力场是与OpenMM捆绑在一起的力场。 </p>
-<p>其他力场可从<strong><a href="https://github.com/choderalab/openmm-forcefields">https://github.com/choderalab/openmm-forcefields</a></strong> 在线获得。</p>
-<h5 id="Amber14"><a href="#Amber14" class="headerlink" title="Amber14"></a>Amber14</h5><p>Amber14 力场由各种文件组成，这些文件定义了蛋白质，DNA，RNA，脂质，水和离子的参数。</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Parameters</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>amber14/protein.ff14SB.xml</code></td>
-<td>Protein (recommended)</td>
-</tr>
-<tr>
-<td><code>amber14/protein.ff15ipq.xml</code></td>
-<td>Protein (alternative)</td>
-</tr>
-<tr>
-<td><code>amber14/DNA.OL15.xml</code></td>
-<td>DNA (recommended)</td>
-</tr>
-<tr>
-<td><code>amber14/DNA.bsc1.xml</code></td>
-<td>DNA (alternative)</td>
-</tr>
-<tr>
-<td><code>amber14/RNA.OL3.xml</code></td>
-<td>RNA</td>
-</tr>
-<tr>
-<td><code>amber14/lipid17.xml</code></td>
-<td>Lipid</td>
-</tr>
-<tr>
-<td><code>amber14/tip3p.xml</code></td>
-<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a> and ions</td>
-</tr>
-<tr>
-<td><code>amber14/tip3pfb.xml</code></td>
-<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
-</tr>
-<tr>
-<td><code>amber14/tip4pew.xml</code></td>
-<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
-</tr>
-<tr>
-<td><code>amber14/tip4pfb.xml</code></td>
-<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a> and ions</td>
-</tr>
-<tr>
-<td><code>amber14/spce.xml</code></td>
-<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
-</tr>
-</tbody></table>
-<p>为了方便，可以将文件amber14-all.xml用作包含：<code>amber14 / protein.ff14SB.xml，amber14 / DNA.OL15.xml，amber14 / RNA.OL3.xml和amber14 / lipid17.xml</code>的快捷方式。 </p>
-<p>在大多数情况下，在构建模型时，您只需包含amber14-all.xml，再加上其中一种水模型，例如<code>amber14 / tip3pfb.xml</code></p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;amber14-all.xml&#39;, &#39;amber14&#x2F;tip3pfb.xml&#39;)</span><br></pre></td></tr></table></figure>
-
-<h4 id=""><a href="#" class="headerlink" title=""></a></h4><h4 id="CHARMM36"><a href="#CHARMM36" class="headerlink" title="CHARMM36"></a>CHARMM36</h4><p>CHARMM36 力场提供了蛋白质，DNA，RNA，脂质，碳水化合物，水，离子和各种小分子的参数（有关完整参考资料，请参见此处）。</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Parameters</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>charmm36.xml</code></td>
-<td>Protein, DNA, RNA, lipids, carbohydrates, and small molecules</td>
-</tr>
-<tr>
-<td><code>charmm36/water.xml</code></td>
-<td>Default CHARMM water model (a modified version of TIP3P<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a>) and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/spce.xml</code></td>
-<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip3p-pme-b.xml</code></td>
-<td>TIP3P-PME-B water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip3p-pme-f.xml</code></td>
-<td>TIP3P-PME-F water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#price2004">[7]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip4pew.xml</code></td>
-<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip4p2005.xml</code></td>
-<td>TIP4P-2005 water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#abascal2005">[8]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip5p.xml</code></td>
-<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a> and ions</td>
-</tr>
-<tr>
-<td><code>charmm36/tip5pew.xml</code></td>
-<td>TIP5P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#rick2004">[10]</a> and ions</td>
-</tr>
-</tbody></table>
-<p>charmm36.xml将除水和离子力场以外的所有xml都捆绑到一个文件中。</p>
-<p> 在大多数情况下，只需包含该文件，再加上一个水模型，例:<code>charmm36 / water.xml</code>，它指定了默认的CHARMM水模型（TIP3P 的修改版）和离子：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">forcefield &#x3D; ForceField(&#39;charmm36.xml&#39;, &#39;charmm36&#x2F;water.xml&#39;)</span><br></pre></td></tr></table></figure>
-
-<h5 id="Tip"><a href="#Tip" class="headerlink" title="Tip"></a>Tip</h5><ul>
-<li><p>charmm36 /目录中包含的溶剂模型XML文件同时包含水和离子模型，因此，如果错误地指定了tip3p.xml而不是charmm36/water.xml，则可能会引发异常： 系统中缺少离子参数。</p>
-</li>
-<li><p>CHARMM广泛使用<strong>patches</strong>，这些patches会与残基模板自动结合，通过ForceField创建扩展的patches残基模板库。 这意味着修补残基（例如ACE和NME修补末端）必须作为单个残基出现，以便ForceField正确匹配残基模板并应用参数。 由于这些修补的残基不是标准的PDB残基，因此Modeller不知道如何向这些非标准残基中添加氢，并且<strong>输入拓扑必须已经包含适当的氢</strong>。</p>
-</li>
-<li><p>如果读取从CHARMM-GUI之类程序处理之后的PDB文件可能会出现问题。某些程序会生成不符合<strong>PDB标准的PDB文件</strong>，并忽略指定残基（例如半胱氨酸）之间键的CONECT记录，可能导致二硫键的检测和参数分配出现问题。 <strong>确保您阅读的文件符合有关键和非标准残基定义的适当标准。</strong>  如果使用的是CHARMM-GUI中的文件，则直接加载PSF文件最简单。</p>
-</li>
-</ul>
-<h4 id="AMOEBA"><a href="#AMOEBA" class="headerlink" title="AMOEBA"></a>AMOEBA</h4><p>AMOEBA极化力场提供蛋白质，水和离子的参数。</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Parameters</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><code>amoeba2013.xml</code></td>
-<td>AMOEBA 2013<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#shi2013">[12]</a></td>
-</tr>
-<tr>
-<td><code>amoeba2013_gk.xml</code></td>
-<td>Generalized Kirkwood solvation model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#schnieders2007">[13]</a> for use with AMOEBA 2013 force field</td>
-</tr>
-<tr>
-<td><code>amoeba2009.xml</code></td>
-<td>AMOEBA 2009<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#ren2002">[14]</a>. This force field is deprecated. It is<br>recommended to use AMOEBA 2013 instead.</td>
-</tr>
-<tr>
-<td><code>amoeba2009_gk.xml</code></td>
-<td>Generalized Kirkwood solvation model for use with AMOEBA 2009 force field</td>
-</tr>
-</tbody></table>
-<h4 id="Water-Models"><a href="#Water-Models" class="headerlink" title="Water Models"></a>Water Models</h4><p>以下文件定义了流行的水模型。 它们可以与不提供自己的水模型的力场一起使用。 使用Amber14或CHARMM36时，请改用那些力场附带的水文件，因为它们也包含离子参数。</p>
-<table>
-<thead>
-<tr>
-<th>File</th>
-<th>Water Model</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>tip3p.xml</td>
-<td>TIP3P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#jorgensen1983">[2]</a></td>
-</tr>
-<tr>
-<td>tip3pfb.xml</td>
-<td>TIP3P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
-</tr>
-<tr>
-<td>tip4pew.xml</td>
-<td>TIP4P-Ew water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#horn2004">[4]</a></td>
-</tr>
-<tr>
-<td>tip4pfb.xml</td>
-<td>TIP4P-FB water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#wang2014">[3]</a></td>
-</tr>
-<tr>
-<td>tip5p.xml</td>
-<td>TIP5P water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#mahoney2000">[9]</a></td>
-</tr>
-<tr>
-<td>spce.xml</td>
-<td>SPC/E water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#berendsen1987">[5]</a></td>
-</tr>
-<tr>
-<td>swm4ndp.xml</td>
-<td>SWM4-NDP water model<a href="http://docs.openmm.org/latest/userguide/zbibliography.html#lamoureux2006">[23]</a></td>
-</tr>
-</tbody></table>
-<h3 id="小分子参数"><a href="#小分子参数" class="headerlink" title="小分子参数"></a>小分子参数</h3><p>上面的OpenMM力场包括用于大分子和溶剂的预生成模板。 如果系统包含小分子，则通常需要即时生成这些参数。</p>
-<p>在OpenMM生态系统中，有两种方法可以执行此操作：</p>
-<ul>
-<li>Small molecule residue template generators（小分子残基模版生产器）一种方法是对openmmforcefields conda软件包中的小分子使用残基模板生成器。 您可以通过conda安装此程序：<code>$ conda install -c conda-forge openmmforcefields</code>然后，可以使用Open Force Field Initiative小分子力场（通过以下示例）添加小分子残基模板生成器：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#使用 Open Force Field Initiative小分子力场 来创建 the SMIRNOFF template generator </span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个SMIRNOFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br></pre></td></tr></table></figure>
-
-同样的，你也可以使用<a href="http://ambermd.org/antechamber/gaff.html">AMBER GAFF small molecule force field</a><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 从benzene的smiles中创建一个 openforcefield Molecule object</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment">#创建以一个GAFF模版生成器</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> GAFFTemplateGenerator</span><br><span class="line">gaff = GAFFTemplateGenerator(molecules=molecule)</span><br><span class="line"><span class="comment"># 使用AMBER ff14SB and TIP3P创建一个OpenMM ForceField object </span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># 注册一个 GAFF 模版生成器</span></span><br><span class="line">forcefield.registerTemplateGenerator(gaff.generator)</span><br></pre></td></tr></table></figure></li>
-</ul>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system = forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li><code>SystemGenerator</code>来操纵力场  openmm forcefields软件包提供了SystemGenerator工具来简化大分子和小分子力场管理。 要使用此功能，只需指定要使用的小分子力场即可：<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> simtk <span class="keyword">import</span> unit</span><br><span class="line"><span class="keyword">from</span> simtk.openmm <span class="keyword">import</span> app</span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SystemGenerator</span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">forcefield_kwargs = &#123; <span class="string">&#x27;constraints&#x27;</span> : app.HBonds, <span class="string">&#x27;rigidWater&#x27;</span> : <span class="literal">True</span>, <span class="string">&#x27;removeCMMotion&#x27;</span> : <span class="literal">False</span>, <span class="string">&#x27;hydrogenMass&#x27;</span> : <span class="number">4</span>*unit.amu &#125;</span><br><span class="line"><span class="comment"># Initialize a SystemGenerator using the Open Force Field Initiative 1.2.0 force field (openff-1.2.0)</span></span><br><span class="line">system_generator = SystemGenerator(forcefields=[<span class="string">&#x27;amber/ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>], small_molecule_forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>, forcefield_kwargs=forcefield_kwargs, cache=<span class="string">&#x27;db.json&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM System from an OpenMM Topology object and a list of openforcefield Molecule objects</span></span><br><span class="line">molecules = Molecule.from_file(<span class="string">&#x27;molecule.sdf&#x27;</span>, file_format=<span class="string">&#x27;sdf&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现在拓扑中的那些实例进行匹配。 请注意，质子化和互变异构状态必须在读取的分子与出现在拓扑结构中的分子之间完全匹配。 有关更多详细信息，请参见openmmforcefields文档。<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Create an OpenFF Molecule object for benzene from SMILES</span></span><br><span class="line"><span class="keyword">from</span> openforcefield.topology <span class="keyword">import</span> Molecule</span><br><span class="line">molecule = Molecule.from_smiles(<span class="string">&#x27;c1ccccc1&#x27;</span>)</span><br><span class="line"><span class="comment"># Create the SMIRNOFF template generator with the default installed force field (openff-1.0.0)</span></span><br><span class="line"><span class="keyword">from</span> openmmforcefields.generators <span class="keyword">import</span> SMIRNOFFTemplateGenerator</span><br><span class="line">smirnoff = SMIRNOFFTemplateGenerator(molecules=molecule, forcefield=<span class="string">&#x27;openff-1.2.0&#x27;</span>)</span><br><span class="line"><span class="comment"># Create an OpenMM ForceField object with AMBER ff14SB and TIP3P with compatible ions</span></span><br><span class="line"><span class="keyword">from</span> simtk.openmm.app <span class="keyword">import</span> ForceField</span><br><span class="line">forcefield = ForceField(<span class="string">&#x27;amber/protein.ff14SB.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_standard.xml&#x27;</span>, <span class="string">&#x27;amber/tip3p_HFE_multivalent.xml&#x27;</span>)</span><br><span class="line"><span class="comment"># Register the SMIRNOFF template generator</span></span><br><span class="line">forcefield.registerTemplateGenerator(smirnoff.generator)</span><br><span class="line"><span class="comment"># 参数化包含有特定分子的 OpenMM Topology object </span></span><br><span class="line"><span class="comment"># forcefield 将会导入正确的 GAFF parameters</span></span><br><span class="line"><span class="comment"># 产生参数</span></span><br><span class="line"><span class="comment"># pdb:https://www.rcsb.org/structure/4W52</span></span><br><span class="line">pdbfile = PDBFile(<span class="string">&#x27;4w52.pdb&#x27;</span>)</span><br><span class="line">system =forcefield.createSystem(pdbfile.topology)</span><br></pre></td></tr></table></figure></li>
-</ul>
-]]></content>
-      <categories>
-        <category>OpenMM</category>
       </categories>
   </entry>
   <entry>
