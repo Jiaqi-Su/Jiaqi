@@ -1961,4 +1961,547 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
         <category>文献解读</category>
       </categories>
   </entry>
+  <entry>
+    <title>PyMOl教学-在肽段两端加分子</title>
+    <url>/2021/03/11/python-every-day/PyMOl%E6%95%99%E5%AD%A6-%E5%9C%A8%E8%82%BD%E6%AE%B5%E4%B8%A4%E7%AB%AF%E5%8A%A0%E5%88%86%E5%AD%90/</url>
+    <content><![CDATA[<p>1: 打开pymol</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.17.文件读写</title>
+    <url>/2021/03/08/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.17.%E6%96%87%E4%BB%B6%E8%AF%BB%E5%86%99/</url>
+    <content><![CDATA[<p>well，我们很多基本的操作都属于I/O流</p>
+<p>假设你只是一个黑盒子用户的话，大概只需要调取参数，获取自己所需的文件然后进行下一步操作即可</p>
+<p>我们现在就来看下python的I/O流</p>
+<ol>
+<li><p>读取一个文件</p>
+<p>我们以<code>1stp.pdb</code>这个蛋白为例</p>
+<p>下载地址在这里：<a href="http://www.rcsb.org/structure/1STP">http://www.rcsb.org/structure/1STP</a></p>
+<p><img src="/Users/sujiaqi/Pictures/Typora/image-20210308214614070.png" alt="image-20210308214614070"></p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"># 我们可以直接使用python自带的os函数打开</span><br><span class="line">In [1]: f &#x3D; open(&#39;1stp.pdb&#39;,&#39;r&#39;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>​    其基本形式为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">f &#x3D; open(文件名，打开模式)</span><br><span class="line"></span><br><span class="line">各个参数的细节如下：</span><br><span class="line">- 文件名：文件名是一个字符串值。</span><br><span class="line">- 打开模式：只读（r），写入(w)，追加(w+)等。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里有一份来源于菜鸟教程的，使用不同模式打开文件的说明</p>
+<p>   当然，你并不需要全文背诵，只需要知道几个常用值就好：</p>
+<table>
+<thead>
+<tr>
+<th>模式</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>t</td>
+<td>文本模式 (默认)。</td>
+</tr>
+<tr>
+<td>x</td>
+<td>写模式，新建一个文件，如果该文件已存在则会报错。</td>
+</tr>
+<tr>
+<td>b</td>
+<td>二进制模式。</td>
+</tr>
+<tr>
+<td>+</td>
+<td>打开一个文件进行更新(可读可写)。</td>
+</tr>
+<tr>
+<td>U</td>
+<td>通用换行模式（不推荐）。</td>
+</tr>
+<tr>
+<td>r</td>
+<td>以只读方式打开文件。文件的指针将会放在文件的开头。这是默认模式。</td>
+</tr>
+<tr>
+<td>rb</td>
+<td>以二进制格式打开一个文件用于只读。文件指针将会放在文件的开头。这是默认模式。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>r+</td>
+<td>打开一个文件用于读写。文件指针将会放在文件的开头。</td>
+</tr>
+<tr>
+<td>rb+</td>
+<td>以二进制格式打开一个文件用于读写。文件指针将会放在文件的开头。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w</td>
+<td>打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb</td>
+<td>以二进制格式打开一个文件只用于写入。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>w+</td>
+<td>打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。</td>
+</tr>
+<tr>
+<td>wb+</td>
+<td>以二进制格式打开一个文件用于读写。如果该文件已存在则打开文件，并从开头开始编辑，即原有内容会被删除。如果该文件不存在，创建新文件。一般用于非文本文件如图片等。</td>
+</tr>
+<tr>
+<td>a</td>
+<td>打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>ab</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。也就是说，新的内容将会被写入到已有内容之后。如果该文件不存在，创建新文件进行写入。</td>
+</tr>
+<tr>
+<td>a+</td>
+<td>打开一个文件用于读写。如果该文件已存在，文件指针将会放在文件的结尾。文件打开时会是追加模式。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+<tr>
+<td>ab+</td>
+<td>以二进制格式打开一个文件用于追加。如果该文件已存在，文件指针将会放在文件的结尾。如果该文件不存在，创建新文件用于读写。</td>
+</tr>
+</tbody></table>
+<p>在我们打开文本对象之后，下一步该做的就是提取字符串</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">4</span>]: f_str = f.read()</span><br><span class="line">In [<span class="number">5</span>]: f_str[:<span class="number">300</span>]</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;HEADER    BIOTIN BINDING PROTEIN                  12-MAR-92   1STP              \nTITLE     STRUCTURAL ORIGINS OF HIGH-AFFINITY BIOTIN BINDING TO STREPTAVIDIN    \nCOMPND    MOL_ID: 1;                                                            \nCOMPND   2 MOLECULE: STREPTAVIDIN COMPLEX WITH BIOTIN;   &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>当执行完成操作之后记得要关闭此对象</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">In [6]: f.close()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>此时，你便获取了一部分文字</p>
+<p>现在就可以对其进行编辑，增加删除，然后输出</p>
+<p>此时，我们需要再次打开一个写入对象</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">6</span>]: f_new = <span class="built_in">open</span>(<span class="string">&#x27;out.pdb&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: f_new.write(f_str)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="number">119232</span></span><br><span class="line">  </span><br><span class="line"><span class="comment"># 关闭对象</span></span><br><span class="line">In [<span class="number">9</span>]: f_new.close()</span><br></pre></td></tr></table></figure>
+
+
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.20.实例.1-PyMol.1-导入蛋白，创建蛋白</title>
+    <url>/2021/03/14/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/</url>
+    <content><![CDATA[<p>已经写到20了，我知道你们也有点烦了</p>
+<p>姑且认为以前的都会了吧</p>
+<p>今天写PyMol</p>
+<p><del>然后这次水一波PyMol</del></p>
+<ol>
+<li><p>安装</p>
+<p>官网：<a href="https://pymol.org/2/">https://pymol.org/2/</a></p>
+<p>假设你已经安装了<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">conda</a></p>
+<p>命令行安装：<code>conda install -c schrodinger pymol-bundle</code></p>
+</li>
+<li><p>使用</p>
+<p>当然你可以在某一环境下，直接输入pymol，打开可视化界面</p>
+<p>类似于这样</p>
+<p>当然，这并不是我们的主题</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/Screen%20Shot%202021-03-14%20at%2010.43.41%20AM-5689935.png" alt="Screen Shot 2021-03-14 at 10.43.41 AM"></p>
+<p>这次，直接打开<code>ipython</code></p>
+<p>我的使用界面</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/Screen%20Shot%202021-03-14%20at%2010.47.52%20AM.png" alt="Screen Shot 2021-03-14 at 10.47.52 AM"></p>
+</li>
+<li><p>pymol 的api</p>
+<p>api：看下释义，懒得解释</p>
+<blockquote>
+<p>API（Application Programming Interface，<a href="https://baike.baidu.com/item/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%8E%A5%E5%8F%A3/10418844">应用程序接口</a>）是一些预先定义的接口（如函数、HTTP接口），或指<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F/224122">软件系统</a>不同组成部分衔接的约定。 [1] 用来提供<a href="https://baike.baidu.com/item/%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F">应用程序</a>与开发人员基于某<a href="https://baike.baidu.com/item/%E8%BD%AF%E4%BB%B6">软件</a>或硬件得以访问的一组<a href="https://baike.baidu.com/item/%E4%BE%8B%E7%A8%8B/2390628">例程</a>，而又无需访问源码，或理解内部<a href="https://baike.baidu.com/item/%E5%B7%A5%E4%BD%9C%E6%9C%BA%E5%88%B6/9905789">工作机制</a>的细节。源于百度百科</p>
+</blockquote>
+<p>其实，就是pymol给我提供了一些简单的接口命令，让我们可以更加方便的使用</p>
+<p>首先，来获取一个蛋白</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入pymol</span></span><br><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pymol</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: Feature has expired.</span><br><span class="line">Feature:       PYMOL_MAIN</span><br><span class="line">Expire date:   01-nov-<span class="number">2020</span></span><br><span class="line">License path:  /Users/sujiaqi/.pymol/license.lic:</span><br><span class="line">FlexNet Licensing error:-<span class="number">10</span>,<span class="number">32</span></span><br><span class="line">For further information, refer to the FlexNet Licensing documentation,</span><br><span class="line">available at <span class="string">&quot;www.flexerasoftware.com&quot;</span>.</span><br><span class="line"><span class="comment"># 看下帮助指令</span></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">help</span>(pymol)</span><br><span class="line">Help on package pymol:</span><br><span class="line"></span><br><span class="line">NAME</span><br><span class="line">    pymol</span><br><span class="line"></span><br><span class="line">DESCRIPTION</span><br><span class="line">    PyMOL Molecular Graphics System</span><br><span class="line">    Copyright (c) Schrodinger, Inc.</span><br><span class="line"></span><br><span class="line">    Supported ways to launch PyMOL:</span><br><span class="line"></span><br><span class="line">      If $PYMOL_PATH <span class="keyword">is</span> a non-default location, it must be <span class="built_in">set</span> <span class="keyword">and</span> exported</span><br><span class="line">      before launching PyMOL.</span><br><span class="line"></span><br><span class="line">      From a terminal:</span><br><span class="line"></span><br><span class="line">        shell&gt; python /path/to/pymol/__init__.py [args]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取蛋白3nss</span></span><br><span class="line">In [<span class="number">5</span>]: pymol.cmd.fetch(<span class="string">&#x27;3nss&#x27;</span>)</span><br><span class="line"> PyMOL <span class="keyword">not</span> running, entering library mode (experimental)</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;3nss&#x27;</span></span><br><span class="line"><span class="comment"># 查看object </span></span><br><span class="line">In [<span class="number">10</span>]: pymol.cmd.get_object_list()</span><br><span class="line">Out[<span class="number">10</span>]: [<span class="string">&#x27;3nss&#x27;</span>]</span><br><span class="line"><span class="comment"># 将object保存为fasta格式</span></span><br><span class="line">In [<span class="number">23</span>]: pymol.cmd.save(<span class="string">&#x27;3nss.fasta&#x27;</span>,<span class="string">&#x27;3nss&#x27;</span>,<span class="built_in">format</span>=<span class="string">&#x27;fasta&#x27;</span>)</span><br><span class="line">&gt;3nss_A</span><br><span class="line">SVKLAGNSSLCPVSGWAIYSKDNSVRIGSKGDVFVIREPFISCSPLECRTFFLTQGALLNDKHSNGTIKD</span><br><span class="line">RSPYRTLMSCPIGEVPSPYNSRFESVAWSASACHDGINWLTIGISGPDNGAVAVLKYNGIITDTIKSWRN</span><br><span class="line">NILRTQESECACVNGSCFTVMTDGPSNGQASYKIFRIEKGKIVKSVEMNAPNYHYEECSCYPDSSEITCV</span><br><span class="line">CRDNWHGSNRPWVSFNQNLEYQIGYICSGIFGDNPRPNDKTGSCGPVSSNGANGVKGFSFKYGNGVWIGR</span><br><span class="line">TKSISSRNGFEMIWDPNGWTGTDNNFSIKQDIVGINEWSGYSGSFVQHPELTGLDCIRPCFWVELIRGRP</span><br><span class="line">KENTIWTSGSSISFCGVNSDTVGWSWPDGAELPFTIDK</span><br><span class="line">&gt;3nss_B</span><br><span class="line">SVKLAGNSSLCPVSGWAIYSKDNSVRIGSKGDVFVIREPFISCSPLECRTFFLTQGALLNDKHSNGTIKD</span><br><span class="line">RSPYRTLMSCPIGEVPSPYNSRFESVAWSASACHDGINWLTIGISGPDNGAVAVLKYNGIITDTIKSWRN</span><br><span class="line">NILRTQESECACVNGSCFTVMTDGPSNGQASYKIFRIEKGKIVKSVEMNAPNYHYEECSCYPDSSEITCV</span><br><span class="line">CRDNWHGSNRPWVSFNQNLEYQIGYICSGIFGDNPRPNDKTGSCGPVSSNGANGVKGFSFKYGNGVWIGR</span><br><span class="line">TKSISSRNGFEMIWDPNGWTGTDNNFSIKQDIVGINEWSGYSGSFVQHPELTGLDCIRPCFWVELIRGRP</span><br><span class="line">KENTIWTSGSSISFCGVNSDTVGWSWPDGAELPFTIDK</span><br><span class="line"><span class="comment"># 然后，我们看下蛋白结构</span></span><br><span class="line"><span class="comment"># 两条链，有离子，有水，有配体</span></span><br><span class="line"><span class="comment"># 你打开pymol就好了，命令行下，我现在没有找到一个比较好的显示蛋白信息的方法</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>然后，我们再来创建一个新的蛋白，使用fab指令</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">   In [<span class="number">8</span>]: <span class="built_in">help</span>(pymol.cmd.fab)</span><br><span class="line">Help on function fab <span class="keyword">in</span> module pymol.editor:</span><br><span class="line">   fab(<span class="built_in">input</span>, name=<span class="literal">None</span>, mode=<span class="string">&#x27;peptide&#x27;</span>, resi=<span class="number">1</span>, chain=<span class="string">&#x27;&#x27;</span>, segi=<span class="string">&#x27;&#x27;</span>, state=-<span class="number">1</span>, <span class="built_in">dir</span>=<span class="number">1</span>, hydro=-<span class="number">1</span>, ss=<span class="number">0</span>, async_=<span class="number">0</span>, quiet=<span class="number">1</span>, _self=&lt;module <span class="string">&#x27;pymol.cmd&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;/Users/sujiaqi/miniconda3/envs/py3/lib/python3.7/site-packages/pymol/cmd.py&#x27;</span>&gt;, **kwargs)</span><br><span class="line"> DESCRIPTION</span><br><span class="line">   </span><br><span class="line">        Build a peptide</span><br><span class="line">    </span><br><span class="line">    ARGUMENTS</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">input</span> = <span class="built_in">str</span>: sequence <span class="keyword">in</span> one-letter code</span><br><span class="line">    </span><br><span class="line">        name = <span class="built_in">str</span>: name of <span class="built_in">object</span> to create &#123;default: &#125;</span><br><span class="line">    </span><br><span class="line">        ss = <span class="built_in">int</span>: Secondary structure <span class="number">1</span>=alpha helix, <span class="number">2</span>=antiparallel beta, <span class="number">3</span>=parallel beta, <span class="number">4</span>=flat</span><br><span class="line">    </span><br><span class="line">    EXAMPLE</span><br><span class="line">    </span><br><span class="line">        fab ACDEFGH</span><br><span class="line">        fab ACDEFGH, helix, ss=<span class="number">1</span></span><br><span class="line">   In [<span class="number">10</span>]: pymol.cmd.fab(<span class="string">&#x27;ACDEFGH&#x27;</span>, <span class="string">&#x27;helix&#x27;</span>, ss=<span class="number">1</span>)</span><br><span class="line">   <span class="comment"># 看下object列表</span></span><br><span class="line">   In [<span class="number">11</span>]:  pymol.cmd.get_object_list()</span><br><span class="line">   Out[<span class="number">11</span>]: [<span class="string">&#x27;3nss&#x27;</span>, <span class="string">&#x27;helix&#x27;</span>]</span><br><span class="line">   <span class="comment"># 保存</span></span><br><span class="line">   In [<span class="number">13</span>]: pymol.cmd.save(<span class="string">&#x27;helix.pdb&#x27;</span>,<span class="string">&#x27;helix&#x27;</span>,<span class="built_in">format</span>=<span class="string">&#x27;pdb&#x27;</span>)</span><br><span class="line">   <span class="comment"># 你可以使用jupyter notebook进行查看，bio3d包</span></span><br><span class="line">   <span class="comment"># 也可以使用pymol直接打开进行查看</span></span><br></pre></td></tr></table></figure>
+<p>   <img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210314115756456.png" alt="image-20210314115756456"></p>
+<p>水文结束，see u.</p>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.18.序列化</title>
+    <url>/2021/03/09/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.18.%E5%BA%8F%E5%88%97%E5%8C%96/</url>
+    <content><![CDATA[<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>。。。，我摘抄一个</p>
+<p>系列化，将对象存储为二进制。</p>
+<p>反序列化，将二进制返回为对象。</p>
+<h3 id="释义"><a href="#释义" class="headerlink" title="释义"></a>释义</h3><p>我们再来看一个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 创建一个文件，模式为写入</span></span><br><span class="line">In [<span class="number">1</span>]: f = <span class="built_in">open</span>(<span class="string">&#x27;tmp.txt&#x27;</span>,<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line"><span class="comment"># 创建一个字符串对象</span></span><br><span class="line">In [<span class="number">2</span>]: a= <span class="string">&#x27;1234&#x27;</span></span><br><span class="line"><span class="comment"># 将a写入文件</span></span><br><span class="line">In [<span class="number">3</span>]: f.write(a)</span><br><span class="line">Out[<span class="number">3</span>]: <span class="number">4</span></span><br><span class="line"><span class="comment"># 关闭文件对象</span></span><br><span class="line">In [<span class="number">4</span>]: f.close()</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 获取文件内容</span></span><br><span class="line">In [<span class="number">5</span>]: !cat tmp.txt</span><br><span class="line"><span class="number">1234</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>well，我们上述操作即为创建了一个字符串a，并将字符串写入了文件<code>tmp.txt</code>中</p>
+<p>当然，你可以认为此次操作结束了，你获得了一个含有内容的文件</p>
+<p>但是如果我们想储存的是对象或者说为变量a怎么对待呢，如何将其储存，并在下次启动时仍然可以进行使用.</p>
+<p>Python提供了<code>pickle</code>模块来实现序列化。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 导入模块</span></span><br><span class="line">In [<span class="number">6</span>]: <span class="keyword">import</span> pickle</span><br><span class="line"><span class="comment"># 打开文件</span></span><br><span class="line">In [<span class="number">8</span>]: f = <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;wb&#x27;</span>)</span><br><span class="line"><span class="comment"># 将变量a输入到文件中</span></span><br><span class="line">In [<span class="number">9</span>]: pickle.dump(a,f)</span><br><span class="line"><span class="comment"># 关闭文件</span></span><br><span class="line">In [<span class="number">10</span>]: f.close()</span><br></pre></td></tr></table></figure>
+
+<p>那么我们就可以在下次启动的时候，使用反序列化获得a</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开文件</span></span><br><span class="line">In [<span class="number">11</span>]: f = <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line"><span class="comment"># 反序列化</span></span><br><span class="line">In [<span class="number">12</span>]: b = pickle.load(f)</span><br><span class="line"><span class="comment"># 查看b</span></span><br><span class="line">In [<span class="number">13</span>]: b</span><br><span class="line">Out[<span class="number">13</span>]: <span class="string">&#x27;1234&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.21.实例.1-PyMol.2-计算RMSD</title>
+    <url>/2021/03/15/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.1-PyMol.2/</url>
+    <content><![CDATA[<p>我可以把cmd的指令遍历一次，这样就不需要愁拖稿了hhh</p>
+<p>我们来看下蛋白质的中的结构比较</p>
+<p>在结构比较中，你可以很方便的使用align对两个object进行比较</p>
+<p>这里的object你可以简单的理解为蛋白</p>
+<ol>
+<li>你可以很方便的pymol自带的工具对两个或者多个蛋白进行align</li>
+</ol>
+<p>步骤如下，3nss–&gt;Action–&gt;align–&gt;to molecule–&gt;5nwe</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/Screen%20Shot%202021-03-15%20at%204.44.37%20PM.png" alt="Screen Shot 2021-03-15 at 4.44.37 PM"></p>
+<ol start="2">
+<li>当align不能满足的时候，你也可以使用pymol的插件alignment选择一个比对方式，来进行比较<br><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315164700320.png" alt="image-20210315164700320"></li>
+</ol>
+<p>这里我们先来看下比较方式的不同定义：</p>
+<p>align:首先进行序列对齐，然后进行结构叠加，随后循环几个周期来进行优化，以便拒绝掉在拟合期间发现的异常值。在序列相似度较高的蛋白中align效果会比较好(序列&gt;30%)，如果序列相似度比较低的话，super或者cealign会比较好。</p>
+<p>super:对齐选择的结构，他执行的是基于结构的动态规划对齐(不依赖于序列)，随后进行循环优化来提高拟合度，对于低序列相似性的蛋白来说，super比align更为鲁棒。</p>
+<p>cealign：使用CE算法来对齐两个蛋白。对于几乎没有序列相似性的蛋白质（twilight zone），它是非常鲁棒的。对于结构比较相似的蛋白，请使用<a href="https://pymolviki.org/index.php/Super">super</a>首选命令，对于序列比较相似的蛋白，则align为首选命令，因为这些命令比cealign快得多</p>
+<p>fit：将第一选择中的模型叠加到第二个模型中，在两个选择中，只要匹配的院子才会被用于fit</p>
+<p><strong>晕了的话我们就来看看例子</strong></p>
+<p>借用我最近看的算法图解的书来说，我们都是视觉型学习者</p>
+<p>align：</p>
+<p>官方给的例子是1oky, 1t46</p>
+<p>在pymol进行align比较，rmsd = 1.306</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315173226326.png" alt="image-20210315173226326"></p>
+<p>我们来看看他的序列相似度</p>
+<p>虽然，我有时候并不喜欢做图，但是，我们可以比较容易的从图中获得其序列相对而言比较保守的信息</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315173805551.png" alt="image-20210315173805551"></p>
+<p>然后我们在看看看super，官方给的案例是</p>
+<p>1F9J，1YX5，rmsd = 0.717</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315174136972.png" alt="image-20210315174136972"></p>
+<p>两者的序列相似度，很不相似</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315174349940.png" alt="image-20210315174349940"></p>
+<p>我使用了align方法，对齐比较了一下，rmsd = 13.697</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315174508859.png" alt="image-20210315174508859"></p>
+<p>然后，我们来看cealign，官方给的案例：1c0mB，1bco，rmsd = 4.958</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315174718512.png" alt="image-20210315174718512"></p>
+<p>序列相似度</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315175038498.png" alt="image-20210315175038498"></p>
+<p>最后，我们看来看下fit</p>
+<p>所用的比较部分为1a00的a链和c链，rmsd =0.564，当然这个需要的对比条件比较严格，</p>
+<p>object的id必须要严格保持一致，比如segi, chain，如果不一致那么需要手动整</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210315175925035.png" alt="image-20210315175925035"></p>
+<p>到这里，基本上和python没什么用</p>
+<p>但是，强制有用</p>
+<p>举个例子，假设，我有10个蛋白需要比较，计算rmsd</p>
+<p>此处，以aligh为例</p>
+<p>蛋白为：6BHT,4WYM,6OBH,6ECN,5HGL,2PWM,2PWO,6ECO,6OMT,3J3Y</p>
+<p>开始</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 启动pymol</span></span><br><span class="line">In [<span class="number">1</span>]: <span class="keyword">import</span> pymol</span><br><span class="line"></span><br><span class="line">Feature has expired.</span><br><span class="line">Feature:       PYMOL_MAIN</span><br><span class="line">Expire date:   01-nov-<span class="number">2020</span></span><br><span class="line">License path:  /Users/sujiaqi/.pymol/license.lic:</span><br><span class="line">FlexNet Licensing error:-<span class="number">10</span>,<span class="number">32</span></span><br><span class="line">For further information, refer to the FlexNet Licensing documentation,</span><br><span class="line">available at <span class="string">&quot;www.flexerasoftware.com&quot;</span>.</span><br><span class="line"><span class="comment"># 将pdb id号存储为list</span></span><br><span class="line">In [<span class="number">2</span>]: pdb_list = [<span class="string">&#x27;6BHT&#x27;</span>,<span class="string">&#x27;4WYM&#x27;</span>,<span class="string">&#x27;6OBH&#x27;</span>,<span class="string">&#x27;6ECN&#x27;</span>,<span class="string">&#x27;5HGL&#x27;</span>,<span class="string">&#x27;2PWM&#x27;</span>,<span class="string">&#x27;2PWO&#x27;</span>,<span class="string">&#x27;6ECO&#x27;</span>,<span class="string">&#x27;6OM</span></span><br><span class="line"><span class="string">   ...: T&#x27;</span>,<span class="string">&#x27;3J3Y&#x27;</span>]</span><br><span class="line"><span class="comment"># 获取蛋白</span></span><br><span class="line">In [<span class="number">5</span>]: <span class="keyword">for</span>  i <span class="keyword">in</span> pdb_list:</span><br><span class="line">   ...:     pymol.cmd.fetch(i)</span><br><span class="line">   ...:</span><br><span class="line"> PyMOL <span class="keyword">not</span> running, entering library mode (experimental)</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> ExecutiveLoad-Detail: Detected mmCIF</span><br><span class="line"> <span class="comment"># 查看object名单</span></span><br><span class="line">In [<span class="number">6</span>]: pymol.cmd.get_object_list()</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">[<span class="string">&#x27;6BHT&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;4WYM&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;6OBH&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;6ECN&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;5HGL&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;2PWM&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;2PWO&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;6ECO&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;6OMT&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;3J3Y&#x27;</span>]</span><br><span class="line"> <span class="comment"># 两两比较rmsd</span></span><br><span class="line"> <span class="comment"># 构建两两组合表</span></span><br><span class="line">In [<span class="number">7</span>]: <span class="keyword">import</span> itertools</span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: combinations = <span class="built_in">list</span>(itertools.combinations(pdb_list, <span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: combinations</span><br><span class="line">Out[<span class="number">9</span>]:</span><br><span class="line">[(<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;4WYM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;6OBH&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;6ECN&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;5HGL&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;2PWM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6BHT&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;6OBH&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;6ECN&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;5HGL&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;2PWM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;4WYM&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;6ECN&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;5HGL&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;2PWM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OBH&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;5HGL&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;2PWM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECN&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;5HGL&#x27;</span>, <span class="string">&#x27;2PWM&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;5HGL&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;5HGL&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;5HGL&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;5HGL&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWM&#x27;</span>, <span class="string">&#x27;2PWO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWM&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWM&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWM&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWO&#x27;</span>, <span class="string">&#x27;6ECO&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWO&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;2PWO&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECO&#x27;</span>, <span class="string">&#x27;6OMT&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6ECO&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>),</span><br><span class="line"> (<span class="string">&#x27;6OMT&#x27;</span>, <span class="string">&#x27;3J3Y&#x27;</span>)]</span><br><span class="line">                    </span><br><span class="line"> <span class="comment"># 使用align进行比较,然后计算一下时间</span></span><br><span class="line">In [<span class="number">7</span>]: <span class="keyword">import</span> time</span><br><span class="line">   ...: a = time.time()</span><br><span class="line">   ...: print(pymol.cmd.align(combinations[<span class="number">0</span>][<span class="number">0</span>],combinations[<span class="number">0</span>][<span class="number">1</span>]))</span><br><span class="line">   ...: b = time.time()</span><br><span class="line">   ...: b - a</span><br><span class="line">(<span class="number">0.797596275806427</span>, <span class="number">17935</span>, <span class="number">5</span>, <span class="number">1.2639384269714355</span>, <span class="number">19167</span>, <span class="number">14602.0</span>, <span class="number">2772</span>)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="number">3.0302011966705322</span></span><br><span class="line">                  </span><br></pre></td></tr></table></figure>
+
+
+
+<p>输出的7个值为</p>
+<p>This returns a list with 7 items:</p>
+<ol>
+<li>RMSD after refinement</li>
+<li>Number of aligned atoms after refinement</li>
+<li>Number of refinement cycles</li>
+<li>RMSD before refinement</li>
+<li>Number of aligned atoms before refinement</li>
+<li>Raw alignment score</li>
+<li>Number of residues aligned</li>
+</ol>
+<p>简而言之，选择第一个就够用</p>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>PyMol-把它当作一个包来使</title>
+    <url>/2021/03/11/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/PyMol-%E6%8A%8A%E5%AE%83%E5%BD%93%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%8C%85%E6%9D%A5%E4%BD%BF/</url>
+    <content><![CDATA[<p>来，先看原网攻略：<a href="https://pymolwiki.org/index.php/Jupyter">https://pymolwiki.org/index.php/Jupyter</a></p>
+<p>养成好习惯</p>
+<p>我们都知道pymol有两种操作方式，一种是鼠标，一种是命令行，当然你如果把我使用sony手柄的那个算第三种的话，我也不反对。</p>
+<p>传送门：<a href="https://mp.weixin.qq.com/s?__biz=MzIxMzI2OTc2MQ==&amp;mid=2651144233&amp;idx=1&amp;sn=b78161417f999ff9a580c5023e9db5b9&amp;chksm=8c488c47bb3f05517916860cee68d15562b513d0d4278685217c29f23582f5c0932b4a9a5ad6&amp;token=95851457&amp;lang=zh_CN#rd">https://mp.weixin.qq.com/s?__biz=MzIxMzI2OTc2MQ==&amp;mid=2651144233&amp;idx=1&amp;sn=b78161417f999ff9a580c5023e9db5b9&amp;chksm=8c488c47bb3f05517916860cee68d15562b513d0d4278685217c29f23582f5c0932b4a9a5ad6&amp;token=95851457&amp;lang=zh_CN#rd</a></p>
+<p>**但是，现在的问题是 **</p>
+<ol>
+<li>pymol的功能是如此的强大，如何更加有效的使用</li>
+<li>pymol自带的命令行工具，对于我来说简直是魔鬼，而且，对于一个三维可视化工具，命令行总感觉不如鼠标更有感觉</li>
+</ol>
+<p>所以，我目前遇见的一个问题是，怎么去对比两个蛋白</p>
+<p>pymol是个包，我用conda安装</p>
+<p>所以，我们就可以</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">9</span>]: <span class="keyword">import</span> pymol2</span><br><span class="line">   ...: p1 = pymol2.PyMOL()</span><br><span class="line">   ...: p1.start()</span><br><span class="line">   ...: p1.cmd.load(<span class="string">&#x27;1AKE.pdb&#x27;</span>)</span><br><span class="line">   ...: p1.cmd.load(<span class="string">&#x27;1EN2.pdb&#x27;</span>)</span><br><span class="line">   ...: p1.cmd.align(<span class="string">&#x27;1AKE&#x27;</span>,<span class="string">&#x27;1EN2&#x27;</span>)</span><br><span class="line">Out[<span class="number">9</span>]: (<span class="number">3.6471645832061768</span>, <span class="number">42</span>, <span class="number">2</span>, <span class="number">3.824939250946045</span>, <span class="number">43</span>, <span class="number">21.0</span>, <span class="number">9</span>)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>将pymol作为一个包导入，然后使用cmd对其进行调用，这样就舒服一点</p>
+<p>至于cmd：<a href="https://pymol.org/pymol-command-ref.html">https://pymol.org/pymol-command-ref.html</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.19.异常</title>
+    <url>/2021/03/12/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/</url>
+    <content><![CDATA[<p>我们在运行python程序时，经常会出现一些异常。</p>
+<p>异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式.</p>
+<ul>
+<li><p>有可能是你自己写错了</p>
+</li>
+<li><p>也有可能是程序本身无法处理</p>
+</li>
+</ul>
+<p>但是，活得干呀，我们现在就来看下怎么处理异常</p>
+<p>python内部有很多异常，可以向用户直接汇报出信息</p>
+<p>来看下python本身的异常</p>
+<p>摘自：<a href="https://www.php.cn/python/python-exceptions.html">https://www.php.cn/python/python-exceptions.html</a></p>
+<table>
+<thead>
+<tr>
+<th>异常名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>BaseException</td>
+<td>所有异常的基类</td>
+</tr>
+<tr>
+<td>SystemExit</td>
+<td>解释器请求退出</td>
+</tr>
+<tr>
+<td>KeyboardInterrupt</td>
+<td>用户中断执行(通常是输入^C)</td>
+</tr>
+<tr>
+<td>Exception</td>
+<td>常规错误的基类</td>
+</tr>
+<tr>
+<td>StopIteration</td>
+<td>迭代器没有更多的值</td>
+</tr>
+<tr>
+<td>GeneratorExit</td>
+<td>生成器(generator)发生异常来通知退出</td>
+</tr>
+<tr>
+<td>StandardError</td>
+<td>所有的内建标准异常的基类</td>
+</tr>
+<tr>
+<td>ArithmeticError</td>
+<td>所有数值计算错误的基类</td>
+</tr>
+<tr>
+<td>FloatingPointError</td>
+<td>浮点计算错误</td>
+</tr>
+<tr>
+<td>OverflowError</td>
+<td>数值运算超出最大限制</td>
+</tr>
+<tr>
+<td>ZeroDivisionError</td>
+<td>除(或取模)零 (所有数据类型)</td>
+</tr>
+<tr>
+<td>AssertionError</td>
+<td>断言语句失败</td>
+</tr>
+<tr>
+<td>AttributeError</td>
+<td>对象没有这个属性</td>
+</tr>
+<tr>
+<td>EOFError</td>
+<td>没有内建输入,到达EOF 标记</td>
+</tr>
+<tr>
+<td>EnvironmentError</td>
+<td>操作系统错误的基类</td>
+</tr>
+<tr>
+<td>IOError</td>
+<td>输入/输出操作失败</td>
+</tr>
+<tr>
+<td>OSError</td>
+<td>操作系统错误</td>
+</tr>
+<tr>
+<td>WindowsError</td>
+<td>系统调用失败</td>
+</tr>
+<tr>
+<td>ImportError</td>
+<td>导入模块/对象失败</td>
+</tr>
+<tr>
+<td>LookupError</td>
+<td>无效数据查询的基类</td>
+</tr>
+<tr>
+<td>IndexError</td>
+<td>序列中没有此索引(index)</td>
+</tr>
+<tr>
+<td>KeyError</td>
+<td>映射中没有这个键</td>
+</tr>
+<tr>
+<td>MemoryError</td>
+<td>内存溢出错误(对于Python 解释器不是致命的)</td>
+</tr>
+<tr>
+<td>NameError</td>
+<td>未声明/初始化对象 (没有属性)</td>
+</tr>
+<tr>
+<td>UnboundLocalError</td>
+<td>访问未初始化的本地变量</td>
+</tr>
+<tr>
+<td>ReferenceError</td>
+<td>弱引用(Weak reference)试图访问已经垃圾回收了的对象</td>
+</tr>
+<tr>
+<td>RuntimeError</td>
+<td>一般的运行时错误</td>
+</tr>
+<tr>
+<td>NotImplementedError</td>
+<td>尚未实现的方法</td>
+</tr>
+<tr>
+<td>SyntaxError</td>
+<td>Python 语法错误</td>
+</tr>
+<tr>
+<td>IndentationError</td>
+<td>缩进错误</td>
+</tr>
+<tr>
+<td>TabError</td>
+<td>Tab 和空格混用</td>
+</tr>
+<tr>
+<td>SystemError</td>
+<td>一般的解释器系统错误</td>
+</tr>
+<tr>
+<td>TypeError</td>
+<td>对类型无效的操作</td>
+</tr>
+<tr>
+<td>ValueError</td>
+<td>传入无效的参数</td>
+</tr>
+<tr>
+<td>UnicodeError</td>
+<td>Unicode 相关的错误</td>
+</tr>
+<tr>
+<td>UnicodeDecodeError</td>
+<td>Unicode 解码时的错误</td>
+</tr>
+<tr>
+<td>UnicodeEncodeError</td>
+<td>Unicode 编码时错误</td>
+</tr>
+<tr>
+<td>UnicodeTranslateError</td>
+<td>Unicode 转换时错误</td>
+</tr>
+<tr>
+<td>Warning</td>
+<td>警告的基类</td>
+</tr>
+<tr>
+<td>DeprecationWarning</td>
+<td>关于被弃用的特征的警告</td>
+</tr>
+<tr>
+<td>FutureWarning</td>
+<td>关于构造将来语义会有改变的警告</td>
+</tr>
+<tr>
+<td>OverflowWarning</td>
+<td>旧的关于自动提升为长整型(long)的警告</td>
+</tr>
+<tr>
+<td>PendingDeprecationWarning</td>
+<td>关于特性将会被废弃的警告</td>
+</tr>
+<tr>
+<td>RuntimeWarning</td>
+<td>可疑的运行时行为(runtime behavior)的警告</td>
+</tr>
+<tr>
+<td>SyntaxWarning</td>
+<td>可疑的语法的警告</td>
+</tr>
+<tr>
+<td>UserWarning</td>
+<td>用户代码生成的警告</td>
+</tr>
+</tbody></table>
+<p>我们在运行程序时，需要捕捉或者避开这些异常</p>
+<p>就可以使用<code>try expect</code> 这个语句</p>
+<p>一般使用情景是：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	判断语句或者执行语句</span><br><span class="line"><span class="keyword">except</span> 报错名称：</span><br><span class="line">	报错之后的处理语句（你也可以简单打印）</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  如果没有的报错的话，可以在这里执行</span><br><span class="line">  例如：</span><br><span class="line">  print(<span class="string">&#x27;No Bug,happy&#x27;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">  扫尾语句</span><br></pre></td></tr></table></figure>
+
+<p>你也可以处理多个异常</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	判断语句或者执行语句</span><br><span class="line"><span class="keyword">except</span>(Exception1[, Exception2[,...ExceptionN]]]):</span><br><span class="line">	报错之后的处理语句（你也可以简单打印）</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  如果没有的报错的话，可以在这里执行</span><br><span class="line">  例如：</span><br><span class="line">  print(<span class="string">&#x27;No Bug,happy&#x27;</span>)</span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">  扫尾语句</span><br></pre></td></tr></table></figure>
+
+<p>当然，你也可以使用<code>expect:</code>来直接跳过所有异常</p>
+<p>但是，我并不建议使用，因为这比较容易隐藏一些bug</p>
+<p>而且你应该尽量减少<code>try expect</code> 中的代码量，毕竟，你是补货异常并处理，而不是再制造一个异常</p>
+<p>此外还有一种格式<code> try  finally</code> </p>
+<p>finally 通常放在最后作为扫尾工作</p>
+<p>在整个异常处理机制中，finally 语句的功能是：无论 try 块是否发生异常，最终都要进入 finally 语句，并执行其中的代码块。</p>
+<p>其实try expect的最简形式为·：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	判断语句或者执行语句</span><br><span class="line"><span class="keyword">except</span> 报错名称：</span><br><span class="line">	报错之后的处理语句（你也可以简单打印）</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们来看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a= [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>):</span><br><span class="line">   ...:     print(a[i])</span><br><span class="line">   ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">IndexError                                Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">2</span>-2cb727696c4c&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">      <span class="number">1</span> <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>):</span><br><span class="line">----&gt; 2     print(a[i])</span><br><span class="line">      <span class="number">3</span></span><br><span class="line"></span><br><span class="line">IndexError: <span class="built_in">list</span> index out of <span class="built_in">range</span></span><br></pre></td></tr></table></figure>
+
+<p>此时报错是IndexError </p>
+<p>接下来，我们来捕获他</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">3</span>]: <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>):</span><br><span class="line">   ...:     <span class="keyword">try</span>:</span><br><span class="line">   ...:         print(a[i])</span><br><span class="line">   ...:     <span class="keyword">except</span> IndexError:</span><br><span class="line">   ...:         print(<span class="string">&#x27;find index error&#x27;</span>)</span><br><span class="line">   ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">find index error</span><br></pre></td></tr></table></figure>
+
+<p>上面是，我们发现了一个index error ，然后捕获了他</p>
+<p>然后我们，在加入else看下：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">4</span>]: <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>):</span><br><span class="line">   ...:     <span class="keyword">try</span>:</span><br><span class="line">   ...:         print(a[i])</span><br><span class="line">   ...:     <span class="keyword">except</span> IndexError:</span><br><span class="line">   ...:         print(<span class="string">&#x27;find index error&#x27;</span>)</span><br><span class="line">   ...:     <span class="keyword">else</span>:</span><br><span class="line">   ...:         print(<span class="string">&#x27;no bug,lucky&#x27;</span>)</span><br><span class="line">   ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="number">2</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="number">3</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="number">4</span></span><br><span class="line">no bug,lucky</span><br><span class="line">find index error</span><br></pre></td></tr></table></figure>
+
+<p>我们可以很明显的看出，程序是先执行try except,再执行else</p>
+<p>我再加finally试一下</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span>  <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">5</span>):</span><br><span class="line">   ...:     <span class="keyword">try</span>:</span><br><span class="line">   ...:         print(a[i])</span><br><span class="line">   ...:     <span class="keyword">except</span> IndexError:</span><br><span class="line">   ...:         print(<span class="string">&#x27;find index error&#x27;</span>)</span><br><span class="line">   ...:     <span class="keyword">else</span>:</span><br><span class="line">   ...:         print(<span class="string">&#x27;no bug,lucky&#x27;</span>)</span><br><span class="line">   ...:     <span class="keyword">finally</span>:</span><br><span class="line">   ...:         print(<span class="string">&#x27;finally&#x27;</span>)</span><br><span class="line">   ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line">no bug,lucky</span><br><span class="line"><span class="keyword">finally</span></span><br><span class="line">find index error</span><br><span class="line"><span class="keyword">finally</span></span><br></pre></td></tr></table></figure>
+
+<p>我们可以看到，不管是是否出现异常总会有finally中的语句被执行</p>
+<p>而只有不报错时，else中的语句才会被执行</p>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
 </search>
