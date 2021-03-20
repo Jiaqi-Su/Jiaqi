@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/s.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/s.png?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hi" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="ZeroDesigner" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="简介今天我们来写一个每日一句 先看看效果  👻👽⭐👽🗻👻 python every day  生活的道路一旦选定，就要勇敢地走到底，决不回头。 ———————————— 🗓|日期：2021-03-20 🌏|坐标： 北京 🌌|天气： 晴 🌡|温度：低温 2℃~高温 15℃ 🌬|风力：3级  先来简单分析下  emoji web:https:&#x2F;&#x2F;www.emojiall.com&#x2F;z">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python每日一谈｜No.21.实例.3-Life-每天一句名人名言+天气预报">
+<meta property="og:url" content="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.3-Life-%E6%AF%8F%E5%A4%A9%E4%B8%80%E5%8F%A5%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80+%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.3-Life-%E6%AF%8F%E5%A4%A9%E4%B8%80%E5%8F%A5%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80+%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/index.html">
+<meta property="og:site_name" content="ZeroDesigner">
+<meta property="og:description" content="简介今天我们来写一个每日一句 先看看效果  👻👽⭐👽🗻👻 python every day  生活的道路一旦选定，就要勇敢地走到底，决不回头。 ———————————— 🗓|日期：2021-03-20 🌏|坐标： 北京 🌌|天气： 晴 🌡|温度：低温 2℃~高温 15℃ 🌬|风力：3级  先来简单分析下  emoji web:https:&#x2F;&#x2F;www.emojiall.com&#x2F;z">
+<meta property="og:locale">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210320143730509.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210320162145213.png">
+<meta property="og:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/Screen%20Shot%202021-03-20%20at%204.22.14%20PM.png">
+<meta property="article:published_time" content="2021-03-20T06:16:27.332Z">
+<meta property="article:modified_time" content="2021-03-20T11:31:45.849Z">
+<meta property="article:author" content="Jiaqi Su">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210320143730509.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://example.com/2021/03/20/python-every-day/Python每日一谈｜No.21.实例.3-Life-每天一句名人名言+天气预报/Python每日一谈｜No.21.实例.3-Life-每天一句名人名言+天气预报/"/>
+
+
+
+
+
+  <title>Python每日一谈｜No.21.实例.3-Life-每天一句名人名言+天气预报 | ZeroDesigner</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">ZeroDesigner</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">一切的失败源于我们对世界认知的模糊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.3-Life-%E6%AF%8F%E5%A4%A9%E4%B8%80%E5%8F%A5%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80+%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.3-Life-%E6%AF%8F%E5%A4%A9%E4%B8%80%E5%8F%A5%E5%90%8D%E4%BA%BA%E5%90%8D%E8%A8%80+%E5%A4%A9%E6%B0%94%E9%A2%84%E6%8A%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dinosaur.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZeroDesigner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python每日一谈｜No.21.实例.3-Life-每天一句名人名言+天气预报</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-20T14:16:27+08:00">
+                2021-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">Python每日一谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.1k 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>今天我们来写一个每日一句</p>
+<p>先看看效果</p>
+<hr>
+<p>👻👽⭐👽🗻👻</p>
+<p>python every day</p>
+<p> 生活的道路一旦选定，就要勇敢地走到底，决不回头。</p>
+<p>————————————</p>
+<p>🗓|日期：2021-03-20</p>
+<p>🌏|坐标： 北京</p>
+<p>🌌|天气： 晴</p>
+<p>🌡|温度：低温 2℃~高温 15℃</p>
+<p>🌬|风力：3级</p>
+<hr>
+<p>先来简单分析下</p>
+<ol>
+<li><p>emoji</p>
+<p>web:<a target="_blank" rel="noopener" href="https://www.emojiall.com/zh-hans">https://www.emojiall.com/zh-hans</a></p>
+<p>简介：绘文字（日语：絵文字/えもじemoji）是日本在无线通信中所使用的视觉情感符号，绘指图画，文字指的则是字符，可用来代表多种表情，如笑脸表示笑、蛋糕表示食物等。 在NTTDoCoMo的i-mode系统电话系统中，绘文字的尺寸是12x12像素，在传送时，一个图形有2个字节。Unicode编码为E63E到E757，而在Shift-JIS编码则是从F89F到F9FC。基本的绘文字共有176个符号，在C-HTML4.0的编程语言中，则另增添了76个情感符号。 最早由栗田穰崇（Shigetaka Kurita）创作，并在日本网络及手机用户中流行。 自苹果公司发布的iOS 5输入法中加入了emoji后，这种表情符号开始席卷全球，目前emoji已被大多数现代计算机系统所兼容的Unicode编码采纳，普遍应用于各种手机短信和社交网络中。</p>
+<p>来源于–知乎</p>
+<p>然后，使用一个python包来调用</p>
+<p>web：<a target="_blank" rel="noopener" href="https://pypi.org/project/emoji/">https://pypi.org/project/emoji/</a></p>
+<p>安装：<code>pip install emoji</code></p>
+<p>先看一下关键字和表情的对应表：<a target="_blank" rel="noopener" href="https://www.webfx.com/tools/emoji-cheat-sheet/">https://www.webfx.com/tools/emoji-cheat-sheet/</a></p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210320143730509.png" alt="image-20210320143730509"></p>
+<p>使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">In [29]:import emoji</span><br><span class="line">In [30]: print(emoji.emojize(&#39;:smile:&#39;,use_aliases&#x3D;True))</span><br><span class="line">😄</span><br></pre></td></tr></table></figure></li>
+<li><p>python every day</p>
+<p>欢迎关注我的微信公众号(FindKey)，知乎(ZeroDesigner)，b站(ZeroDesigner)什么的，没了，这就是一个字符串</p>
+</li>
+<li><p>名人名言</p>
+<p>我们先来找碗鸡汤</p>
+<p>我这里准备了一份，在当前目录下，为<code>tsv</code>格式,分割符为<code>table</code>键，名称为<code>名人名言.tsv</code></p>
+<p>先来看下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">名言	出处</span><br><span class="line">君子赠人以言，庶人赠人以财。	荀况</span><br><span class="line">使意志获得自由的唯一途径，就是让意志摆脱任性。	黑尔</span><br><span class="line">如烟往事俱忘却，心底无私天地宽。	陶铸</span><br><span class="line">执着追求并从中得到最大快乐的人，才是成功者。	梭罗</span><br><span class="line">有百折不挠的信念的所支持的人的意志，比那些似乎是无敌的物质力量有更强大的威力。	爱因斯坦</span><br><span class="line">生活在我们这个世界里，不读书就完全不可能了解人。	高尔基</span><br><span class="line">一个人即使已登上顶峰，也仍要自强不息。	罗素·贝克</span><br><span class="line">对具有高度自觉与深邃透彻的心灵的人来说，痛苦与烦恼是他必备的气质。	陀思妥耶夫斯基</span><br><span class="line">先相信你自己，然后别人才会相信你。	屠格涅夫</span><br><span class="line">上天赋予的生命，就是要为人类的繁荣和平和幸福而奉献。	松下幸之助</span><br></pre></td></tr></table></figure>
+<p>安装<code>pandas</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pandas</span><br></pre></td></tr></table></figure>
+<p> 使用：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">5</span>]: <span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">   ...: data = pd.read_csv(<span class="string">&#x27;./soup-master/名人名言.tsv&#x27;</span>,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: data</span><br><span class="line">Out[<span class="number">6</span>]:</span><br><span class="line">                                         名言          出处</span><br><span class="line"><span class="number">0</span>                            君子赠人以言，庶人赠人以财。          荀况</span><br><span class="line"><span class="number">1</span>                   使意志获得自由的唯一途径，就是让意志摆脱任性。          黑尔</span><br><span class="line"><span class="number">2</span>                          如烟往事俱忘却，心底无私天地宽。          陶铸</span><br><span class="line"><span class="number">3</span>                    执着追求并从中得到最大快乐的人，才是成功者。          梭罗</span><br><span class="line"><span class="number">4</span>   有百折不挠的信念的所支持的人的意志，比那些似乎是无敌的物质力量有更强大的威力。        爱因斯坦</span><br><span class="line">..                                      ...         ...</span><br><span class="line"><span class="number">95</span>                           节制使快乐增加并使享受加强。       德谟克利特</span><br><span class="line"><span class="number">96</span>               书不仅是生活，而且是现在、过去和未来文化生活的源泉。        库法耶夫</span><br><span class="line"><span class="number">97</span>                          奢侈是舒适的，否则就不是奢侈。  CocoChanel</span><br><span class="line"><span class="number">98</span>                       命运压不垮一个人，只会使人坚强起来。          伯尔</span><br><span class="line"><span class="number">99</span>                            沉沉的黑夜都是白天的前奏。         郭小川</span><br><span class="line"></span><br><span class="line">[<span class="number">100</span> rows x <span class="number">2</span> columns]</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>获取日期</p>
+<p>使用python自带的datatime模块</p>
+<p>例如:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">39</span>]: <span class="comment"># 导入</span></span><br><span class="line">    ...: <span class="keyword">import</span> datetime</span><br><span class="line">    ...: <span class="comment"># 获取当前时间，并且格式化为年-月-日形式</span></span><br><span class="line">    ...: t = datetime.datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">    ...: print(t)</span><br><span class="line"><span class="number">2021</span>-03-<span class="number">20</span></span><br></pre></td></tr></table></figure></li>
+<li><p>获取地址，定位到城市</p>
+<p>a. 首先查询本机ip地址</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">100</span>]: <span class="comment">#导入python自带的包</span></span><br><span class="line">     ...: <span class="keyword">import</span> requests</span><br><span class="line">     ...: url = <span class="string">&#x27;http://txt.go.sohu.com/ip/soip&#x27;</span></span><br><span class="line">     ...: web = requests.get(url)</span><br><span class="line">     ...: web.text</span><br><span class="line">Out[<span class="number">100</span>]: <span class="string">&#x27;String.prototype.getQueryString=function(v)&#123;var reg=new RegExp(&quot;(^|&amp;|\\\\?)&quot; + v + &quot;=([^&amp;]*)(&amp;|$)&quot;), r;if(r=this.match(reg))&#123;return unescape(r[2]);&#125;return null;&#125;;var sohu_IP_Loc=&quot;unknown&quot;,LocUrl=document.location.href;if((LocUrl.indexOf(&quot;sohusce.com&quot;) &gt;= 0)||(LocUrl.indexOf(&quot;sohu.com&quot;) &gt;= 0)||(LocUrl.indexOf(&quot;chinaren.com&quot;) &gt;= 0)||(LocUrl.indexOf(&quot;17173.com&quot;) &gt;= 0)||(LocUrl.indexOf(&quot;focus.cn&quot;) &gt;= 0))&#123;window.sohu_user_ip=&quot;111.201.148.162&quot;;sohu_IP_Loc=&quot;CN110000&quot;;sohu_IP_Loc_V=&quot;CN110000&quot;;&#125;var AdLoc2=sohu_IP_Loc.substr(0,2),AdLoc4=sohu_IP_Loc.substr(0,4),AdLoc6=sohu_IP_Loc.substr(0,6);if(window.location.href.getQueryString(&quot;ip&quot;))sohu_IP_Loc=AdLoc2=AdLoc4=AdLoc6=window.location.href.getQueryString(&quot;ip&quot;);&#x27;</span></span><br><span class="line"><span class="comment"># 可以看到ip地址为111.201.148.162</span></span><br><span class="line"><span class="comment">#先分割，取1号，再分割，取0，当然，你喜欢用正则，我也不拦着</span></span><br><span class="line">In [<span class="number">103</span>]: web.text.split(<span class="string">&#x27;&#123;window.sohu_user_ip=&quot;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;&quot;;sohu_IP_Loc=&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">Out[<span class="number">103</span>]: <span class="string">&#x27;111.201.148.162&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>b. 根据ip地址获取城市信息</p>
+<p>一般分为两种方式</p>
+<ol>
+<li><p>一种是使用api通过网页</p>
+</li>
+<li><p>一种是离线：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qf0129/article/details/83145765">https://blog.csdn.net/qf0129/article/details/83145765</a></p>
+</li>
+</ol>
+<p>我现在使用网页api</p>
+<p>地址：<a target="_blank" rel="noopener" href="https://www.ip138.com/">https://www.ip138.com</a></p>
+<p>申请一个token</p>
+<p><a target="_blank" rel="noopener" href="https://user.ip138.com/ip/">https://user.ip138.com/ip/</a></p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210320162145213.png" alt="image-20210320162145213"></p>
+<p>选择在线API申请，注册完成之后，校验信息那边有token</p>
+<p><img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/Screen%20Shot%202021-03-20%20at%204.22.14%20PM.png" alt="Screen Shot 2021-03-20 at 4.22.14 PM"></p>
+<p>ip查询接口文档为：</p>
+<p><a target="_blank" rel="noopener" href="https://user.ip138.com/ip/doc">https://user.ip138.com/ip/doc</a></p>
+<p>查询：</p>
+<p><a target="_blank" rel="noopener" href="http://api.ip138.com/ip/?ip=%E5%A1%AB%E5%85%A5%E4%BD%A0%E7%9A%84ip%E5%9C%B0%E5%9D%80&amp;datatype=text&amp;token=%E5%A1%AB%E5%85%A5%E4%BD%A0%E7%9A%84token">http://api.ip138.com/ip/?ip=填入你的ip地址&amp;datatype=text&amp;token=填入你的token</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">98</span>]: <span class="keyword">import</span> requests</span><br><span class="line"> ...: url = <span class="string">&#x27;http://api.ip138.com/ip/?ip=111.200.157.165&amp;datatype=text&amp;token=abbbcccddd123456789&#x27;</span></span><br><span class="line"> ...: web = requests.get(url)</span><br><span class="line"> ...: web.text</span><br><span class="line">Out[<span class="number">98</span>]: <span class="string">&#x27;111.200.157.165\t中国 北京 北京  联通 100000 010&#x27;</span></span><br><span class="line">In [<span class="number">99</span>]: <span class="comment"># 很明显的可以看到是国家省份城市</span></span><br><span class="line"> ...: <span class="comment"># 我们再来看一个</span></span><br><span class="line">In [<span class="number">97</span>]: <span class="keyword">import</span> requests</span><br><span class="line">...: url = <span class="string">&#x27;http://api.ip138.com/ip/?ip=27.128.190.0&amp;datatype=text&amp;token=f6f</span></span><br><span class="line"><span class="string">...: 83777eef0804454d340dd7aabbcb4&#x27;</span></span><br><span class="line">...: web = requests.get(url)</span><br><span class="line">...: web.text</span><br><span class="line">Out[<span class="number">97</span>]: <span class="string">&#x27;27.128.190.0\t中国 河北 石家庄  电信 050000 0311&#x27;</span></span><br><span class="line">In [<span class="number">97</span>]: <span class="comment"># 获取城市信息</span></span><br><span class="line">In [<span class="number">74</span>]: city = web.text.split()[<span class="number">3</span>]</span><br><span class="line">In [<span class="number">75</span>]: city</span><br><span class="line">Out[<span class="number">75</span>]: <span class="string">&#x27;石家庄&#x27;</span>  </span><br></pre></td></tr></table></figure></li>
+<li><p>查询本市的天气</p>
+<p>使用中华万年历API接口，获取天气信息，json格式</p>
+<p><a target="_blank" rel="noopener" href="http://wthrcdn.etouch.cn/weather_mini?city=%E5%8C%97%E4%BA%AC">http://wthrcdn.etouch.cn/weather_mini?city=北京</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">In [<span class="number">96</span>]: <span class="keyword">import</span> requests</span><br><span class="line">    ...: url = <span class="string">&#x27;http://wthrcdn.etouch.cn/weather_mini?city=北京&#x27;</span></span><br><span class="line">    ...: web = requests.get(url)</span><br><span class="line">    ...: web.text</span><br><span class="line">Out[<span class="number">96</span>]: <span class="string">&#x27;&#123;&quot;data&quot;:&#123;&quot;yesterday&quot;:&#123;&quot;date&quot;:&quot;19日星期五&quot;,&quot;high&quot;:&quot;高温 10℃&quot;,&quot;fx&quot;:&quot;西南风&quot;,&quot;low&quot;:&quot;低温 3℃&quot;,&quot;fl&quot;:&quot;&lt;![CDATA[2级]]&gt;&quot;,&quot;type&quot;:&quot;小雨&quot;&#125;,&quot;city&quot;:&quot;北京&quot;,&quot;forecast&quot;:[&#123;&quot;date&quot;:&quot;20日星期六&quot;,&quot;high&quot;:&quot;高温 15℃&quot;,&quot;fengli&quot;:&quot;&lt;![CDATA[3级]]&gt;&quot;,&quot;low&quot;:&quot;低温 3℃&quot;,&quot;fengxiang&quot;:&quot;西北风&quot;,&quot;type&quot;:&quot;晴&quot;&#125;,&#123;&quot;date&quot;:&quot;21日星期天&quot;,&quot;high&quot;:&quot;高温 13℃&quot;,&quot;fengli&quot;:&quot;&lt;![CDATA[3级]]&gt;&quot;,&quot;low&quot;:&quot;低温 0℃&quot;,&quot;fengxiang&quot;:&quot;西北风&quot;,&quot;type&quot;:&quot;晴&quot;&#125;,&#123;&quot;date&quot;:&quot;22日星期一&quot;,&quot;high&quot;:&quot;高温 18℃&quot;,&quot;fengli&quot;:&quot;&lt;![CDATA[2级]]&gt;&quot;,&quot;low&quot;:&quot;低温 3℃&quot;,&quot;fengxiang&quot;:&quot;西南风&quot;,&quot;type&quot;:&quot;晴&quot;&#125;,&#123;&quot;date&quot;:&quot;23日星期二&quot;,&quot;high&quot;:&quot;高温 19℃&quot;,&quot;fengli&quot;:&quot;&lt;![CDATA[1级]]&gt;&quot;,&quot;low&quot;:&quot;低温 7℃&quot;,&quot;fengxiang&quot;:&quot;南风&quot;,&quot;type&quot;:&quot;晴&quot;&#125;,&#123;&quot;date&quot;:&quot;24日星期三&quot;,&quot;high&quot;:&quot;高温 20℃&quot;,&quot;fengli&quot;:&quot;&lt;![CDATA[2级]]&gt;&quot;,&quot;low&quot;:&quot;低温 4℃&quot;,&quot;fengxiang&quot;:&quot;北风&quot;,&quot;type&quot;:&quot;晴&quot;&#125;],&quot;ganmao&quot;:&quot;感冒易发期，外出请适当调整衣物，注意补充水分。&quot;,&quot;wendu&quot;:&quot;12&quot;&#125;,&quot;status&quot;:1000,&quot;desc&quot;:&quot;OK&quot;&#125;&#x27;</span></span><br><span class="line">In [<span class="number">97</span>]: <span class="comment"># 解析json</span></span><br><span class="line">In [<span class="number">104</span>]: <span class="keyword">import</span> json</span><br><span class="line">In [<span class="number">131</span>]: wea_dict=json.loads(web.text)</span><br><span class="line">In [<span class="number">132</span>]: wea_dict</span><br><span class="line">Out[<span class="number">132</span>]:</span><br><span class="line">&#123;<span class="string">&#x27;data&#x27;</span>: &#123;<span class="string">&#x27;yesterday&#x27;</span>: &#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;19日星期五&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 10℃&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;fx&#x27;</span>: <span class="string">&#x27;西南风&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 3℃&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;fl&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[2级]]&gt;&#x27;</span>,</span><br><span class="line">   <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;小雨&#x27;</span>&#125;,</span><br><span class="line">  <span class="string">&#x27;city&#x27;</span>: <span class="string">&#x27;北京&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;forecast&#x27;</span>: [&#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;20日星期六&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 15℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[3级]]&gt;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 3℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;西北风&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;,</span><br><span class="line">   &#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;21日星期天&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 13℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[3级]]&gt;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 0℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;西北风&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;,</span><br><span class="line">   &#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;22日星期一&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 18℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[2级]]&gt;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 3℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;西南风&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;,</span><br><span class="line">   &#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;23日星期二&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 19℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[1级]]&gt;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 7℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;南风&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;,</span><br><span class="line">   &#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;24日星期三&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 20℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[2级]]&gt;&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 4℃&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;北风&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;],</span><br><span class="line">  <span class="string">&#x27;ganmao&#x27;</span>: <span class="string">&#x27;感冒易发期，外出请适当调整衣物，注意补充水分。&#x27;</span>,</span><br><span class="line">  <span class="string">&#x27;wendu&#x27;</span>: <span class="string">&#x27;12&#x27;</span>&#125;,</span><br><span class="line"> <span class="string">&#x27;status&#x27;</span>: <span class="number">1000</span>,</span><br><span class="line"> <span class="string">&#x27;desc&#x27;</span>: <span class="string">&#x27;OK&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">135</span>]: <span class="comment"># 所以今天的天气为</span></span><br><span class="line">In [<span class="number">136</span>]: wea_dict[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;forecast&#x27;</span>][<span class="number">0</span>]</span><br><span class="line">Out[<span class="number">136</span>]:</span><br><span class="line">&#123;<span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;20日星期六&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;high&#x27;</span>: <span class="string">&#x27;高温 15℃&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;fengli&#x27;</span>: <span class="string">&#x27;&lt;![CDATA[3级]]&gt;&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;low&#x27;</span>: <span class="string">&#x27;低温 3℃&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;fengxiang&#x27;</span>: <span class="string">&#x27;西北风&#x27;</span>,</span><br><span class="line"> <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;晴&#x27;</span>&#125;</span><br><span class="line">   </span><br></pre></td></tr></table></figure></li>
+<li><p>整体代码</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="comment"># 导入所需包</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> emoji</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机形成几个emoji字符</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_emoji</span>(<span class="params">num</span>):</span></span><br><span class="line">    <span class="comment"># 挑选几个比较优质的emoji</span></span><br><span class="line">    emoji_list = [<span class="string">&#x27;:thumbs_up:&#x27;</span>,<span class="string">&#x27;:collision:&#x27;</span>,<span class="string">&#x27;:star:&#x27;</span>,<span class="string">&#x27;:sparkles:&#x27;</span>,<span class="string">&#x27;:alien:&#x27;</span>,<span class="string">&#x27;:fire:&#x27;</span>,<span class="string">&#x27;:whale:&#x27;</span>,   <span class="string">&#x27;:mount_fuji:&#x27;</span>,<span class="string">&#x27;:ghost:&#x27;</span>]</span><br><span class="line">    <span class="comment"># 将其随机组合成几个字符</span></span><br><span class="line">    emoji_str = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(num):</span><br><span class="line">      emoji_str = emoji_str + random.choice(emoji_list)</span><br><span class="line">    <span class="keyword">return</span> emoji_str</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 读取名人名言并随机选择一条</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_saying</span>(<span class="params">file</span>):</span></span><br><span class="line">    df = pd.read_csv(file,sep=<span class="string">&#x27;\t&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> random.choice(df[<span class="string">&#x27;名言&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义获取ip的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_host_ip</span>():</span></span><br><span class="line">    url = <span class="string">&#x27;http://txt.go.sohu.com/ip/soip&#x27;</span></span><br><span class="line">    web = requests.get(url)</span><br><span class="line">    <span class="keyword">return</span> web.text.split(<span class="string">&#x27;&#123;window.sohu_user_ip=&quot;&#x27;</span>)[<span class="number">1</span>].split(<span class="string">&#x27;&quot;;sohu_IP_Loc=&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 定义通过ip获取城市的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_city</span>(<span class="params">ip,token</span>):</span></span><br><span class="line">    url = <span class="string">&#x27;http://api.ip138.com/ip/?ip=&#x27;</span>+ip+<span class="string">&#x27;&amp;datatype=text&amp;token=&#x27;</span>+token</span><br><span class="line">    web = requests.get(url)</span><br><span class="line">    <span class="keyword">return</span> web.text.split()[<span class="number">3</span>]</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 定义通过城市获取天气信息的函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_weather</span>(<span class="params">city</span>):</span></span><br><span class="line">    url = <span class="string">&#x27;http://wthrcdn.etouch.cn/weather_mini?city=&#x27;</span>+city</span><br><span class="line">    web = requests.get(url)</span><br><span class="line">    wea_dict = json.loads(web.text)</span><br><span class="line">    <span class="keyword">return</span> wea_dict[<span class="string">&#x27;data&#x27;</span>][<span class="string">&#x27;forecast&#x27;</span>][<span class="number">0</span>]</span><br><span class="line">  </span><br><span class="line"><span class="comment"># 填入我们的格式化字符串中</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">output_str</span>(<span class="params">emoji_str,saying,city,wea_dict</span>):</span></span><br><span class="line">    <span class="comment"># 获取日期</span></span><br><span class="line">    date = datetime.datetime.now().strftime(<span class="string">&#x27;%Y-%m-%d&#x27;</span>)</span><br><span class="line">    <span class="comment"># 格式化字符串</span></span><br><span class="line">    format_str = <span class="string">&quot;%s \npython every day\n %s \n————————————  \n🗓|日期：%s \n🌏|坐标： %s\n🌌|天气： %s\n🌡|温度：%s\n🌬|风力：%s&quot;</span></span><br><span class="line">    <span class="comment"># 解析天气信息</span></span><br><span class="line">    wea_type = wea_dict[<span class="string">&#x27;type&#x27;</span>]</span><br><span class="line">    wind = wea_dict[<span class="string">&#x27;fengli&#x27;</span>].split(<span class="string">&#x27;CDATA[&#x27;</span>)[<span class="number">1</span>][:<span class="number">2</span>]</span><br><span class="line">    temp = wea_dict[<span class="string">&#x27;low&#x27;</span>] + <span class="string">&#x27;~&#x27;</span> + wea_dict[<span class="string">&#x27;high&#x27;</span>]</span><br><span class="line">    out = format_str % (emoji_str, saying, date, city, wea_type, temp,wind)</span><br><span class="line">    <span class="keyword">return</span> out</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">simply_get_everyday</span>(<span class="params">num = <span class="number">6</span>, file = <span class="string">&#x27;./soup-master/名人名言.tsv&#x27;</span>, token = <span class="string">&#x27;get_by_yourself&#x27;</span></span>):</span></span><br><span class="line">    <span class="comment"># 注释：因为无复杂函数，所以只是为此函数作说明</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    描述:</span></span><br><span class="line"><span class="string">        自动获取当前地理位置，天气，以及名人名言</span></span><br><span class="line"><span class="string">        输出每日一句</span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        num: 需要emoji 的数目,默认为 6,类型:int</span></span><br><span class="line"><span class="string">        file: 名人名言文件存放目录,默认为 ./soup-master/名人名言.tsv,类型:str</span></span><br><span class="line"><span class="string">        token: 申请的http://api.ip138.com/ip 的token,默认为 get_by_yourself,类型:str</span></span><br><span class="line"><span class="string">    返回：</span></span><br><span class="line"><span class="string">        out,含有emoji的字符串,类型:str</span></span><br><span class="line"><span class="string">    使用：</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; out = simply_get_everyday(6,&#x27;./soup-master/名人名言.tsv&#x27;,&#x27;aaaaaaaabbbbbbcccccddddd123454&#x27;)</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; print(out)</span></span><br><span class="line"><span class="string">            👻👽⭐👽🗻👻</span></span><br><span class="line"><span class="string">            python every day</span></span><br><span class="line"><span class="string">             生活的道路一旦选定，就要勇敢地走到底，决不回头。</span></span><br><span class="line"><span class="string">            ————————————</span></span><br><span class="line"><span class="string">            🗓|日期：2021-03-20</span></span><br><span class="line"><span class="string">            🌏|坐标： 北京</span></span><br><span class="line"><span class="string">            🌌|天气： 晴</span></span><br><span class="line"><span class="string">            🌡|温度：低温 2℃~高温 15℃</span></span><br><span class="line"><span class="string">            🌬|风力：3级</span></span><br><span class="line"><span class="string">    异常：</span></span><br><span class="line"><span class="string">        TypeError: emoji的数目类型输入错误</span></span><br><span class="line"><span class="string">        IndexError: token输入错误，或者已经失效</span></span><br><span class="line"><span class="string">        FileNotFoundError: 名人名言文件位置输入错误</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    emoji_str = random_emoji(num)</span><br><span class="line">    saying = get_saying(file)</span><br><span class="line">    ip = get_host_ip()</span><br><span class="line">    city = get_city(ip,token)</span><br><span class="line">    wea_dict = get_weather(city)</span><br><span class="line">    out = output_str(emoji_str,saying,city,wea_dict)</span><br><span class="line">    <span class="keyword">return</span> emoji.emojize(out)</span><br><span class="line"><span class="comment"># 进入主函数</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    print(simply_get_everyday(num = <span class="number">6</span>, file = <span class="string">&#x27;./soup-master/名人名言.tsv&#x27;</span>, token = <span class="string">&#x27;aaaaaabbbbbcccccddddd1234&#x27;</span>))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/2.png" alt=" wechat" style="width: auto;  height:250px; max-width: 100%;"/>
+    <div>欢迎您扫一扫上面的微信公众号，订阅我的博客！</div>
+</div>
+
+      </div>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/03/15/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.1-PyMol.2/" rel="next" title="Python每日一谈｜No.21.实例.1-PyMol.2-计算RMSD">
+                <i class="fa fa-chevron-left"></i> Python每日一谈｜No.21.实例.1-PyMol.2-计算RMSD
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/dinosaur.jpg"
+                alt="" />
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/luskyqi1995" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:luskyqi@outlook.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/zerodesigner" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-crosshairs"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jiaqi Su</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
