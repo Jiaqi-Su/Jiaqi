@@ -2090,9 +2090,15 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
 <p><del>然后这次水一波PyMol</del></p>
 <ol>
 <li><p>安装</p>
-<p>官网：<a href="https://pymol.org/2/">https://pymol.org/2/</a></p>
-<p>假设你已经安装了<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">conda</a></p>
-<p>命令行安装：<code>conda install -c schrodinger pymol-bundle</code></p>
+<ul>
+<li><p>官网：<a href="https://pymol.org/2/">https://pymol.org/2/</a></p>
+</li>
+<li><p>开源版本：<a href="https://sourceforge.net/projects/pymol/">https://sourceforge.net/projects/pymol/</a></p>
+</li>
+<li><p>或者假设你已经安装了<a href="https://mirrors.tuna.tsinghua.edu.cn/help/anaconda/">conda</a></p>
+</li>
+</ul>
+<p>​        命令行安装：<code>conda install -c schrodinger pymol-bundle</code></p>
 </li>
 <li><p>使用</p>
 <p>当然你可以在某一环境下，直接输入pymol，打开可视化界面</p>
@@ -2118,6 +2124,7 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">   In [<span class="number">8</span>]: <span class="built_in">help</span>(pymol.cmd.fab)</span><br><span class="line">Help on function fab <span class="keyword">in</span> module pymol.editor:</span><br><span class="line">   fab(<span class="built_in">input</span>, name=<span class="literal">None</span>, mode=<span class="string">&#x27;peptide&#x27;</span>, resi=<span class="number">1</span>, chain=<span class="string">&#x27;&#x27;</span>, segi=<span class="string">&#x27;&#x27;</span>, state=-<span class="number">1</span>, <span class="built_in">dir</span>=<span class="number">1</span>, hydro=-<span class="number">1</span>, ss=<span class="number">0</span>, async_=<span class="number">0</span>, quiet=<span class="number">1</span>, _self=&lt;module <span class="string">&#x27;pymol.cmd&#x27;</span> <span class="keyword">from</span> <span class="string">&#x27;/Users/sujiaqi/miniconda3/envs/py3/lib/python3.7/site-packages/pymol/cmd.py&#x27;</span>&gt;, **kwargs)</span><br><span class="line"> DESCRIPTION</span><br><span class="line">   </span><br><span class="line">        Build a peptide</span><br><span class="line">    </span><br><span class="line">    ARGUMENTS</span><br><span class="line">    </span><br><span class="line">        <span class="built_in">input</span> = <span class="built_in">str</span>: sequence <span class="keyword">in</span> one-letter code</span><br><span class="line">    </span><br><span class="line">        name = <span class="built_in">str</span>: name of <span class="built_in">object</span> to create &#123;default: &#125;</span><br><span class="line">    </span><br><span class="line">        ss = <span class="built_in">int</span>: Secondary structure <span class="number">1</span>=alpha helix, <span class="number">2</span>=antiparallel beta, <span class="number">3</span>=parallel beta, <span class="number">4</span>=flat</span><br><span class="line">    </span><br><span class="line">    EXAMPLE</span><br><span class="line">    </span><br><span class="line">        fab ACDEFGH</span><br><span class="line">        fab ACDEFGH, helix, ss=<span class="number">1</span></span><br><span class="line">   In [<span class="number">10</span>]: pymol.cmd.fab(<span class="string">&#x27;ACDEFGH&#x27;</span>, <span class="string">&#x27;helix&#x27;</span>, ss=<span class="number">1</span>)</span><br><span class="line">   <span class="comment"># 看下object列表</span></span><br><span class="line">   In [<span class="number">11</span>]:  pymol.cmd.get_object_list()</span><br><span class="line">   Out[<span class="number">11</span>]: [<span class="string">&#x27;3nss&#x27;</span>, <span class="string">&#x27;helix&#x27;</span>]</span><br><span class="line">   <span class="comment"># 保存</span></span><br><span class="line">   In [<span class="number">13</span>]: pymol.cmd.save(<span class="string">&#x27;helix.pdb&#x27;</span>,<span class="string">&#x27;helix&#x27;</span>,<span class="built_in">format</span>=<span class="string">&#x27;pdb&#x27;</span>)</span><br><span class="line">   <span class="comment"># 你可以使用jupyter notebook进行查看，bio3d包</span></span><br><span class="line">   <span class="comment"># 也可以使用pymol直接打开进行查看</span></span><br></pre></td></tr></table></figure>
+
 <p>   <img src="https://gitee.com/luskyqi/markdown-png/raw/master/uPic/image-20210314115756456.png" alt="image-20210314115756456"></p>
 <p>水文结束，see u.</p>
 ]]></content>
@@ -2144,8 +2151,6 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
 
 <p>那么我们就可以在下次启动的时候，使用反序列化获得a</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 打开文件</span></span><br><span class="line">In [<span class="number">11</span>]: f = <span class="built_in">open</span>(<span class="string">&#x27;a.txt&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>)</span><br><span class="line"><span class="comment"># 反序列化</span></span><br><span class="line">In [<span class="number">12</span>]: b = pickle.load(f)</span><br><span class="line"><span class="comment"># 查看b</span></span><br><span class="line">In [<span class="number">13</span>]: b</span><br><span class="line">Out[<span class="number">13</span>]: <span class="string">&#x27;1234&#x27;</span></span><br></pre></td></tr></table></figure>
-
-
 
 
 
