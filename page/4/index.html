@@ -334,6 +334,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/02/12/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E5%9B%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E4%B8%8E%E5%88%86%E5%AD%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/02/12/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E5%9B%BE%E7%9A%84%E4%B8%A4%E7%A7%8D%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E4%B8%8E%E5%88%86%E5%AD%90%E6%96%87%E4%BB%B6%E7%9A%84%E5%85%B3%E7%B3%BB/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -518,6 +528,16 @@ https://www.cnblogs.com/kaituorensheng/p/5423131.htm
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/02/09/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%A7%91%E7%A0%94%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-scholarscope/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/02/09/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/%E6%9B%B4%E5%A5%BD%E7%9A%84%E7%A7%91%E7%A0%94%E8%BE%85%E5%8A%A9%E5%B7%A5%E5%85%B7-scholarscope/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -636,8 +656,6 @@ Web: https://www.scholarscope.cn/index.html
 
 
           
-  <div id="gitalk-container"></div>
-
 
 
         </div>
@@ -952,6 +970,28 @@ Web: https://www.scholarscope.cn/index.html
 
 
 
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'NzxmcypSDJ0YNEsTOLQ7pKx0-gzGzoHsz',
+        appKey: 'KAileomG9hvkEJGtDrnTyxi5',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
 
 
 
@@ -1310,5 +1350,5 @@ Web: https://www.scholarscope.cn/index.html
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":450},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

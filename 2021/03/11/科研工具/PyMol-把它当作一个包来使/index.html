@@ -311,6 +311,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/03/11/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/PyMol-%E6%8A%8A%E5%AE%83%E5%BD%93%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%8C%85%E6%9D%A5%E4%BD%BF/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/03/11/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/PyMol-%E6%8A%8A%E5%AE%83%E5%BD%93%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%8C%85%E6%9D%A5%E4%BD%BF/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -462,6 +472,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -783,23 +796,29 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <div id="gitalk-container"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
   <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: 'a70a21917c10ea150cc3',
-      clientSecret: '6525ce6fe0e150b68a4c6dab50dae84ea8365db1',
-      repo: 'git_comment',
-      owner: 'luskyqi1995',
-      admin: ['luskyqi1995'],
-      id: location.pathname,
-      distractionFreeMode: 'false'
-    })
-    gitalk.render('gitalk-container')
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'NzxmcypSDJ0YNEsTOLQ7pKx0-gzGzoHsz',
+        appKey: 'KAileomG9hvkEJGtDrnTyxi5',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
   </script>
+
+
 
 
 
@@ -1156,5 +1175,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":450},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

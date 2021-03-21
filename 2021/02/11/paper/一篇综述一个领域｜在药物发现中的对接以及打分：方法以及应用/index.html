@@ -350,6 +350,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/02/11/paper/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2021/02/11/paper/%E4%B8%80%E7%AF%87%E7%BB%BC%E8%BF%B0%E4%B8%80%E4%B8%AA%E9%A2%86%E5%9F%9F%EF%BD%9C%E5%9C%A8%E8%8D%AF%E7%89%A9%E5%8F%91%E7%8E%B0%E4%B8%AD%E7%9A%84%E5%AF%B9%E6%8E%A5%E4%BB%A5%E5%8F%8A%E6%89%93%E5%88%86%EF%BC%9A%E6%96%B9%E6%B3%95%E4%BB%A5%E5%8F%8A%E5%BA%94%E7%94%A8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -680,6 +690,9 @@
 
           
 
+  
+    <div class="comments" id="comments">
+    </div>
   
 
 
@@ -1026,23 +1039,29 @@
 
 
 
-
-
-  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
-  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-  <div id="gitalk-container"></div>
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
   <script type="text/javascript">
-    var gitalk = new Gitalk({
-      clientID: 'a70a21917c10ea150cc3',
-      clientSecret: '6525ce6fe0e150b68a4c6dab50dae84ea8365db1',
-      repo: 'git_comment',
-      owner: 'luskyqi1995',
-      admin: ['luskyqi1995'],
-      id: location.pathname,
-      distractionFreeMode: 'false'
-    })
-    gitalk.render('gitalk-container')
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'NzxmcypSDJ0YNEsTOLQ7pKx0-gzGzoHsz',
+        appKey: 'KAileomG9hvkEJGtDrnTyxi5',
+        placeholder: 'Just go go',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
   </script>
+
+
 
 
 
@@ -1399,5 +1418,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"left","width":200,"height":450},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
