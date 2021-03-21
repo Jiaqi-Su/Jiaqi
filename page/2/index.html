@@ -635,7 +635,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -654,7 +654,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/" itemprop="url">Python每日一谈｜No.20.实例.1-PyMol.1-导入蛋白，创建蛋白</a></h1>
+                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/" itemprop="url">Python每日一谈｜No.19.异常</a></h1>
         
 
         <div class="post-meta">
@@ -720,7 +720,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  718 字
+                  1.2k 字
                 </span>
               
 
@@ -736,7 +736,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -759,25 +759,21 @@
       
         
           
-          已经写到20了，我知道你们也有点烦了
-姑且认为以前的都会了吧
-今天写PyMol
-然后这次水一波PyMol
+          我们在运行python程序时，经常会出现一些异常。
+异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式.
 
-安装
+有可能是你自己写错了
 
-官网：https://pymol.org/2/
-
-开源版本：https://sourceforge.net/projects/pymol/
-
-或者假设你已经安装了conda
+也有可能是程序本身无法处理
 
 
-​  
+但是，活得干呀，我们现在就来看下怎么处理异常
+python内部有很多异常，可以向用户直接汇报出信息
+来看下python本身
           ...
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/#more" rel="contents">
+            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1009,6 +1005,199 @@ IDE简介：
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dinosaur.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZeroDesigner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/" itemprop="url">Python每日一谈｜No.20.实例.1-PyMol.1-导入蛋白，创建蛋白</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-20T19:51:05+08:00">
+                2021-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">Python每日一谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  718 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          已经写到20了，我知道你们也有点烦了
+姑且认为以前的都会了吧
+今天写PyMol
+然后这次水一波PyMol
+
+安装
+
+官网：https://pymol.org/2/
+
+开源版本：https://sourceforge.net/projects/pymol/
+
+或者假设你已经安装了conda
+
+
+​  
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.20.%E5%AE%9E%E4%BE%8B.1-PyMol.1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.1-PyMol.2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1145,195 +1334,6 @@ IDE简介：
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.21.%E5%AE%9E%E4%BE%8B.1-PyMol.2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dinosaur.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZeroDesigner">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/" itemprop="url">Python每日一谈｜No.19.异常</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-20T19:51:05+08:00">
-                2021-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88/" itemprop="url" rel="index">
-                    <span itemprop="name">Python每日一谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1.2k 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          我们在运行python程序时，经常会出现一些异常。
-异常是一种跳出代码块的正常控制流来处理错误或者其它异常条件的方式.
-
-有可能是你自己写错了
-
-也有可能是程序本身无法处理
-
-
-但是，活得干呀，我们现在就来看下怎么处理异常
-python内部有很多异常，可以向用户直接汇报出信息
-来看下python本身
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.19.%E5%BC%82%E5%B8%B8/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1755,6 +1755,192 @@ python内部有很多异常，可以向用户直接汇报出信息
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/dinosaur.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZeroDesigner">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/" itemprop="url">Python每日一谈｜No.13.列表生成式.2</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-20T19:51:05+08:00">
+                2021-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88/" itemprop="url" rel="index">
+                    <span itemprop="name">Python每日一谈</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  273 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+           上篇我们说到了列表生成式
+你可以很简单的通过
+a = [i for i in b]
+来搭建一个列表
+但是，问题还在于内存，是不是有种熟悉的味道
+是的，你可以在生成列表之后使用迭代器来减少内存
+其实方法很简单，我是为了水文才拆成了两篇,怕你们记不住
+我们只需要将[]修改为()便可以直接生成一个迭代器
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.14.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1892,192 +2078,6 @@ python的一大优势就是有很多的第三方包
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.14.%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dinosaur.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZeroDesigner">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/" itemprop="url">Python每日一谈｜No.13.列表生成式.2</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-03-20T19:51:05+08:00">
-                2021-03-20
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88/" itemprop="url" rel="index">
-                    <span itemprop="name">Python每日一谈</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  273 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-           上篇我们说到了列表生成式
-你可以很简单的通过
-a = [i for i in b]
-来搭建一个列表
-但是，问题还在于内存，是不是有种熟悉的味道
-是的，你可以在生成列表之后使用迭代器来减少内存
-其实方法很简单，我是为了水文才拆成了两篇,怕你们记不住
-我们只需要将[]修改为()便可以直接生成一个迭代器
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.13.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
