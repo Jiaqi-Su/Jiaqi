@@ -7,54 +7,6 @@
 ]]></content>
   </entry>
   <entry>
-    <title>Python每日一谈｜No.10.迭代器</title>
-    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
-    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
-<blockquote>
-<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
-</blockquote>
-<blockquote>
-<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
-</blockquote>
-<blockquote>
-<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
-</blockquote>
-<blockquote>
-<p>当然，你也可以记住一句话</p>
-</blockquote>
-<blockquote>
-<p><strong>万物皆对象</strong></p>
-</blockquote>
-<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
-<ol>
-<li>迭代器是可迭代的对象</li>
-<li>迭代器只能往前不会后退。</li>
-<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
-<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
-<li>你也可以使用循环来进行遍历</li>
-</ol>
-<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
-<p>我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
-<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
-<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
-<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.1.学习所需资源</title>
     <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.1/</url>
     <content><![CDATA[<blockquote>
@@ -110,6 +62,54 @@
 <li>Sublime Text:<a href="https://www.sublimetext.com/">https://www.sublimetext.com</a></li>
 <li>Spyder:<a href="https://www.spyder-ide.org/">https://www.spyder-ide.org/</a></li>
 </ol>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.10.迭代器</title>
+    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.10/</url>
+    <content><![CDATA[<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器呢，是一种<strong>对象</strong>。。。。</p>
+<blockquote>
+<p>我如何和你们解释<strong>对象</strong>这个比较抽象的词呢（在某些同学仍然单身的情况下hhh）</p>
+</blockquote>
+<blockquote>
+<p>言归正传，编程可以分为两类，面向过程的编程，以及面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>我们写的一般普通的脚本是面向过程的，因为，处理问题比较简单，应用情景比较单一</p>
+</blockquote>
+<blockquote>
+<p>但是如果对于比较复杂的操作一般会使用面向对象的编程</p>
+</blockquote>
+<blockquote>
+<p>当然，你也可以记住一句话</p>
+</blockquote>
+<blockquote>
+<p><strong>万物皆对象</strong></p>
+</blockquote>
+<p>为了更细致的了解,迭代器，我们先来给他下定义</p>
+<ol>
+<li>迭代器是可迭代的对象</li>
+<li>迭代器只能往前不会后退。</li>
+<li>迭代器有两个基本的方法：<strong>iter()</strong> 和 <strong>next()</strong></li>
+<li>字符串，列表，元组，字典对象都可用于创建迭代器</li>
+<li>你也可以使用循环来进行遍历</li>
+</ol>
+<p>简而言之，一个字符串，列表或元组被迭代化后，他就变成了一个迭代器类似的存在，迭代器可以进行迭代，且只能向前不能向后</p>
+<p>我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a=<span class="string">&#x27;abcd&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">10</span>]: str_iterator</span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">5</span>]: <span class="string">&#x27;a&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">7</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">8</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">8</span>]: <span class="string">&#x27;d&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">9</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 当然列表，元祖也基本一致</span></span><br><span class="line">In [<span class="number">11</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">12</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: print(b)</span><br><span class="line">&lt;list_iterator <span class="built_in">object</span> at <span class="number">0x7fc9b8337ed0</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">14</span>]: <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">15</span>]: <span class="number">2</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">16</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">16</span>]: <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">Out[<span class="number">17</span>]: <span class="number">4</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">18</span>]: <span class="built_in">next</span>(b)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">18</span>-adb3e17b0219&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(b)</span><br><span class="line"></span><br><span class="line"><span class="comment">#当然，如果是字典的话</span></span><br><span class="line">In [<span class="number">19</span>]: a=&#123;<span class="string">&#x27;b&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;c&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"></span><br><span class="line">In [<span class="number">20</span>]: <span class="built_in">iter</span>(a)</span><br><span class="line">Out[<span class="number">20</span>]: &lt;dict_keyiterator at <span class="number">0x7fc9b8331170</span>&gt;</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: d = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">22</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">22</span>]: <span class="string">&#x27;b&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">23</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">Out[<span class="number">23</span>]: <span class="string">&#x27;c&#x27;</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">24</span>]: <span class="built_in">next</span>(d)</span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">StopIteration                             Traceback (most recent call last)</span><br><span class="line">&lt;ipython-<span class="built_in">input</span>-<span class="number">24</span>-9b2daf1403f5&gt; <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">----&gt; 1 next(d)</span><br><span class="line"></span><br><span class="line">StopIteration:</span><br><span class="line"> </span><br><span class="line"><span class="comment"># 使用循环来进行遍历</span></span><br><span class="line">In [<span class="number">20</span>]: b = (i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line"></span><br><span class="line">In [<span class="number">21</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> b:</span><br><span class="line">    ...:     print(i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>那其实现在，我们就有一个问题，为什么要用迭代器呢？</p>
+<p>话说直接使用<code>for</code>，<code>while</code>循环遍历他不香吗？</p>
+<p>一方面，同学们要了解，迭代的思想和精髓呀，这个你们高中老师就教过了，我就不教了，我们下一谈来直接写一个看看。</p>
+<p>第二方面，迭代器所占的内存更小，我们看个例子</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">33</span>]: <span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">In [<span class="number">34</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">35</span>]:  print(sys.getsizeof(a))</span><br><span class="line"><span class="number">112</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: b = <span class="built_in">iter</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">37</span>]: print(sys.getsizeof(b))</span><br><span class="line"><span class="number">64</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这里我们使用两种方式创建了a，这个列表，一种是正常方式</span></span><br><span class="line"><span class="comment">#一种是正常方式，在正常方式下，a所占的内存为112字节</span></span><br><span class="line"><span class="comment">#一种是迭代器方式，a所占的内存的为64字节</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>所以，<strong>迭代器比较香是因为它占据的内存比较小</strong></p>
 ]]></content>
       <categories>
         <category>Python每日一谈</category>
@@ -1178,31 +1178,6 @@
       </categories>
   </entry>
   <entry>
-    <title>Python每日一谈｜No.8</title>
-    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.8/</url>
-    <content><![CDATA[<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>另外一个常用的循环语句是<code>while</code>,在<code>while</code>语句中只要满足条件，就可以一直循环</p>
-<p>基本形式为</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while 判断语句：</span><br><span class="line">	执行语句</span><br></pre></td></tr></table></figure>
-
-<p>例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = <span class="number">0</span></span><br><span class="line">In [<span class="number">2</span>]: b = <span class="number">10</span></span><br><span class="line">In [<span class="number">4</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">   ...:     print(a)</span><br><span class="line">   ...:     a = a + <span class="number">1</span></span><br><span class="line">   ...: print(<span class="string">&#x27;end&#x27;</span>)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>当然利用这个特性，你也可以使用一个死循环</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">9</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="keyword">while</span> a == b:</span><br><span class="line">    ...:     print(a)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="comment"># 此时你可以关闭终端，或者ctrl + c来进行终止</span></span><br></pre></td></tr></table></figure>
-
-<p>当然<code>while</code>也可以与<code>else</code>联用，个人理解在<code>while</code>执行完成之后，不符合判段条件时，便可以执行<code>else</code>语句</p>
-<p>基本形式为</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> 判断条件:</span><br><span class="line"></span><br><span class="line">	执行语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line"></span><br><span class="line">	执行语句</span><br></pre></td></tr></table></figure>
-
-<p>例如：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: b = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">    ...:     print(a)</span><br><span class="line">    ...:     a = a + <span class="number">1</span></span><br><span class="line">    ...: <span class="keyword">else</span>:</span><br><span class="line">    ...:     print(<span class="string">&#x27;jump&#x27;</span>)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">jump</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.7</title>
     <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.7/</url>
     <content><![CDATA[<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>循环，是最常用的命令，和判断语句一样，一般情况下，我们将问题或者实际情况进行拆解，分类，然后使用循环以及判断来寻找潜在的解。</p>
@@ -1241,20 +1216,29 @@
       </categories>
   </entry>
   <entry>
-    <title>PythonEveryDay</title>
-    <url>/2021/03/20/python-every-day/README/</url>
-    <content><![CDATA[<p>Hi, 大家好。</p>
-<blockquote>
-<p>开这个专栏是因为大家想学，而且，基本不需要更新的问题。</p>
-<p>我们会从基础开始进行教学，继而进行安装，包使用，编程等等。</p>
-<p>由于是总结以及教学方面，我会参考各种教程，如有引用，必定开源(本教程遵循MIT协议)。</p>
-<p>当然，我们的实例重点是偏向于python使用与结构生物学，CADD，化学信息学等方面的使用。</p>
-<p>（毕竟爬PubChem，也算爬虫的一种）</p>
-<p>最终会提供几个实例，作为结尾，说到这里，又应该开一个仓库了。</p>
-<p>(Typora + Gitee)[<a href="https://zhuanlan.zhihu.com/p/349427506]%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F%F0%9F%98%8E">https://zhuanlan.zhihu.com/p/349427506]自动上传了解一下？😎</a></p>
-</blockquote>
-<p>祝大家学习愉快！</p>
+    <title>Python每日一谈｜No.8</title>
+    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.8/</url>
+    <content><![CDATA[<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>另外一个常用的循环语句是<code>while</code>,在<code>while</code>语句中只要满足条件，就可以一直循环</p>
+<p>基本形式为</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">while 判断语句：</span><br><span class="line">	执行语句</span><br></pre></td></tr></table></figure>
+
+<p>例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = <span class="number">0</span></span><br><span class="line">In [<span class="number">2</span>]: b = <span class="number">10</span></span><br><span class="line">In [<span class="number">4</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">   ...:     print(a)</span><br><span class="line">   ...:     a = a + <span class="number">1</span></span><br><span class="line">   ...: print(<span class="string">&#x27;end&#x27;</span>)</span><br><span class="line"><span class="number">0</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line"><span class="number">4</span></span><br><span class="line"><span class="number">5</span></span><br><span class="line"><span class="number">6</span></span><br><span class="line"><span class="number">7</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line"><span class="number">9</span></span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>当然利用这个特性，你也可以使用一个死循环</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">9</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: b = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="keyword">while</span> a == b:</span><br><span class="line">    ...:     print(a)</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="comment"># 此时你可以关闭终端，或者ctrl + c来进行终止</span></span><br></pre></td></tr></table></figure>
+
+<p>当然<code>while</code>也可以与<code>else</code>联用，个人理解在<code>while</code>执行完成之后，不符合判段条件时，便可以执行<code>else</code>语句</p>
+<p>基本形式为</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">while</span> 判断条件:</span><br><span class="line"></span><br><span class="line">	执行语句</span><br><span class="line"></span><br><span class="line"><span class="keyword">else</span> :</span><br><span class="line"></span><br><span class="line">	执行语句</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: b = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">    ...:     print(a)</span><br><span class="line">    ...:     a = a + <span class="number">1</span></span><br><span class="line">    ...: <span class="keyword">else</span>:</span><br><span class="line">    ...:     print(<span class="string">&#x27;jump&#x27;</span>)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">jump</span><br></pre></td></tr></table></figure>
+
 ]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
   </entry>
   <entry>
     <title>Python每日一谈｜No.9</title>
@@ -1280,6 +1264,22 @@
       <categories>
         <category>Python每日一谈</category>
       </categories>
+  </entry>
+  <entry>
+    <title>PythonEveryDay</title>
+    <url>/2021/03/20/python-every-day/README/</url>
+    <content><![CDATA[<p>Hi, 大家好。</p>
+<blockquote>
+<p>开这个专栏是因为大家想学，而且，基本不需要更新的问题。</p>
+<p>我们会从基础开始进行教学，继而进行安装，包使用，编程等等。</p>
+<p>由于是总结以及教学方面，我会参考各种教程，如有引用，必定开源(本教程遵循MIT协议)。</p>
+<p>当然，我们的实例重点是偏向于python使用与结构生物学，CADD，化学信息学等方面的使用。</p>
+<p>（毕竟爬PubChem，也算爬虫的一种）</p>
+<p>最终会提供几个实例，作为结尾，说到这里，又应该开一个仓库了。</p>
+<p>(Typora + Gitee)[<a href="https://zhuanlan.zhihu.com/p/349427506]%E8%87%AA%E5%8A%A8%E4%B8%8A%E4%BC%A0%E4%BA%86%E8%A7%A3%E4%B8%80%E4%B8%8B%EF%BC%9F%F0%9F%98%8E">https://zhuanlan.zhihu.com/p/349427506]自动上传了解一下？😎</a></p>
+</blockquote>
+<p>祝大家学习愉快！</p>
+]]></content>
   </entry>
   <entry>
     <title>PyMol-把它当作一个包来使</title>
