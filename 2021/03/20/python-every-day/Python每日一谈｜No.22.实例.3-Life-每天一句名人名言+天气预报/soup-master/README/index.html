@@ -273,7 +273,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dinosaur.jpg">
+      <meta itemprop="image" content="/images/dinosaur.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -474,7 +474,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/dinosaur.jpg"
+                src="/images/dinosaur.png"
                 alt="" />
             
               <p class="site-author-name" itemprop="name"></p>
@@ -758,6 +758,24 @@
 
 
 
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '66b447cdd552d89a1daa',
+      clientSecret: '3b9b75a1a85a25810f393855c899588157d3d4d4',
+      repo: 'git_comment',
+      owner: 'zerodesigner',
+      admin: ['zerodesigner'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 

@@ -281,7 +281,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/dinosaur.jpg">
+      <meta itemprop="image" content="/images/dinosaur.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -884,8 +884,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2021/02/24/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.5/" rel="next" title="Python每日一谈｜No.5">
-                <i class="fa fa-chevron-left"></i> Python每日一谈｜No.5
+              <a href="/2021/02/16/paper/%E5%B0%8F%E5%BF%83%E5%AF%B9%E6%8E%A5/" rel="next" title="一篇综述一个领域｜谨慎对待对接">
+                <i class="fa fa-chevron-left"></i> 一篇综述一个领域｜谨慎对待对接
               </a>
             
           </div>
@@ -894,8 +894,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2021/02/25/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.6/" rel="prev" title="Python每日一谈｜No.6">
-                Python每日一谈｜No.6 <i class="fa fa-chevron-right"></i>
+              <a href="/2021/03/11/%E7%A7%91%E7%A0%94%E5%B7%A5%E5%85%B7/PyMol-%E6%8A%8A%E5%AE%83%E5%BD%93%E4%BD%9C%E4%B8%80%E4%B8%AA%E5%8C%85%E6%9D%A5%E4%BD%BF/" rel="prev" title="PyMol-把它当作一个包来使">
+                PyMol-把它当作一个包来使 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -963,7 +963,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/dinosaur.jpg"
+                src="/images/dinosaur.png"
                 alt="" />
             
               <p class="site-author-name" itemprop="name"></p>
@@ -1247,6 +1247,24 @@
 
 
 
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: '66b447cdd552d89a1daa',
+      clientSecret: '3b9b75a1a85a25810f393855c899588157d3d4d4',
+      repo: 'git_comment',
+      owner: 'zerodesigner',
+      admin: ['zerodesigner'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 
