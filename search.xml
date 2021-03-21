@@ -1340,31 +1340,6 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
       </categories>
   </entry>
   <entry>
-    <title>Python每日一谈｜No.9</title>
-    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.9/</url>
-    <content><![CDATA[<h3 id="循环中的一些关键词"><a href="#循环中的一些关键词" class="headerlink" title="循环中的一些关键词"></a>循环中的一些关键词</h3><p>在上面我们已经说了<code>else</code></p>
-<p>现在那么只有三个关键词<code>break, continue,pass</code></p>
-<ol>
-<li><p><code>break</code></p>
-<p><code>break</code> 用于打破循环，想到了悟空，hhh，在循环中，当值满足某个条件值，可以使用<code>break</code>打破此循环，避免执行后续语句，减少计算量</p>
-<p>一般形式</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">22</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span></span><br><span class="line">    ...: <span class="keyword">for</span>   i  <span class="keyword">in</span> a:</span><br><span class="line">    ...: 	<span class="keyword">if</span> i == <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">    ...:		print(<span class="string">&#x27;find d and break&#x27;</span>)</span><br><span class="line">    ...:		<span class="keyword">break</span></span><br><span class="line">    ...:	print(<span class="string">&#x27;find&#x27;</span>,i)</span><br><span class="line">    ...: print(<span class="string">&#x27;finished&#x27;</span>)</span><br><span class="line">find a</span><br><span class="line">find b</span><br><span class="line">find c</span><br><span class="line">find d <span class="keyword">and</span> <span class="keyword">break</span></span><br><span class="line">finished</span><br></pre></td></tr></table></figure></li>
-<li><p><code>continue</code>用于跳过当前的循环</p>
-<p>当满足你的判断条件时，使用<code>continue</code>可以跳过本次循环，进入下一循环</p>
-<p>我们来看一个实例</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当我们使用continue时</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span> </span><br><span class="line">    ...: print(<span class="string">&#x27;continue&#x27;</span>) </span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">continue</span> </span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i) </span><br><span class="line">    ...:                                                                                                                                                   </span><br><span class="line"><span class="keyword">continue</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出我们跳过了c进行了后续的循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当我们使用break是</span></span><br><span class="line">In [<span class="number">62</span>]: print(<span class="string">&#x27;break&#x27;</span>)</span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">break</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line"><span class="comment"># 可以看出当遇到break时，循环直接被打破</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p><code>pass</code></p>
-<p>pass是空语句，不做任何事情，你可以把它当作一个为了保证程序结构完整性而创造出来的词</p>
-<p>只是为了占个位置，看起来顺眼</p>
-<p>例如</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">63</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">pass</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  c</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出当我们使用pass时，实际上没有发生任何变化，程序会正常执行，循环</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者下面一个例子</span></span><br><span class="line">In [<span class="number">38</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">pass</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         print(i,<span class="string">&#x27;is not c&#x27;</span>) </span><br><span class="line"><span class="comment"># 当我们在使用pass时，程序不执行任何操作，但当条件不是‘c’时，程序执行print操作                                                                                                                                               </span></span><br><span class="line">a <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">b <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">d <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">e <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">f <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">g <span class="keyword">is</span> <span class="keyword">not</span> c</span><br></pre></td></tr></table></figure></li>
-</ol>
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.8</title>
     <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.8/</url>
     <content><![CDATA[<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>另外一个常用的循环语句是<code>while</code>,在<code>while</code>语句中只要满足条件，就可以一直循环</p>
@@ -1384,6 +1359,31 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
 <p>例如：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: b = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">14</span>]: <span class="keyword">while</span> a &lt; b :</span><br><span class="line">    ...:     print(a)</span><br><span class="line">    ...:     a = a + <span class="number">1</span></span><br><span class="line">    ...: <span class="keyword">else</span>:</span><br><span class="line">    ...:     print(<span class="string">&#x27;jump&#x27;</span>)</span><br><span class="line">    ...:</span><br><span class="line"><span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">jump</span><br></pre></td></tr></table></figure>
 
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.9</title>
+    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.9/</url>
+    <content><![CDATA[<h3 id="循环中的一些关键词"><a href="#循环中的一些关键词" class="headerlink" title="循环中的一些关键词"></a>循环中的一些关键词</h3><p>在上面我们已经说了<code>else</code></p>
+<p>现在那么只有三个关键词<code>break, continue,pass</code></p>
+<ol>
+<li><p><code>break</code></p>
+<p><code>break</code> 用于打破循环，想到了悟空，hhh，在循环中，当值满足某个条件值，可以使用<code>break</code>打破此循环，避免执行后续语句，减少计算量</p>
+<p>一般形式</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">22</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span></span><br><span class="line">    ...: <span class="keyword">for</span>   i  <span class="keyword">in</span> a:</span><br><span class="line">    ...: 	<span class="keyword">if</span> i == <span class="string">&#x27;d&#x27;</span>:</span><br><span class="line">    ...:		print(<span class="string">&#x27;find d and break&#x27;</span>)</span><br><span class="line">    ...:		<span class="keyword">break</span></span><br><span class="line">    ...:	print(<span class="string">&#x27;find&#x27;</span>,i)</span><br><span class="line">    ...: print(<span class="string">&#x27;finished&#x27;</span>)</span><br><span class="line">find a</span><br><span class="line">find b</span><br><span class="line">find c</span><br><span class="line">find d <span class="keyword">and</span> <span class="keyword">break</span></span><br><span class="line">finished</span><br></pre></td></tr></table></figure></li>
+<li><p><code>continue</code>用于跳过当前的循环</p>
+<p>当满足你的判断条件时，使用<code>continue</code>可以跳过本次循环，进入下一循环</p>
+<p>我们来看一个实例</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 当我们使用continue时</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">36</span>]: a = <span class="string">&#x27;abcdefg&#x27;</span> </span><br><span class="line">    ...: print(<span class="string">&#x27;continue&#x27;</span>) </span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">continue</span> </span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i) </span><br><span class="line">    ...:                                                                                                                                                   </span><br><span class="line"><span class="keyword">continue</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出我们跳过了c进行了后续的循环</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当我们使用break是</span></span><br><span class="line">In [<span class="number">62</span>]: print(<span class="string">&#x27;break&#x27;</span>)</span><br><span class="line">    ...: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">break</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line"><span class="keyword">break</span></span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line"><span class="comment"># 可以看出当遇到break时，循环直接被打破</span></span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p><code>pass</code></p>
+<p>pass是空语句，不做任何事情，你可以把它当作一个为了保证程序结构完整性而创造出来的词</p>
+<p>只是为了占个位置，看起来顺眼</p>
+<p>例如</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">63</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>:</span><br><span class="line">    ...:         <span class="keyword">pass</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;find &#x27;</span>,i)</span><br><span class="line">    ...:</span><br><span class="line">find  a</span><br><span class="line">find  b</span><br><span class="line">find  c</span><br><span class="line">find  d</span><br><span class="line">find  e</span><br><span class="line">find  f</span><br><span class="line">find  g</span><br><span class="line"><span class="comment"># 可以看出当我们使用pass时，实际上没有发生任何变化，程序会正常执行，循环</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者下面一个例子</span></span><br><span class="line">In [<span class="number">38</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> a: </span><br><span class="line">    ...:     <span class="keyword">if</span> i == <span class="string">&#x27;c&#x27;</span>: </span><br><span class="line">    ...:         <span class="keyword">pass</span> </span><br><span class="line">    ...:     <span class="keyword">else</span>: </span><br><span class="line">    ...:         print(i,<span class="string">&#x27;is not c&#x27;</span>) </span><br><span class="line"><span class="comment"># 当我们在使用pass时，程序不执行任何操作，但当条件不是‘c’时，程序执行print操作                                                                                                                                               </span></span><br><span class="line">a <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">b <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">d <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">e <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">f <span class="keyword">is</span> <span class="keyword">not</span> c</span><br><span class="line">g <span class="keyword">is</span> <span class="keyword">not</span> c</span><br></pre></td></tr></table></figure></li>
+</ol>
 ]]></content>
       <categories>
         <category>Python每日一谈</category>
@@ -2096,49 +2096,6 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
       </categories>
   </entry>
   <entry>
-    <title>Python每日一谈｜No.12.列表生成式.1</title>
-    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.12.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/</url>
-    <content><![CDATA[<h3 id="额"><a href="#额" class="headerlink" title="额"></a>额</h3><p>竟然就到了函数，为什么这么快，我。。。是不是落了一些hh</p>
-<p>来看一个我经常使用的方式</p>
-<p>**列表生成式 **</p>
-<p>一般来说我们如果要创建一个列表的话，那么可选的方案有</p>
-<ol>
-<li><p>直接定义列表</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure></li>
-<li><p>将其余数据结构直接列表化</p>
-</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">3</span>]: b = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="built_in">tuple</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: c = <span class="built_in">list</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">type</span>(c)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: print(c)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>先创建一个空列表，然后往里面塞元素</li>
-</ol>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">8</span>]: d = []</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">   ...:     d.append(i)</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: d</span><br><span class="line">Out[<span class="number">10</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="built_in">type</span>(d)</span><br><span class="line">Out[<span class="number">11</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
-
-
-
-<p>但是python提供了一个更为强大的列表生成方案</p>
-<p>他的一般形式是</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表]</span><br></pre></td></tr></table></figure>
-
-<p>当然你也可以复杂一点</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表 判断式]</span><br></pre></td></tr></table></figure>
-
-<p>那么我们就可以这样使用</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a</span><br><span class="line">Out[<span class="number">13</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
-
-<p>或者</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">14</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a</span><br><span class="line">Out[<span class="number">15</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
-
-<p>甚至于这样</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">16</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>) <span class="keyword">if</span> i &gt; <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: a</span><br><span class="line">Out[<span class="number">17</span>]: [<span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>Python每日一谈</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Python每日一谈｜No.11.函数</title>
     <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.11.%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>手写一个迭代器，不要傻了，在你连函数都不会定义的情况下，我教你手写一个迭代器那是作死。</p>
@@ -2218,6 +2175,49 @@ SystemGenerator会将在Molecular.sdf中找到的分子的任何实例与出现�
 <p>举个例子：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 这里简单引入驼峰命名法，其实就是justdo不好看hhh</span></span><br><span class="line"><span class="comment"># 驼峰命名法：https://baike.baidu.com/item/骆驼命名法</span></span><br><span class="line">In [<span class="number">49</span>]: <span class="function"><span class="keyword">def</span> <span class="title">just_do</span>(<span class="params">a, b, c=<span class="number">0</span>, *, d, **kw</span>):</span></span><br><span class="line">    ...:     print(<span class="string">&#x27;a =&#x27;</span>, a, <span class="string">&#x27;b =&#x27;</span>, b, <span class="string">&#x27;c =&#x27;</span>, c, <span class="string">&#x27;d =&#x27;</span>, d, <span class="string">&#x27;kw =&#x27;</span>, kw)</span><br><span class="line">    ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">50</span>]:  just_do(<span class="number">1</span>, <span class="number">2</span>, d=<span class="number">99</span>, ext=<span class="literal">None</span>)</span><br><span class="line">a = <span class="number">1</span> b = <span class="number">2</span> c = <span class="number">0</span> d = <span class="number">99</span> kw = &#123;<span class="string">&#x27;ext&#x27;</span>: <span class="literal">None</span>&#125;</span><br></pre></td></tr></table></figure></li>
 </ol>
+]]></content>
+      <categories>
+        <category>Python每日一谈</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Python每日一谈｜No.12.列表生成式.1</title>
+    <url>/2021/03/20/python-every-day/Python%E6%AF%8F%E6%97%A5%E4%B8%80%E8%B0%88%EF%BD%9CNo.12.%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%BC%8F/</url>
+    <content><![CDATA[<h3 id="额"><a href="#额" class="headerlink" title="额"></a>额</h3><p>竟然就到了函数，为什么这么快，我。。。是不是落了一些hh</p>
+<p>来看一个我经常使用的方式</p>
+<p>**列表生成式 **</p>
+<p>一般来说我们如果要创建一个列表的话，那么可选的方案有</p>
+<ol>
+<li><p>直接定义列表</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">1</span>]: a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">2</span>]: <span class="built_in">type</span>(a)</span><br><span class="line">Out[<span class="number">2</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure></li>
+<li><p>将其余数据结构直接列表化</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">3</span>]: b = (<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br><span class="line"></span><br><span class="line">In [<span class="number">4</span>]: <span class="built_in">type</span>(b)</span><br><span class="line">Out[<span class="number">4</span>]: <span class="built_in">tuple</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">5</span>]: c = <span class="built_in">list</span>(a)</span><br><span class="line"></span><br><span class="line">In [<span class="number">6</span>]: <span class="built_in">type</span>(c)</span><br><span class="line">Out[<span class="number">6</span>]: <span class="built_in">list</span></span><br><span class="line"></span><br><span class="line">In [<span class="number">7</span>]: print(c)</span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>先创建一个空列表，然后往里面塞元素</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">8</span>]: d = []</span><br><span class="line"></span><br><span class="line">In [<span class="number">9</span>]: <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>):</span><br><span class="line">   ...:     d.append(i)</span><br><span class="line">   ...:</span><br><span class="line"></span><br><span class="line">In [<span class="number">10</span>]: d</span><br><span class="line">Out[<span class="number">10</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">11</span>]: <span class="built_in">type</span>(d)</span><br><span class="line">Out[<span class="number">11</span>]: <span class="built_in">list</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是python提供了一个更为强大的列表生成方案</p>
+<p>他的一般形式是</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表]</span><br></pre></td></tr></table></figure>
+
+<p>当然你也可以复杂一点</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">列表 &#x3D; [表达式 for i in 列表 判断式]</span><br></pre></td></tr></table></figure>
+
+<p>那么我们就可以这样使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">12</span>]: a = [i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">13</span>]: a</span><br><span class="line">Out[<span class="number">13</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br></pre></td></tr></table></figure>
+
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">14</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>)]</span><br><span class="line"></span><br><span class="line">In [<span class="number">15</span>]: a</span><br><span class="line">Out[<span class="number">15</span>]: [<span class="number">0</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">9</span>]</span><br></pre></td></tr></table></figure>
+
+<p>甚至于这样</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">In [<span class="number">16</span>]: a = [i**<span class="number">2</span> <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">4</span>) <span class="keyword">if</span> i &gt; <span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">In [<span class="number">17</span>]: a</span><br><span class="line">Out[<span class="number">17</span>]: [<span class="number">4</span>, <span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">  </span><br></pre></td></tr></table></figure>
+
 ]]></content>
       <categories>
         <category>Python每日一谈</category>
